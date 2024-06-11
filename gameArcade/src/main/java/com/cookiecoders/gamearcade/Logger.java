@@ -1,3 +1,15 @@
+/*
+    This logger class is designed as a singleton instance to be called
+    from any class within the program with:
+
+    private Logger logger = Logger.getInstance();
+
+    After retrieving the instance, the logger can be called with:
+
+    logger.log(Logger.LogLevel.<loglevel>, "Message");
+
+ */
+
 package com.cookiecoders.gamearcade;
 
 import java.io.BufferedWriter;
