@@ -36,7 +36,7 @@ public class Logger {
 
     public static Logger getInstance(){
         if (instance == null) {
-            instance = new Logger("arcaide_run_log.log", 10000);
+            instance = new Logger("log/arcade_app.log", 200);
         }
         return instance;
     }

@@ -7,17 +7,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class main extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Logger logger = Logger.getInstance();
+        logger.log(Logger.LogLevel.INFO, "Starting Cookie Arcade");
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("loginMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("Cookie Arcade");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
