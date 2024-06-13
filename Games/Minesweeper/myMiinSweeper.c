@@ -7,7 +7,7 @@
 	
 	Minesweeper
 	
-	finish minesweeper
+	test change
 	
 	decide when the game is done
 	1. blew up 
