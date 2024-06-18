@@ -1,0 +1,32 @@
+/* loginView.css */
+.anchor-pane {
+    -fx-background-color: #1D3B76;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #2E4A8A;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #5A75E2;
+    -fx-border-radius: 5px;
+}
+
+.button {
+    -fx-background-color: #885FC9;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #6F4FB1;
+}
+
+.button:pressed {
+    -fx-background-color: #5A3A91;
+}

@@ -13,8 +13,9 @@ public class main extends Application {
     public void start(Stage stage) throws IOException {
         Logger logger = Logger.getInstance();
         logger.log(Logger.LogLevel.INFO, "Starting Cookie Arcade");
-        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("loginMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("loginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        scene.getStylesheets().add(getClass().getResource("loginView.css").toExternalForm());
         stage.setTitle("Cookie Arcade");
         stage.setScene(scene);
         stage.show();

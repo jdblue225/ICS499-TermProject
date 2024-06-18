@@ -1,6 +1,5 @@
 package com.cookiecoders.gamearcade;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,8 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class profileViewController {
+import java.io.IOException;
 
+public class storeViewController {
     @FXML
     private void navigateToStoreView(ActionEvent event) {
         navigateToView("storeView.fxml", "storeView.css", event);
