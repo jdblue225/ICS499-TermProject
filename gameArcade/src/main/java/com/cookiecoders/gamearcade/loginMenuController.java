@@ -1,11 +1,16 @@
 package com.cookiecoders.gamearcade;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 
 public class loginMenuController {
     private SQLConnection conn = SQLConnection.getInstance();
@@ -24,11 +29,25 @@ public class loginMenuController {
         String password = hashString(passwordField.getText());
         if (password.equals(hashedPassFromServer)){
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
-            //Navigate to next page
+            loadProfilePage();
         } else {
             logger.log(Logger.LogLevel.WARNING, username.toString() + " login failed.");
         }
     }
+
+private void loadProfilePage() {
+    try {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profileView.fxml"));
+        Parent profileRoot = fxmlLoader.load();
+        Stage stage = (Stage) usernameField.getScene().getWindow();
+        Scene scene = new Scene(profileRoot);
+        scene.getStylesheets().add(getClass().getResource("profileView.css").toExternalForm());
+        stage.setScene(scene);
+    } catch (IOException e) {
+        e.printStackTrace();
+        logger.log(Logger.LogLevel.ERROR, "Failed to load profile page: " + e.getMessage());
+    }
+}
 
     @FXML
     private void newAccount() {
