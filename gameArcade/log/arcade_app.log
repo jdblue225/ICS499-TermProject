@@ -27,3 +27,7 @@
 2024-06-18 09:07:29 - INFO: Starting Cookie Arcade
 2024-06-18 09:07:30 - INFO: Database connected successfully.
 2024-06-18 09:07:53 - INFO: user01 login successful.
+2024-06-18 09:13:08 - INFO: Starting Cookie Arcade
+2024-06-18 09:13:10 - INFO: Database connected successfully.
+2024-06-18 09:13:19 - WARNING: user01 login failed.
+2024-06-18 09:13:28 - WARNING: user01 login failed.
