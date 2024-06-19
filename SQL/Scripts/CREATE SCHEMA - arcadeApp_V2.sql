@@ -1,0 +1,86 @@
+DROP SCHEMA IF EXISTS arcadeapp;
+CREATE SCHEMA arcadeApp; 
+USE arcadeApp;
+DROP TABLE IF EXISTS users; 
+CREATE TABLE users
+    (userid INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+	firstname VARCHAR(50), 
+    lastname VARCHAR(50),
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    PasswordHash VARCHAR(255) NOT NULL,
+    usertype varchar(50),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    PRIMARY KEY (username));
+CREATE TABLE Games (
+    GameID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(100) NOT NULL,
+    Description TEXT,
+    Developer VARCHAR(100),
+    ReleaseDate DATE,
+    Price DECIMAL(10, 2),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE ForumCategories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(50) NOT NULL UNIQUE,
+    Description TEXT,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE ForumPosts (
+    PostID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    CategoryID INT NOT NULL,
+    Title VARCHAR(100) NOT NULL,
+    Content TEXT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (CategoryID) REFERENCES ForumCategories(CategoryID)
+);
+CREATE TABLE ForumComments (
+    CommentID INT AUTO_INCREMENT PRIMARY KEY,
+    PostID INT NOT NULL,
+    UserID INT NOT NULL,
+    Content TEXT NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (PostID) REFERENCES ForumPosts(PostID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+CREATE TABLE StoreItems (
+    ItemID INT AUTO_INCREMENT PRIMARY KEY,
+    ItemType VARCHAR(50) NOT NULL,  -- 'game', 'subscription', etc.
+    ItemName VARCHAR(100) NOT NULL,
+    Description TEXT,
+    Price DECIMAL(10, 2) NOT NULL,
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE Orders (
+    OrderID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    OrderDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    TotalAmount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
+CREATE TABLE OrderItems (
+    OrderItemID INT AUTO_INCREMENT PRIMARY KEY,
+    OrderID INT NOT NULL,
+    ItemID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+    FOREIGN KEY (ItemID) REFERENCES StoreItems(ItemID)
+);
+CREATE TABLE Subscriptions (
+    SubscriptionID INT AUTO_INCREMENT PRIMARY KEY,
+    UserID INT NOT NULL,
+    ItemID INT NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (ItemID) REFERENCES StoreItems(ItemID)
+);
+
+
+
+
+

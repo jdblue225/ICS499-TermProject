@@ -1,3 +1,11 @@
+/**
+ * This loginMenuController class handles the login
+ * and profile creation functionality via the fxml
+ * UI file loginView.
+ *
+ * @author Cookie Coders
+ */
+
 package com.cookiecoders.gamearcade;
 
 import java.io.IOException;
@@ -21,7 +29,12 @@ public class loginMenuController {
 
     @FXML
     private PasswordField passwordField;
-
+    /**
+     * This method handles action from the login button.
+     * It retrieves username and password from the UI, then
+     * compares the hashed value of the password with what
+     * is stored in the backend SQL database
+     */
     @FXML
     private void login() {
         String username = usernameField.getText();
@@ -35,32 +48,44 @@ public class loginMenuController {
         }
     }
 
-private void loadProfilePage() {
-    try {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profileView.fxml"));
-        Parent profileRoot = fxmlLoader.load();
-        Stage stage = (Stage) usernameField.getScene().getWindow();
-        Scene scene = new Scene(profileRoot);
-        scene.getStylesheets().add(getClass().getResource("profileView.css").toExternalForm());
-        stage.setScene(scene);
-    } catch (IOException e) {
-        e.printStackTrace();
-        logger.log(Logger.LogLevel.ERROR, "Failed to load profile page: " + e.getMessage());
+    /**
+     * This method handles loading the Profile View after login.
+     */
+    private void loadProfilePage() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profileView.fxml"));
+            Parent profileRoot = fxmlLoader.load();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            Scene scene = new Scene(profileRoot);
+            scene.getStylesheets().add(getClass().getResource("profileView.css").toExternalForm());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.log(Logger.LogLevel.ERROR, "Failed to load profile page: " + e.getMessage());
+        }
     }
-}
 
+    /**
+     * This method handles creating a new account if one does not exist.
+     * Todo
+     */
     @FXML
     private void newAccount() {
         // handle creating a new account via SQL class
     }
 
+    /**
+     * This function takes a string and hashes it
+     * via the SHA-256 algorithm.
+     * @param stringToHash
+     * @return hashedString
+     */
     private String hashString(String stringToHash){
         String hashedString ="";
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] hashedBytes = md.digest(stringToHash.getBytes());
 
-            // Convert the byte array to a hexadecimal string
             StringBuilder hexString = new StringBuilder();
             for (byte b : hashedBytes) {
                 hexString.append(String.format("%02x", b));

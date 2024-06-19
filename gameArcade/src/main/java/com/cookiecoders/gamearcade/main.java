@@ -1,3 +1,18 @@
+/**
+ * This is the main class to the Cookie Coders application
+ * developed for ICS 499 Capstone class summer of 2024.
+ *
+ * This is the main method and is to be initially called
+ * in order to start the application.
+ *
+ * @author Cookie Coders
+ *
+ *      Brandon Crass
+ *      Jeremy Daly
+ *      Maddy Imhoff
+ *      Kevin Trinh
+ */
+
 package com.cookiecoders.gamearcade;
 
 import javafx.application.Application;
