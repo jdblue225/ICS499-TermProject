@@ -1,13 +1,14 @@
-/*
-    This logger class is designed as a singleton instance to be called
-    from any class within the program with:
-
-    private Logger logger = Logger.getInstance();
-
-    After retrieving the instance, the logger can be called with:
-
-    logger.log(Logger.LogLevel.<loglevel>, "Message");
-
+/**
+ *     This logger class is designed as a singleton instance to be called
+ *     from any class within the package. It crates a log file in the log
+ *     directory and creates new log file if the size grows too large or if
+ *     the program is run on a new day.
+ *
+ *     Usage:
+ *         Instantiate:
+ *              private Logger = Logger.getInstance();
+ *         Call:
+ *              logger.log(Logger.LogLevel.<loglevel>, "Message");
  */
 
 package com.cookiecoders.gamearcade;
@@ -26,7 +27,12 @@ public class Logger {
     private long currentSizeBytes;
     private String currentLogDate;
 
-
+    /**
+     * This is the constructor for the logger class and is only called
+     * once from the main method.
+     * @param logFilePath
+     * @param maxSizeBytes
+     */
     private Logger(String logFilePath, long maxSizeBytes) {
         this.logFilePath = logFilePath;
         this.maxSizeBytes = maxSizeBytes;
@@ -34,6 +40,12 @@ public class Logger {
         this.currentLogDate = getCurrentDate();
     }
 
+    /**
+     * This method retrieves the active instance of this singleton
+     * class. The first time this method is called, it constructs the
+     * class. All subsequent calls, it only returns the current instance.
+     * @return instance
+     */
     public static Logger getInstance(){
         if (instance == null) {
             instance = new Logger("log/arcade_app.log", 200);
@@ -48,17 +60,29 @@ public class Logger {
         return instance;
     }
 
+    /**
+     * This enum method is used to define log levels.
+     */
     public enum LogLevel {
         INFO, WARNING, ERROR
     }
 
-    // Log a message to the file with a timestamp and log level.
+    /**
+     * This method is called from within the package and is used
+     * to add log entries to the log file.
+     * @param level
+     * @param message
+     */
     public void log(LogLevel level, String message) {
         String logMessage = level + ": " + message;
         log(logMessage);
     }
 
-    // Log a message to the file with a timestamp.
+    /**
+     * This method is called from within the logger class
+     * and is used to write log entries to the log.
+     * @param message
+     */
     private void log(String message) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath, true)) ) {
             String timestamp = getTimestamp();
@@ -66,40 +90,51 @@ public class Logger {
             writer.write(logEntry);
             writer.newLine();
 
-            // Update the current log file size
             currentSizeBytes += logEntry.length();
 
-            // Check if the log file has reached the size limit or if a new day has started, and create a new log file if needed
             if (currentSizeBytes >= maxSizeBytes || !getCurrentDate().equals(currentLogDate)) {
                 createNewLogFile();
                 currentSizeBytes = 0;
                 currentLogDate = getCurrentDate();
             }
         } catch (IOException e) {
-            // Handle the exception, e.g., print an error message or throw it further.
             e.printStackTrace();
         }
     }
 
+    /**
+     * This method is called within the logger class to
+     * retrieve the current timestamp in "yyyy-MM-dd HH:mm:ss"
+     * format.
+     * @return timeStamp
+     */
     private String getTimestamp() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         return dateFormat.format(now);
     }
 
+    /**
+     * This method is called from within the logger class to
+     * retrieve the current timestamp in "yyyy-MM-dd" format.
+     * @return timeStamp
+     */
     private String getCurrentDate() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date now = new Date();
         return dateFormat.format(now);
     }
 
+    /**
+     * This method is called from within the logger class and is used to create a new
+     * log file.
+     * @throws IOException
+     */
     private void createNewLogFile() throws IOException {
         String newLogFilePath = logFilePath + "_" + System.currentTimeMillis() + ".log";
         File newLogFile = new File(newLogFilePath);
         if (newLogFile.createNewFile()) {
-            // Successfully created a new log file
         } else {
-            // Handle the case where creating a new log file failed
             throw new IOException("Failed to create a new log file.");
         }
     }

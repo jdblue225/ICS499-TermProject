@@ -1,11 +1,19 @@
+/**
+ *  The SQLConnection class is designed to function as a
+ *  Singleton class which can be called throughout the
+ *  package in order to reduce connection overhead at
+ *  the server level.
+ *
+ *  NOTE: Global variables SQL_USERNAME and SQL_PASSWORD
+ *        need to reflect the values of your MySQL install.
+ *
+ * @author Cookie Coders
+ *
+ */
 package com.cookiecoders.gamearcade;
 import java.sql.*;
 import java.util.HashMap;
 
-/**
- *  Singleton SQLConnection class to handle the connection to
- *  the local SQL database.
- */
 public class SQLConnection {
     private Logger logger = Logger.getInstance();
     private static SQLConnection instance;
@@ -14,12 +22,21 @@ public class SQLConnection {
     private static final String SQL_USERNAME = "root";  // Edit username to reflect YOUR SQL database username
     private static final String SQL_PASSWORD = "password";  // Edit password to reflect YOUR SQL database password
 
-    // Private constructor to prevent instantiation
+    /**
+     * This method is called from within the SQLConnection
+     * class in order to establish a connection with the
+     * SQL database.
+     */
     private SQLConnection() {
         connect();
     }
 
-    // Public method to get the instance of the class
+    /**
+     * This method is used to retrieve the current instance
+     * of the SQLConnection class. If one exists, it returns
+     * that.
+     * @return instance
+     */
     public static synchronized SQLConnection getInstance() {
         if (instance == null) {
             instance = new SQLConnection();
@@ -27,8 +44,10 @@ public class SQLConnection {
         return instance;
     }
 
-    // Method to establish a database connection
-
+    /**
+     * This method is called from within the SQLConnection class
+     * in order to establish the connection with the SQL server.
+     */
     private void connect() {
         try {
             String url = "jdbc:mysql://localhost/" + DATABASE_NAME + "?user=" + SQL_USERNAME + "&password=" + SQL_PASSWORD;
@@ -62,6 +81,20 @@ public class SQLConnection {
         }
         return null;  // Return null if the password is not found or an error occurs
     }
+
+    /**
+     * This method can be used from within the package to
+     * insert new users into the SQL database.
+     *
+     * TODO
+     *
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param hashPass
+     * @param usertype
+     */
     public void createUser(String username, String firstName, String lastName, String email, String hashPass, String usertype){
 
     }
