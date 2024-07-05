@@ -16,8 +16,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class loginMenuController {
@@ -29,6 +33,32 @@ public class loginMenuController {
 
     @FXML
     private PasswordField passwordField;
+
+    @FXML
+    private Button loginButton;
+
+    @FXML
+    private Button createUserButton;
+
+    @FXML
+    private Label errorMessage;
+
+
+    @FXML
+    public void initialize() {
+        // Add key press listener to usernameField and passwordField
+        usernameField.setOnKeyPressed(event -> handleKeyPress(event, loginButton));
+        passwordField.setOnKeyPressed(event -> handleKeyPress(event, loginButton));
+        createUserButton.setOnKeyPressed(event -> handleKeyPress(event, createUserButton));
+    }
+
+    private void handleKeyPress(KeyEvent event, Button button) {
+        if (event.getCode() == KeyCode.ENTER) {
+            button.fire();
+        }
+    }
+
+
     /**
      * This method handles action from the login button.
      * It retrieves username and password from the UI, then
@@ -44,6 +74,7 @@ public class loginMenuController {
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
             loadProfilePage();
         } else {
+            errorMessage.setText("Invalid Credentials");
             logger.log(Logger.LogLevel.WARNING, username.toString() + " login failed.");
         }
     }
@@ -71,7 +102,17 @@ public class loginMenuController {
      */
     @FXML
     private void newAccount() {
-        // handle creating a new account via SQL class
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("createAccountView.fxml"));
+            Parent profileRoot = fxmlLoader.load();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            Scene scene = new Scene(profileRoot);
+            scene.getStylesheets().add(getClass().getResource("profileView.css").toExternalForm());
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.log(Logger.LogLevel.ERROR, "Failed to load profile page: " + e.getMessage());
+        }
     }
 
     /**

@@ -11,7 +11,7 @@ CREATE TABLE users
     PasswordHash VARCHAR(255) NOT NULL,
     usertype varchar(50),
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    PRIMARY KEY (username));
+    );
 CREATE TABLE Games (
     GameID INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(100) NOT NULL,

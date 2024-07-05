@@ -5,16 +5,26 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.loginMenuController"
-            maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" styleClass="anchor-pane">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.loginMenuController">
    <children>
-      <TextField fx:id="usernameField" layoutX="99.0" layoutY="40.0" styleClass="text-field" />
-      <PasswordField fx:id="passwordField" layoutX="99.0" layoutY="79.0" styleClass="password-field" />
-      <Button layoutX="225.0" layoutY="153.0" mnemonicParsing="false" onAction="#login" text="Login" styleClass="button" />
-      <Button layoutX="33.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newAccount" text="Create Account" styleClass="button" />
-      <Label layoutX="28.0" layoutY="44.0" text="Username:" styleClass="label" />
-      <Label layoutX="29.0" layoutY="83.0" text="Password:" styleClass="label" />
+      <TextField fx:id="usernameField" layoutX="126.0" layoutY="185.0" styleClass="text-field" />
+      <PasswordField fx:id="passwordField" layoutX="126.0" layoutY="223.0" styleClass="password-field" />
+      <Button fx:id="loginButton" layoutX="225.0" layoutY="296.0" mnemonicParsing="false" onAction="#login" styleClass="button" text="Login" />
+      <Button fx:id="createUserButton" layoutX="28.0" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newAccount" styleClass="button" text="Create Account" />
+      <Label layoutX="45.0" layoutY="189.0" styleClass="label" text="Username:" />
+      <Label layoutX="45.0" layoutY="227.0" styleClass="label" text="Password:" />
+      <Label fx:id="errorMessage" layoutX="100.0" layoutY="260.0" styleClass="error-label" text="" />
+      <ImageView fitHeight="138.0" fitWidth="140.0" layoutX="95.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/cookie_arcade_logo_glitch_effect.gif" />
+         </image>
+      </ImageView>
    </children>
+   <padding>
+      <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+   </padding>
 </AnchorPane>

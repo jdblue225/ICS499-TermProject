@@ -30,3 +30,8 @@
 .button:pressed {
     -fx-background-color: #5A3A91;
 }
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}

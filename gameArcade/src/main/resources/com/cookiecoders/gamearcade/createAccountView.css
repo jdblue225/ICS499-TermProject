@@ -1,0 +1,54 @@
+/* createAccountView.css */
+.anchor-pane {
+    -fx-background-color: #1D3B76;
+}
+
+.toolbar {
+    -fx-background-color: #0305D4;
+}
+
+.toolbar .button {
+    -fx-background-color: #885FC9;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.toolbar .button:hover {
+    -fx-background-color: #6F4FB1;
+}
+
+.button {
+    -fx-background-color: #885FC9;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #6F4FB1;
+}
+
+.label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #0305D4;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-border-color: white;
+    -fx-border-width: 1px;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #6F4FB1;
+}
+
+.image-view {
+    -fx-image: url("@img/cookie_arcade_logo_glitch_effect.gif");
+}

@@ -14,7 +14,7 @@
    <children>
       <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
         <items>
-            <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToStoreView" styleClass="button" text="Store" />
+            <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToStoreView" styleClass="button selected" text="Store" />
             <Button minWidth="75.0" mnemonicParsing="false" onAction="#navigateToGameView" styleClass="button" text="Game" />
             <Button minWidth="75.0" mnemonicParsing="false" onAction="#navigateToCommunityView" styleClass="button" text="Community" />
             <Button minWidth="75.0" mnemonicParsing="false" onAction="#navigateToProfileView" styleClass="button" text="Profile" />
@@ -23,7 +23,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </ToolBar>
-      <ToolBar layoutX="34.0" layoutY="66.0" prefHeight="55.0" prefWidth="390.0" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="66.0">
+      <ToolBar layoutX="34.0" layoutY="66.0" prefHeight="55.0" prefWidth="390.0" styleClass="search-toolbar" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="66.0">
         <items>
           <Button minWidth="75.0" mnemonicParsing="false" text="Search" />
             <AnchorPane prefHeight="200.0" prefWidth="330.0">
@@ -33,14 +33,14 @@
                         <Image url="@img/icon.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="256.0" layoutY="24.0" text="cashMoney" />
+                  <Label layoutX="238.0" layoutY="16.0" text="\$cashAmount" />
                </children>
             </AnchorPane>
         </items>
       </ToolBar>
-      <ScrollPane layoutX="30.0" layoutY="125.0" prefHeight="415.0" prefWidth="400.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="30.0" layoutY="125.0" prefHeight="435.0" prefWidth="420.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <content>
-            <TilePane alignment="TOP_CENTER" prefHeight="100.0" prefWidth="398.0">
+            <TilePane alignment="CENTER" prefHeight="157.0" prefWidth="398.0">
                <children>
                   <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -69,6 +69,9 @@
                </children>
             </TilePane>
          </content>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </ScrollPane>
    </children>
 </AnchorPane>

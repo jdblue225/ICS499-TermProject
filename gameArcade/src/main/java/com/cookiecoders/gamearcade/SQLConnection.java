@@ -58,6 +58,18 @@ public class SQLConnection {
             connection = null;
         }
     }
+
+    /**
+     * Method accessable throughout the package to handle closing the sql connection.
+     */
+    public void sqlConnectionClose(){
+        try{
+            connection.close();
+        }catch (SQLException e) {
+            System.out.println("Error closing connection to the database: " + e.getMessage());
+            connection = null;
+        }
+    }
     /**
      * getPasswordForUserID method takes userID passed to it and returns
      * the password from the users SQL table.
@@ -69,17 +81,17 @@ public class SQLConnection {
         String query = "SELECT password FROM users WHERE username = ?;";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
 
-            stmt.setString(1, ID);  // Set the userID in the prepared statement
+            stmt.setString(1, ID);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getString("Password");  // Return the password
+                    return rs.getString("Password");
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Handle any SQL exceptions
+            e.printStackTrace();
         }
-        return null;  // Return null if the password is not found or an error occurs
+        return null;
     }
 
     /**

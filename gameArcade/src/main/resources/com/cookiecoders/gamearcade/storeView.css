@@ -1,14 +1,15 @@
 /* storeView.css */
 .anchor-pane {
     -fx-background-color: #1D3B76;
-    -fx-padding: 20;
 }
 
 .toolbar {
-    -fx-background-color: #2E4A8A;
+    -fx-background-color: #0305D4;
 }
-
-.button {
+.search-toolbar {
+    -fx-background-color: #3C51C6;
+}
+.toolbar .button {
     -fx-background-color: #885FC9;
     -fx-text-fill: white;
     -fx-font-weight: bold;
@@ -16,12 +17,12 @@
     -fx-border-radius: 5px;
 }
 
-.button:hover {
+.toolbar .button:hover {
     -fx-background-color: #6F4FB1;
 }
 
-.button:pressed {
-    -fx-background-color: #5A3A91;
+.toolbar .button.selected {
+    -fx-background-color: #6F4FB1;
 }
 
 .scroll-pane {

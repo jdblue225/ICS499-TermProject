@@ -11,6 +11,7 @@
  *      Jeremy Daly
  *      Maddy Imhoff
  *      Kevin Trinh
+ *
  */
 
 package com.cookiecoders.gamearcade;
@@ -29,7 +30,7 @@ public class main extends Application {
         Logger logger = Logger.getInstance();
         logger.log(Logger.LogLevel.INFO, "Starting Cookie Arcade");
         FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("loginView.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("loginView.css").toExternalForm());
         stage.setTitle("Cookie Arcade");
         stage.setScene(scene);
