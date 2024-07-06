@@ -15,7 +15,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.cookiecoders.gamearcade.SQLConnection;
+import com.cookiecoders.gamearcade.database.dao.UserDao;
+import com.cookiecoders.gamearcade.database.dao.UserDaoImpl;
+import com.cookiecoders.gamearcade.database.models.User;
+import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
+import com.cookiecoders.gamearcade.users.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +34,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class loginMenuController {
-    private SQLConnection conn = SQLConnection.getInstance();
+//    private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
 
     @FXML
@@ -72,9 +77,13 @@ public class loginMenuController {
     @FXML
     private void login() {
         String username = usernameField.getText();
-        String hashedPassFromServer = conn.getPasswordForUserID(username);
-        String password = hashString(passwordField.getText());
-        if (password.equals(hashedPassFromServer)){
+        UserDao userDao = new UserDaoImpl();        //instatiate User data access object
+        User user = userDao.getUserByUsername(username); //populate user object from server
+        String enteredPasswordHashed = SecurityManager.hashString(passwordField.getText());
+        String passFromServer= user.getPassword();
+        if (SecurityManager.authenticate(enteredPasswordHashed,passFromServer)){
+            UserSession currentSession = UserSession.getInstance();
+            currentSession.setCurrentUser(user);
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
             loadProfilePage();
         } else {
@@ -119,26 +128,4 @@ public class loginMenuController {
         }
     }
 
-    /**
-     * This function takes a string and hashes it
-     * via the SHA-256 algorithm.
-     * @param stringToHash
-     * @return hashedString
-     */
-    private String hashString(String stringToHash){
-        String hashedString ="";
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hashedBytes = md.digest(stringToHash.getBytes());
-
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hashedBytes) {
-                hexString.append(String.format("%02x", b));
-            }
-            hashedString = hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return hashedString;
-    }
 }
