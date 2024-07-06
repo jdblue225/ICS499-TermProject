@@ -107,7 +107,7 @@ public class loginMenuController {
             Parent profileRoot = fxmlLoader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
             Scene scene = new Scene(profileRoot);
-            scene.getStylesheets().add(getClass().getResource("profileView.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("createAccountView.css").toExternalForm());
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

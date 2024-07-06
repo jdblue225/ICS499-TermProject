@@ -23,13 +23,13 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class main extends Application {
+public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
         Logger logger = Logger.getInstance();
         logger.log(Logger.LogLevel.INFO, "Starting Cookie Arcade");
-        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("loginView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("loginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(getClass().getResource("loginView.css").toExternalForm());
         stage.setTitle("Cookie Arcade");

@@ -191,3 +191,91 @@
 2024-07-05 15:20:09 - INFO: user01 login successful.
 2024-07-05 15:41:45 - INFO: Starting Cookie Arcade
 2024-07-05 15:41:46 - INFO: Database connected successfully.
+2024-07-05 15:58:00 - INFO: Starting Cookie Arcade
+2024-07-05 15:58:01 - INFO: Database connected successfully.
+2024-07-05 15:58:22 - INFO: Starting Cookie Arcade
+2024-07-05 15:58:22 - INFO: Database connected successfully.
+2024-07-05 15:59:29 - INFO: Starting Cookie Arcade
+2024-07-05 15:59:29 - INFO: Database connected successfully.
+2024-07-05 16:00:36 - INFO: Starting Cookie Arcade
+2024-07-05 16:00:36 - INFO: Database connected successfully.
+2024-07-05 16:01:53 - INFO: Starting Cookie Arcade
+2024-07-05 16:01:54 - INFO: Database connected successfully.
+2024-07-05 16:04:55 - INFO: Starting Cookie Arcade
+2024-07-05 16:04:56 - INFO: Database connected successfully.
+2024-07-05 16:05:02 - ERROR: Failed to load profile page: Error resolving onAction='#navigateToStoreView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/createAccountView.fxml:52
+
+2024-07-05 16:16:55 - INFO: Starting Cookie Arcade
+2024-07-05 16:16:55 - INFO: Database connected successfully.
+2024-07-05 16:17:01 - ERROR: Failed to load profile page: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/createAccountView.fxml
+
+2024-07-05 16:18:46 - INFO: Starting Cookie Arcade
+2024-07-05 16:18:46 - INFO: Database connected successfully.
+2024-07-05 16:18:53 - ERROR: Failed to load profile page: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/createAccountView.fxml
+
+2024-07-05 16:34:02 - INFO: Starting Cookie Arcade
+2024-07-05 16:34:02 - INFO: Database connected successfully.
+2024-07-05 16:34:09 - ERROR: Failed to load profile page: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/createAccountView.fxml
+
+2024-07-05 16:45:42 - INFO: Starting Cookie Arcade
+2024-07-05 16:45:42 - INFO: Database connected successfully.
+2024-07-05 16:45:48 - ERROR: Failed to load profile page: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/createAccountView.fxml
+
+2024-07-05 16:46:47 - INFO: Starting Cookie Arcade
+2024-07-05 16:46:48 - INFO: Database connected successfully.
+2024-07-05 16:48:46 - INFO: Starting Cookie Arcade
+2024-07-05 16:48:47 - INFO: Database connected successfully.
+2024-07-05 16:54:37 - INFO: Starting Cookie Arcade
+2024-07-05 16:54:37 - INFO: Database connected successfully.
+2024-07-05 16:55:40 - INFO: Starting Cookie Arcade
+2024-07-05 16:55:41 - INFO: Database connected successfully.
+2024-07-05 16:56:12 - INFO: Starting Cookie Arcade
+2024-07-05 16:56:12 - INFO: Database connected successfully.
+2024-07-05 16:56:42 - INFO: Starting Cookie Arcade
+2024-07-05 16:56:42 - INFO: Database connected successfully.
+2024-07-05 16:56:59 - INFO: Starting Cookie Arcade
+2024-07-05 16:57:00 - INFO: Database connected successfully.
+2024-07-05 16:57:06 - WARNING:  login failed.
+2024-07-05 16:58:01 - INFO: Starting Cookie Arcade
+2024-07-05 16:58:01 - INFO: Database connected successfully.
+2024-07-05 16:58:15 - INFO: user01 login successful.
+2024-07-05 16:59:19 - INFO: Starting Cookie Arcade
+2024-07-05 16:59:19 - INFO: Database connected successfully.
+2024-07-05 17:00:10 - INFO: Starting Cookie Arcade
+2024-07-05 17:00:11 - INFO: Database connected successfully.
+2024-07-05 17:57:37 - INFO: Starting Cookie Arcade
+2024-07-05 17:57:38 - INFO: Database connected successfully.
+2024-07-05 18:10:17 - INFO: Starting Cookie Arcade
+2024-07-05 18:10:17 - INFO: Database connected successfully.
+2024-07-05 18:18:53 - INFO: Starting Cookie Arcade
+2024-07-05 18:18:53 - INFO: Database connected successfully.
+2024-07-05 18:26:06 - INFO: Starting Cookie Arcade
+2024-07-05 18:26:06 - INFO: Database connected successfully.
+2024-07-05 18:27:10 - INFO: Starting Cookie Arcade
+2024-07-05 18:27:10 - INFO: Database connected successfully.
+2024-07-05 18:30:23 - INFO: Starting Cookie Arcade
+2024-07-05 18:30:24 - INFO: Database connected successfully.
+2024-07-05 18:34:23 - INFO: Starting Cookie Arcade
+2024-07-05 18:34:23 - INFO: Database connected successfully.
+2024-07-05 18:37:21 - INFO: Starting Cookie Arcade
+2024-07-05 18:37:21 - INFO: Database connected successfully.
+2024-07-05 18:41:38 - INFO: Starting Cookie Arcade
+2024-07-05 18:41:39 - INFO: Database connected successfully.
+2024-07-05 18:41:48 - INFO: Starting Cookie Arcade
+2024-07-05 18:41:49 - INFO: Database connected successfully.
+2024-07-05 18:43:20 - INFO: Starting Cookie Arcade
+2024-07-05 18:43:21 - INFO: Database connected successfully.
+2024-07-05 18:51:41 - INFO: Starting Cookie Arcade
+2024-07-05 18:51:41 - INFO: Database connected successfully.
+2024-07-05 18:53:34 - INFO: user01 login successful.
+2024-07-05 18:54:20 - INFO: Starting Cookie Arcade
+2024-07-05 18:54:21 - INFO: Database connected successfully.
+2024-07-05 18:54:32 - INFO: user01 login successful.
+2024-07-05 18:54:55 - INFO: Starting Cookie Arcade
+2024-07-05 18:54:55 - INFO: Database connected successfully.
+2024-07-05 18:55:05 - INFO: user01 login successful.

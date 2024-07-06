@@ -64,7 +64,7 @@ public class Logger {
      * This enum method is used to define log levels.
      */
     public enum LogLevel {
-        INFO, WARNING, ERROR
+        INFO, WARNING, CRITICAL, ERROR
     }
 
     /**
