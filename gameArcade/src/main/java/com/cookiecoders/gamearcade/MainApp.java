@@ -16,12 +16,14 @@
 
 package com.cookiecoders.gamearcade;
 
+import com.cookiecoders.gamearcade.util.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class MainApp extends Application {
 
@@ -29,9 +31,9 @@ public class MainApp extends Application {
     public void start(Stage stage) throws IOException {
         Logger logger = Logger.getInstance();
         logger.log(Logger.LogLevel.INFO, "Starting Cookie Arcade");
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("loginView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("ui/login/loginView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        scene.getStylesheets().add(getClass().getResource("loginView.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("ui/login/loginView.css").toExternalForm());
         stage.setTitle("Cookie Arcade");
         stage.setScene(scene);
         stage.show();

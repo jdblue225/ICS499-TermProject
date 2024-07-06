@@ -11,8 +11,9 @@
  *
  */
 package com.cookiecoders.gamearcade;
+import com.cookiecoders.gamearcade.util.Logger;
+
 import java.sql.*;
-import java.util.HashMap;
 
 public class SQLConnection {
     private Logger logger = Logger.getInstance();
