@@ -25,18 +25,29 @@ public class gameViewController {
     private TilePane gamesTilePane;
     //TODO
 
+    @FXML
     private void initialize() {
         this.userSession = UserSession.getInstance();
         GameDao gameDao = new GameDaoImpl();
         List<Map<String, Object>> ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+//        List<Map<String, Object>> ownedGames = gameDao.getAllGamesSummary(); //testing for multiple list rows
         for (Map<String, Object> game : ownedGames) {
-            String imagePath = (String) game.get("ImagePath");
+            int columnCount = 0;
+            if (columnCount % 3 == 0){
+                //create new row within scroll pane and continue adding images
+            }
+            String imagePath = "/com/cookiecoders/gamearcade" + (String) game.get("ImagePath");
             ImageView imageView = createImageView(imagePath);
             gamesTilePane.getChildren().add(imageView);
+            columnCount++;
+
         }
     }
+
+
     private ImageView createImageView(String imagePath) {
-        Image image = new Image(imagePath);
+        // Ensure the imagePath is correctly formatted for classpath resource loading
+        Image image = new Image(getClass().getResourceAsStream(imagePath));
         ImageView imageView = new ImageView(image);
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
