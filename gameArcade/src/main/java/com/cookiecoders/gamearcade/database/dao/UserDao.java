@@ -5,7 +5,7 @@ import com.cookiecoders.gamearcade.database.models.User;
 import java.util.List;
 
 public interface UserDao {
-//    void addUser(User user);
+    boolean insertUser(User user);
 //    User getUserById(int id);
     User getUserByUsername(String username);
 //    List<User> getAllUsers();

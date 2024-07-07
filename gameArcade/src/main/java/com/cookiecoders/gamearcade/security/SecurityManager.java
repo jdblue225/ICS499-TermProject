@@ -1,8 +1,18 @@
 package com.cookiecoders.gamearcade.security;
+import com.cookiecoders.gamearcade.config.ConfigManager;
 
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
+
 
 public class SecurityManager {
 
@@ -85,4 +95,60 @@ public class SecurityManager {
         // Simple example: password must be at least 8 characters long
         return password.length() >= 8;
     }
+
+    // Method to validate email against the domain/email address list
+    public String validateInputEmail(String email) {
+
+        // Regular expression for validating email
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+
+        // Compile the regex
+        Pattern pattern = Pattern.compile(emailRegex);
+
+        // Check if the email matches the regex
+        Matcher matcher = pattern.matcher(email);
+
+        if (!matcher.matches()) {
+            // Invalid email address
+            return null;
+        }
+
+        String emailListPath = ConfigManager.getProperty("Email List");
+        List<String> emailList = ConfigManager.getEmailList(emailListPath);
+
+        List<String> approvedList = new ArrayList<>();
+        List<String> bannedList = new ArrayList<>();
+
+        for (String entry : emailList) {
+            if (entry.startsWith("!")) {
+                bannedList.add(entry.substring(1));
+            } else {
+                approvedList.add(entry);
+            }
+        }
+
+
+        // Extract the domain from the email
+        String domain = email.substring(email.indexOf('@') + 1);
+
+        // Check against banned list
+        for (String bannedDomain : bannedList) {
+            if (email.equalsIgnoreCase(bannedDomain) || domain.equalsIgnoreCase(bannedDomain)) {
+                // Email address or domain is banned
+                return null;
+            }
+        }
+
+        // Check against approved list
+        for (String approvedEntry : approvedList) {
+            if (email.equalsIgnoreCase(approvedEntry) || domain.equalsIgnoreCase(approvedEntry)) {
+                return email;
+            }
+        }
+
+        // Email address is not in the approved list
+        return null;
+    }
+
+
 }

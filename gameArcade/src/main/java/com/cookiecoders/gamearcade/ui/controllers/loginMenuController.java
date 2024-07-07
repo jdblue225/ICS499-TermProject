@@ -116,11 +116,11 @@ public class loginMenuController {
     @FXML
     private void newAccount() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ui/login/createAccountView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/login/createAccountView.fxml"));
             Parent profileRoot = fxmlLoader.load();
             Stage stage = (Stage) usernameField.getScene().getWindow();
             Scene scene = new Scene(profileRoot);
-            scene.getStylesheets().add(getClass().getResource("ui/login/createAccountView.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/cookiecoders/gamearcade/ui/login/createAccountView.css").toExternalForm());
             stage.setScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

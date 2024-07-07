@@ -46,6 +46,8 @@ public class UserDaoImpl implements UserDao {
 //        return null;
 //    }
 
+
+
     @Override
     public User getUserByUsername(String username) {
         String hashedPass;
@@ -54,15 +56,16 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(1, username);
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
-                    User user = new User();
-                    user.setId(resultSet.getInt("userid"));
-                    user.setUsername(resultSet.getString("username"));
-                    user.setPassword(resultSet.getString("password"));
-                    user.setFirstname(resultSet.getString("firstname"));
-                    user.setLastname(resultSet.getString("lastname"));
-                    user.setEmail(resultSet.getString("email"));
-                    user.setUserType(resultSet.getString("usertype"));
-                    user.setCreatedAt(resultSet.getDate("createdat"));
+                    User user = new User(
+                            resultSet.getInt("userid"),
+                            resultSet.getString("username"),
+                            resultSet.getString("firstname"),
+                            resultSet.getString("lastname"),
+                            resultSet.getString("email"),
+                            resultSet.getString("password"),
+                            resultSet.getString("usertype"),
+                            resultSet.getDate("createdat")
+                    );
                     return user;
                 }
             }
@@ -92,6 +95,32 @@ public class UserDaoImpl implements UserDao {
 //        }
 //        return users;
 //    }
+    @Override
+    public boolean insertUser(User user) {
+        String query = "INSERT INTO users (username, firstname, lastname, email, password, usertype, createdat) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getFirstname());
+            stmt.setString(3, user.getLastname());
+            stmt.setString(4, user.getEmail());
+            stmt.setString(5, user.getPassword());
+            stmt.setString(6, user.getUsertype());
+
+            // If createdAt is not set, use the current timestamp
+            if (user.getCreatedAt() != null) {
+                stmt.setTimestamp(7, new Timestamp(user.getCreatedAt().getTime()));
+            } else {
+                stmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+            }
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
 //    @Override
 //    public void updateUser(User user) {

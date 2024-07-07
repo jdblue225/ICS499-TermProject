@@ -1,16 +1,17 @@
 package com.cookiecoders.gamearcade.ui.controllers;
 
 import com.cookiecoders.gamearcade.SQLConnection;
+import com.cookiecoders.gamearcade.database.dao.UserDao;
+import com.cookiecoders.gamearcade.database.dao.UserDaoImpl;
+import com.cookiecoders.gamearcade.database.models.User;
+import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,7 +19,8 @@ import java.io.IOException;
 public class createAccountViewController {
     private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
-
+    private UserDao userDao;
+    private User user;
 
     @FXML
     private TextField userNameField;
@@ -71,15 +73,28 @@ public class createAccountViewController {
     @FXML
     private void handleCheckButtonAction(ActionEvent event) {
         // Handle Check button action
-        System.out.println("Check button clicked!");
+        if(validateUsername(userNameField.getText())){
+            errorMessageUName.setStyle("-fx-text-fill: red;");
+            errorMessageUName.setText("Username Unavailable");
+        }else{
+            errorMessageUName.setStyle("-fx-text-fill: green;");
+            errorMessageUName.setText("Username Available");
+        }
     }
 
     @FXML
     private void handleSubmitButtonAction(ActionEvent event) {
         // Validate form fields
         if (validateForm()) {
-            System.out.println("Submit button clicked!");
+            System.out.println("User Created!");
             // Proceed with form submission logic
+            createUser();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("User Creation");
+            alert.setHeaderText(null);
+            alert.setContentText("User Created Successfully!");
+            alert.showAndWait();
+            navigateLoginView(event);
         }
     }
 
@@ -124,6 +139,7 @@ public class createAccountViewController {
         String confirmPassword = confirmPasswordField.getText();
 
         if (userName.isEmpty()) {
+            errorMessageUName.setStyle("-fx-text-fill: red;");
             errorMessageUName.setText("User Name is required.");
             isValid = false;
         } else {
@@ -170,4 +186,30 @@ public class createAccountViewController {
 
         return isValid;
     }
+
+    private boolean validateUsername(String username){
+        this.userDao = new UserDaoImpl();
+        if (userDao.getUserByUsername(username) == null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    private boolean createUser(){
+        if(this.userDao == null){
+            this.userDao = new UserDaoImpl();
+        }
+        String encrPass = SecurityManager.hashString(passwordField.getText());
+        this.user = new User(
+                userNameField.getText(),
+                firstNameField.getText(),
+                lastNameField.getText(),
+                emailField.getText(),
+                encrPass,
+                "user"
+        );
+        return userDao.insertUser(user);
+    }
+
 }

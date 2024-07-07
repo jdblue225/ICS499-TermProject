@@ -13,6 +13,26 @@ public class User {
     private Date createdAt;
 
 
+    public User() {}
+    public User(String username, String firstname, String lastname, String email, String password, String usertype) {
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.usertype = usertype;
+    }
+
+    public User(Integer id, String username, String firstname, String lastname, String email, String password, String usertype, Date createdAt) {
+        this.id = id;
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.usertype = usertype;
+        this.createdAt = createdAt;
+    }
 
     // Getters
     public Integer getId(){
@@ -44,8 +64,12 @@ public class User {
     public void setUser(User user){
         this.id = user.getId();
         this.username = user.getUsername();
-        this.password = user.getPassword();
+        this.firstname = user.getFirstname();
+        this.lastname = user.getLastname();
         this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.usertype = user.getUsertype();
+        this.createdAt = user.getCreatedAt();
     }
     public void setId(Integer id){
         this.id = id;

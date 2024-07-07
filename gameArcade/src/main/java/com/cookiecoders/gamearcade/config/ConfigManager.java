@@ -22,12 +22,17 @@
 
 package com.cookiecoders.gamearcade.config;
 
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class ConfigManager {
-    private static final String CONFIG_FILE = "/config/application.properties";
+    private static final String CONFIG_FILE = "/config/application.config";
     private static Properties properties = new Properties();
 
     // Static block to load properties at class loading time
@@ -60,5 +65,18 @@ public class ConfigManager {
     // Method to get all properties
     public static Properties getAllProperties() {
         return properties;
+    }
+
+    public static List<String> getEmailList(String emailListPath) {
+        List<String> emailList = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(emailListPath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                emailList.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return emailList;
     }
 }
