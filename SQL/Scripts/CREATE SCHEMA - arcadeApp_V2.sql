@@ -4,13 +4,13 @@ USE arcadeApp;
 DROP TABLE IF EXISTS users; 
 CREATE TABLE users
     (userid INT AUTO_INCREMENT PRIMARY KEY,
-    Username VARCHAR(50) NOT NULL UNIQUE,
+    username VARCHAR(50) NOT NULL UNIQUE,users
 	firstname VARCHAR(50), 
     lastname VARCHAR(50),
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    PasswordHash VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     usertype varchar(50),
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    createdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 CREATE TABLE Games (
     GameID INT AUTO_INCREMENT PRIMARY KEY,
@@ -19,6 +19,7 @@ CREATE TABLE Games (
     Developer VARCHAR(100),
     ReleaseDate DATE,
     Price DECIMAL(10, 2),
+    ImagePath VARCHAR(255),
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE ForumCategories (
@@ -80,7 +81,21 @@ CREATE TABLE Subscriptions (
     FOREIGN KEY (ItemID) REFERENCES StoreItems(ItemID)
 );
 
-
-
+CREATE TABLE OwnedGames (
+    UserID INT NOT NULL,
+    GameID INT NOT NULL,
+    PurchaseDate DATE NOT NULL,
+    PlayTime INT DEFAULT 0,
+    LastPlayedDate DATE,
+    AchievementsUnlocked INT DEFAULT 0,
+    Score INT NOT NULL,
+    Rating DECIMAL(2, 1),
+    Review TEXT,
+    IsFavorite BOOLEAN DEFAULT FALSE,
+    GameVersion VARCHAR(20),
+    CompletionStatus ENUM('Not Started', 'In Progress', 'Completed') DEFAULT 'Not Started',
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (GameID) REFERENCES Games(GameID)
+);
 
 

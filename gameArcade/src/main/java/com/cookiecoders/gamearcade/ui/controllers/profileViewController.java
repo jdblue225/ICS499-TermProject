@@ -38,7 +38,7 @@ public class profileViewController {
      */
     @FXML
     private void navigateToGameView(ActionEvent event) {
-        navigateToView("/com/cookiecoders/gamearcade/ui/game/gameView.fxml", "/com/cookiecoders/gamearcade/ui/game/gameView.css", event);
+        navigateToView("/com/cookiecoders/gamearcade/ui/games/gameView.fxml", "/com/cookiecoders/gamearcade/ui/games/gameView.css", event);
     }
     /**
      * This method handles the menu bar navigational functionality

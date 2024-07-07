@@ -1,10 +1,6 @@
 package com.cookiecoders.gamearcade.security;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
