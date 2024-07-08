@@ -1,0 +1,7 @@
+.image-view {
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-padding: 5;
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+

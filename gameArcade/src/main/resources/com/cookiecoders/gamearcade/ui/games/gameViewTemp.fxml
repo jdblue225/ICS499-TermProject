@@ -27,9 +27,12 @@
             <HBox />
         </items>
       </ToolBar>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="30.0" layoutY="125.0" prefHeight="435.0" prefWidth="420.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" styleClass="scroll-pane">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="30.0" layoutY="125.0" prefHeight="435.0" prefWidth="420.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
          <content>
-            <TilePane fx:id="gamesTilePane"  alignment="CENTER" prefHeight="157.0" prefWidth="398.0" styleClass="tile-pane">
+            <TilePane alignment="CENTER" prefHeight="157.0" prefWidth="398.0">
+                <TilePane fx:id="gamesTilePane" alignment="CENTER" prefHeight="157.0" prefWidth="398.0">
+                    <!-- children can be dynamically added here -->
+                </TilePane>
             </TilePane>
          </content>
          <opaqueInsets>

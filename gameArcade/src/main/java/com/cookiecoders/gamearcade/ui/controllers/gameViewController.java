@@ -7,6 +7,7 @@ import com.cookiecoders.gamearcade.util.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -44,30 +45,38 @@ public class gameViewController {
 
         TilePane mainTilePane = new TilePane();
         mainTilePane.setPrefColumns(1); // Ensuring one column to stack TilePanes vertically
+        mainTilePane.setVgap(0); // Vertical gap between tiles
 
         int imageCount = 0;
         TilePane tilePane = new TilePane();
+        tilePane.getStyleClass().add("tile-pane");
         tilePane.setPrefColumns(3); // Set the number of columns to 3 for each TilePane
+        tilePane.setVgap(0); // Vertical gap between tiles
+
 
         for (Map<String, Object> game : ownedGames) {
             if (imageCount % 3 == 0 && imageCount != 0) {
                 mainTilePane.getChildren().add(tilePane);
                 tilePane = new TilePane();
                 tilePane.setPrefColumns(3);
+                tilePane.getStyleClass().add("tile-pane");
+                mainTilePane.setVgap(0); // Vertical gap between tiles
             }
 
             String imagePath = "/com/cookiecoders/gamearcade" + (String) game.get("ImagePath");
-            ImageView imageView = createImageView(imagePath);
+            Integer gameId = (Integer) game.get("GameID");
+            ImageView imageView = createImageView(imagePath, gameId);
             tilePane.getChildren().add(imageView);
             imageCount++;
         }
 
         // Add empty images if the last TilePane has fewer than 3 images
         while (imageCount % 3 != 0) {
-            ImageView emptyImageView = createImageView(null);
+            ImageView emptyImageView = createImageView(null,null);
             tilePane.getChildren().add(emptyImageView);
             imageCount++;
         }
+
 
         // Add the last TilePane
         mainTilePane.getChildren().add(tilePane);
@@ -76,7 +85,7 @@ public class gameViewController {
         gamesTilePane.getChildren().add(mainTilePane);
     }
 
-    private ImageView createImageView(String imagePath) {
+    private ImageView createImageView(String imagePath, Integer gameId) {
         Image image = null;
         ImageView imageView;
 
@@ -96,24 +105,68 @@ public class gameViewController {
             imageView = new ImageView();
         }
 
+        imageView.getStyleClass().add("image-view");
+        cropImageView(imageView, 100, 100); // Crop to fit the width and height
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
-        imageView.setPickOnBounds(true);
-        imageView.setPreserveRatio(true);
+        imageView.setPickOnBounds(false);
+//        imageView.setPreserveRatio(true);
+
+
+        // Set click event to navigate to game info
+        imageView.setOnMouseClicked(event -> navigateToGameInfo(gameId));
+
+
         TilePane.setMargin(imageView, new javafx.geometry.Insets(15));
         return imageView;
     }
 
+    private void cropImageView(ImageView imageView, double fitWidth, double fitHeight) {
+        Image image = imageView.getImage();
+        if (image != null) {
+            double imageWidth = image.getWidth();
+            double imageHeight = image.getHeight();
+            double aspectRatio = imageWidth / imageHeight;
+            double fitRatio = fitWidth / fitHeight;
 
+            double cropWidth;
+            double cropHeight;
 
+            if (aspectRatio > fitRatio) {
+                cropWidth = imageHeight * fitRatio;
+                cropHeight = imageHeight;
+            } else {
+                cropWidth = imageWidth;
+                cropHeight = imageWidth / fitRatio;
+            }
 
-    private void navigateToGameInfo(){
+            double x = (imageWidth - cropWidth) / 2;
+            double y = (imageHeight - cropHeight) / 2;
 
+            Rectangle2D viewport = new Rectangle2D(x, y, cropWidth, cropHeight);
+            imageView.setViewport(viewport);
+        }
     }
 
 
 
 
+    private void navigateToGameInfo(Integer gameId){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/GameInfoView.fxml"));
+
+            // Use a custom controller factory to pass the gameId to the controller
+            loader.setControllerFactory(param -> new gameInfoViewController(gameId));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
+        }
+    }
 
 
 
