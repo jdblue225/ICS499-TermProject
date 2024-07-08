@@ -59,6 +59,7 @@ public class loginMenuController {
         usernameField.setOnKeyPressed(event -> handleKeyPress(event, loginButton));
         passwordField.setOnKeyPressed(event -> handleKeyPress(event, loginButton));
         createUserButton.setOnKeyPressed(event -> handleKeyPress(event, createUserButton));
+
     }
 
     private void handleKeyPress(KeyEvent event, Button button) {

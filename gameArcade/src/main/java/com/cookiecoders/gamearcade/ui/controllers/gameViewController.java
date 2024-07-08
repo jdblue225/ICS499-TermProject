@@ -20,6 +20,7 @@ import java.util.Map;
 
 public class gameViewController {
     private UserSession userSession;
+    private GameDao gameDao;
 
     @FXML
     private TilePane gamesTilePane;
@@ -28,27 +29,73 @@ public class gameViewController {
     @FXML
     private void initialize() {
         this.userSession = UserSession.getInstance();
-        GameDao gameDao = new GameDaoImpl();
-        List<Map<String, Object>> ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
-//        List<Map<String, Object>> ownedGames = gameDao.getAllGamesSummary(); //testing for multiple list rows
-        for (Map<String, Object> game : ownedGames) {
-            int columnCount = 0;
-            if (columnCount % 3 == 0){
-                //create new row within scroll pane and continue adding images
-            }
-            String imagePath = "/com/cookiecoders/gamearcade" + (String) game.get("ImagePath");
-            ImageView imageView = createImageView(imagePath);
-            gamesTilePane.getChildren().add(imageView);
-            columnCount++;
+        this.gameDao = new GameDaoImpl();
+        populateOGSP();
 
-        }
     }
 
+    private void populateOGSP(){  // Owned Games Scroll Pane
+        List<Map<String, Object>> ownedGames;
+        if (userSession.getCurrentUser().getUsertype().equals("admin")){
+            ownedGames = gameDao.getAllGamesSummary();
+        } else{
+            ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+        }
+
+        TilePane mainTilePane = new TilePane();
+        mainTilePane.setPrefColumns(1); // Ensuring one column to stack TilePanes vertically
+
+        int imageCount = 0;
+        TilePane tilePane = new TilePane();
+        tilePane.setPrefColumns(3); // Set the number of columns to 3 for each TilePane
+
+        for (Map<String, Object> game : ownedGames) {
+            if (imageCount % 3 == 0 && imageCount != 0) {
+                mainTilePane.getChildren().add(tilePane);
+                tilePane = new TilePane();
+                tilePane.setPrefColumns(3);
+            }
+
+            String imagePath = "/com/cookiecoders/gamearcade" + (String) game.get("ImagePath");
+            ImageView imageView = createImageView(imagePath);
+            tilePane.getChildren().add(imageView);
+            imageCount++;
+        }
+
+        // Add empty images if the last TilePane has fewer than 3 images
+        while (imageCount % 3 != 0) {
+            ImageView emptyImageView = createImageView(null);
+            tilePane.getChildren().add(emptyImageView);
+            imageCount++;
+        }
+
+        // Add the last TilePane
+        mainTilePane.getChildren().add(tilePane);
+
+        // Add the mainTilePane to the ScrollPane
+        gamesTilePane.getChildren().add(mainTilePane);
+    }
 
     private ImageView createImageView(String imagePath) {
-        // Ensure the imagePath is correctly formatted for classpath resource loading
-        Image image = new Image(getClass().getResourceAsStream(imagePath));
-        ImageView imageView = new ImageView(image);
+        Image image = null;
+        ImageView imageView;
+
+        try {
+            if (imagePath != null) {
+                image = new Image(getClass().getResourceAsStream(imagePath));
+            }
+
+            // Check if the image was loaded successfully
+            if (image == null || image.isError()) {
+                throw new IllegalArgumentException("Image not found");
+            }
+
+            imageView = new ImageView(image);
+        } catch (Exception e) {
+            // If an error occurs (image not found or any other issue), create an empty ImageView
+            imageView = new ImageView();
+        }
+
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
         imageView.setPickOnBounds(true);
@@ -56,6 +103,24 @@ public class gameViewController {
         TilePane.setMargin(imageView, new javafx.geometry.Insets(15));
         return imageView;
     }
+
+
+
+
+    private void navigateToGameInfo(){
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * This method handles the menu bar navigational functionality

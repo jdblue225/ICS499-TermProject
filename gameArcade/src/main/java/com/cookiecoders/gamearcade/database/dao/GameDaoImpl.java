@@ -1,5 +1,7 @@
 package com.cookiecoders.gamearcade.database.dao;
 
+
+
 import com.cookiecoders.gamearcade.database.DatabaseManager;
 import com.cookiecoders.gamearcade.database.models.Game;
 
@@ -162,4 +164,6 @@ public class GameDaoImpl implements GameDao{
             return false;
         }
     }
+
+
 }
