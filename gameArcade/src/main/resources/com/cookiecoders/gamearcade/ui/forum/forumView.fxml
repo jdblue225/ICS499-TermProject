@@ -15,15 +15,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.forumViewController">
     <children>
-        <ToolBar prefHeight="55.0" prefWidth="800.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
+<!--        <ToolBar prefHeight="55.0" prefWidth="800.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">-->
+<!--            <items>-->
+<!--                <HBox HBox.hgrow="ALWAYS" alignment="CENTER">-->
+<!--                    <children>-->
+<!--                        <Region HBox.hgrow="ALWAYS" />-->
+<!--                        <Label text="Forum" />-->
+<!--                        <Region HBox.hgrow="ALWAYS" />-->
+<!--                    </children>-->
+<!--                </HBox>-->
+<!--            </items>-->
+<!--            <padding>-->
+<!--                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />-->
+<!--            </padding>-->
+<!--        </ToolBar>-->
+        <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
             <items>
-                <HBox HBox.hgrow="ALWAYS" alignment="CENTER">
-                    <children>
-                        <Region HBox.hgrow="ALWAYS" />
-                        <Label text="Forum" />
-                        <Region HBox.hgrow="ALWAYS" />
-                    </children>
-                </HBox>
+                <Button fx:id="toolbarStoreButton" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Store" />
+                <Button fx:id="toolbarGameButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Game" />
+                <Button fx:id="toolbarForumButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Forum" />
+                <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Profile" />
             </items>
             <padding>
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

@@ -100,4 +100,8 @@ public class gameInfoViewController {
             Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load " + fxmlFile + ": " + e.getMessage());
         }
     }
+    @FXML
+    private void navigationButtonClicked(ActionEvent event){
+        Navigation.toolbarNavigate(event);
+    }
 }

@@ -92,4 +92,8 @@ public class forumViewController {
         postContentArea.clear();
         categoryComboBox.getSelectionModel().clearSelection();
     }
+    @FXML
+    private void navigationButtonClicked(ActionEvent event){
+        Navigation.toolbarNavigate(event);
+    }
 }

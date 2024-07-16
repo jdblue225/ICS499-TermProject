@@ -1,6 +1,6 @@
 package com.cookiecoders.gamearcade.database;
 
-import com.cookiecoders.gamearcade.SQLConnection;
+//import com.cookiecoders.gamearcade.SQLConnection;
 import com.cookiecoders.gamearcade.util.Logger;
 
 import java.sql.*;

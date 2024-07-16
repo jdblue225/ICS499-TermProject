@@ -9,10 +9,10 @@
    <children>
       <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
         <items>
-            <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToStoreView" styleClass="button selected" text="Store" />
-            <Button minWidth="75.0" mnemonicParsing="false" onAction="#navigateToGameView" styleClass="button" text="Game" />
-            <Button minWidth="75.0" mnemonicParsing="false" onAction="#navigateToCommunityView" styleClass="button" text="Community" />
-            <Button minWidth="75.0" mnemonicParsing="false" onAction="#navigateToProfileView" styleClass="button" text="Profile" />
+            <Button fx:id="toolbarStoreButton" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Store" />
+            <Button fx:id="toolbarGameButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Game" />
+            <Button fx:id="toolbarForumButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Forum" />
+            <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Profile" />
         </items>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

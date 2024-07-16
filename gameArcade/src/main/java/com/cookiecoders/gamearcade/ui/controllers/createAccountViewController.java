@@ -1,6 +1,6 @@
 package com.cookiecoders.gamearcade.ui.controllers;
 
-import com.cookiecoders.gamearcade.SQLConnection;
+//import com.cookiecoders.gamearcade.SQLConnection;
 import com.cookiecoders.gamearcade.database.dao.UserDao;
 import com.cookiecoders.gamearcade.database.dao.UserDaoImpl;
 import com.cookiecoders.gamearcade.database.models.User;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class createAccountViewController {
-    private SQLConnection conn = SQLConnection.getInstance();
+//    private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
     private UserDao userDao;
     private User user;
@@ -211,5 +211,10 @@ public class createAccountViewController {
         );
         return userDao.insertUser(user);
     }
+    @FXML
+    private void navigationButtonClicked(ActionEvent event){
+        Navigation.toolbarNavigate(event);
+    }
 
+    // TODO handle profile image import to SQL db
 }

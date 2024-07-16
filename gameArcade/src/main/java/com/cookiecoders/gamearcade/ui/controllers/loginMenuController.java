@@ -14,13 +14,14 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.cookiecoders.gamearcade.SQLConnection;
+//import com.cookiecoders.gamearcade.SQLConnection;
 import com.cookiecoders.gamearcade.database.dao.UserDao;
 import com.cookiecoders.gamearcade.database.dao.UserDaoImpl;
 import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
 import com.cookiecoders.gamearcade.users.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -112,7 +113,6 @@ public class loginMenuController {
 
     /**
      * This method handles creating a new account if one does not exist.
-     * Todo
      */
     @FXML
     private void newAccount() {
@@ -127,6 +127,10 @@ public class loginMenuController {
             e.printStackTrace();
             logger.log(Logger.LogLevel.ERROR, "Failed to load profile page: " + e.getMessage());
         }
+    }
+    @FXML
+    private void navigationButtonClicked(ActionEvent event){
+        Navigation.toolbarNavigate(event);
     }
 
 }
