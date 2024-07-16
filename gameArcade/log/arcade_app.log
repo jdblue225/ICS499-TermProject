@@ -622,3 +622,119 @@
 2024-07-08 16:27:58 - INFO: Starting Cookie Arcade
 2024-07-08 16:28:10 - INFO: Database connected successfully.
 2024-07-08 16:28:10 - INFO: user02 login successful.
+2024-07-08 16:31:33 - INFO: Starting Cookie Arcade
+2024-07-08 16:31:43 - INFO: Database connected successfully.
+2024-07-08 16:31:43 - INFO: user01 login successful.
+2024-07-09 13:51:51 - INFO: Starting Cookie Arcade
+2024-07-09 13:52:04 - INFO: Database connected successfully.
+2024-07-09 13:52:04 - WARNING: user01 login failed.
+2024-07-09 13:52:13 - INFO: user01 login successful.
+2024-07-09 13:58:03 - INFO: Starting Cookie Arcade
+2024-07-09 13:58:17 - INFO: Database connected successfully.
+2024-07-09 13:58:17 - WARNING: user02 login failed.
+2024-07-09 13:58:21 - INFO: user02 login successful.
+2024-07-09 14:01:46 - INFO: Starting Cookie Arcade
+2024-07-09 14:01:57 - INFO: Database connected successfully.
+2024-07-09 14:01:57 - INFO: user01 login successful.
+2024-07-09 14:02:12 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-09 14:02:15 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-09 14:02:27 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-09 14:02:28 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-09 14:03:39 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:25:20 - INFO: Starting Cookie Arcade
+2024-07-16 10:25:31 - INFO: Database connected successfully.
+2024-07-16 10:25:31 - WARNING: user01 login failed.
+2024-07-16 10:25:35 - INFO: user01 login successful.
+2024-07-16 10:26:01 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:28:38 - INFO: Starting Cookie Arcade
+2024-07-16 10:28:48 - INFO: Database connected successfully.
+2024-07-16 10:28:48 - INFO: user01 login successful.
+2024-07-16 10:30:06 - INFO: Starting Cookie Arcade
+2024-07-16 10:30:19 - INFO: Database connected successfully.
+2024-07-16 10:30:19 - INFO: user01 login successful.
+2024-07-16 10:31:07 - INFO: Starting Cookie Arcade
+2024-07-16 10:31:30 - INFO: Starting Cookie Arcade
+2024-07-16 10:31:40 - INFO: Database connected successfully.
+2024-07-16 10:31:40 - INFO: user01 login successful.
+2024-07-16 10:34:46 - INFO: Starting Cookie Arcade
+2024-07-16 10:34:56 - INFO: Database connected successfully.
+2024-07-16 10:34:56 - INFO: user01 login successful.
+2024-07-16 10:35:04 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:07 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:07 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:08 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:09 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:10 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:10 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:35:10 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:01 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:03 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:04 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:05 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:06 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:06 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:07 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:08 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:36:15 - INFO: Starting Cookie Arcade
+2024-07-16 10:37:06 - INFO: Database connected successfully.
+2024-07-16 10:37:06 - WARNING: user01 login failed.
+2024-07-16 10:37:10 - INFO: user01 login successful.
+2024-07-16 10:37:39 - ERROR: Failed to load game info page: Error resolving onAction='#navigateToGameView', either the event handler is not in the Namespace or there is an error in the script.
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml:22
+
+2024-07-16 10:40:09 - INFO: Starting Cookie Arcade
+2024-07-16 10:40:18 - INFO: Database connected successfully.
+2024-07-16 10:40:19 - INFO: user01 login successful.
+2024-07-16 10:45:13 - INFO: Starting Cookie Arcade
+2024-07-16 10:45:24 - INFO: Database connected successfully.
+2024-07-16 10:45:24 - INFO: user01 login successful.
+2024-07-16 11:02:30 - INFO: Starting Cookie Arcade
+2024-07-16 11:03:22 - INFO: Database connected successfully.
+2024-07-16 11:03:22 - INFO: user01 login successful.
+2024-07-16 11:21:06 - INFO: Starting Cookie Arcade
+2024-07-16 11:21:17 - INFO: Database connected successfully.
+2024-07-16 11:21:17 - INFO: user01 login successful.

@@ -1,74 +1,95 @@
 package com.cookiecoders.gamearcade.ui.controllers;
 
+import com.cookiecoders.gamearcade.database.dao.ForumDao;
+import com.cookiecoders.gamearcade.database.dao.ForumDaoImpl;
+import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.util.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
-import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 public class forumViewController {
-    //TODO
 
+    private UserSession userSession;
+    private ForumDao forumDao;
 
-    /**
-     * This method handles the menu bar navigational functionality
-     * and is called upon clicking on the store button.
-     * @param event
-     */
     @FXML
-    private void navigateToStoreView(ActionEvent event) {
-        navigateToView("/com/cookiecoders/gamearcade/ui/store/storeView.fxml", "/com/cookiecoders/gamearcade/ui/store/storeView.css", event);
-    }
-    /**
-     * This method handles the menu bar navigational functionality
-     * and is called upon clicking on the game button.
-     * @param event
-     */
+    private ListView<String> forumListView;
     @FXML
-    private void navigateToGameView(ActionEvent event) {
-        navigateToView("/com/cookiecoders/gamearcade/ui/games/gameView.fxml", "/com/cookiecoders/gamearcade/ui/games/gameView.css", event);
-    }
-    /**
-     * This method handles the menu bar navigational functionality
-     * and is called upon clicking on the Community button.
-     * @param event
-     */
+    private TextField postTitleField;
     @FXML
-    private void navigateToCommunityView(ActionEvent event) {
-        navigateToView("/com/cookiecoders/gamearcade/ui/forum/forumView.fxml", "/com/cookiecoders/gamearcade/ui/forum/forumView.css", event);
-    }
-    /**
-     * This method handles the menu bar navigational functionality
-     * and is called upon clicking on the profile button.
-     * @param event
-     */
+    private TextArea postContentArea;
     @FXML
-    private void navigateToProfileView(ActionEvent event) {
-        navigateToView("/com/cookiecoders/gamearcade/ui/profile/profileView.fxml", "/com/cookiecoders/gamearcade/ui/profile/profileView.css", event);
+    private ComboBox<String> categoryComboBox;
+    @FXML
+    private Button postButton;
+
+    private ObservableList<Map<String, Object>> categories;
+
+    @FXML
+    private void initialize() {
+        this.userSession = UserSession.getInstance();
+        this.forumDao = new ForumDaoImpl();
+        loadForumPosts();
+        loadCategories();
     }
 
-    /**
-     * This method is called whenever a button from the navigational
-     * bar is clicked. It then loads the corresponding fxml/css file pair.
-     * @param fxmlFile
-     * @param cssFile
-     * @param event
-     */
-    private void navigateToView(String fxmlFile, String cssFile, ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource(cssFile).toExternalForm());
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load " + fxmlFile + ": " + e.getMessage());
+    private void loadForumPosts() {
+        List<Map<String, Object>> forumPosts = forumDao.getAllPosts();
+        forumListView.getItems().clear();
+
+        for (Map<String, Object> post : forumPosts) {
+            String title = (String) post.get("Title");
+            String content = (String) post.get("Content");
+            String author = (String) post.get("Author");
+            String category = (String) post.get("CategoryName");
+            forumListView.getItems().add(title + " (" + category + ") by " + author + ": " + content);
         }
+    }
+
+    private void loadCategories() {
+        categories = FXCollections.observableArrayList(forumDao.getAllCategories());
+
+        for (Map<String, Object> category : categories) {
+            categoryComboBox.getItems().add((String) category.get("CategoryName"));
+        }
+    }
+
+    @FXML
+    private void handlePostButtonAction(ActionEvent event) {
+        String title = postTitleField.getText();
+        String content = postContentArea.getText();
+        String categoryName = categoryComboBox.getValue();
+
+        if (title.isEmpty() || content.isEmpty() || categoryName == null) {
+            Logger.getInstance().log(Logger.LogLevel.WARNING, "Title, Content, or Category is empty");
+            return;
+        }
+
+        int categoryId = categories.stream()
+                .filter(cat -> cat.get("CategoryName").equals(categoryName))
+                .map(cat -> (int) cat.get("CategoryID"))
+                .findFirst()
+                .orElse(-1);
+
+        if (categoryId == -1) {
+            Logger.getInstance().log(Logger.LogLevel.ERROR, "Category not found");
+            return;
+        }
+
+        forumDao.createPost(userSession.getCurrentUser().getId(), categoryId, title, content);
+        loadForumPosts();
+        postTitleField.clear();
+        postContentArea.clear();
+        categoryComboBox.getSelectionModel().clearSelection();
     }
 }

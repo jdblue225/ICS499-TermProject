@@ -15,12 +15,11 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.gameViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.gameInfoViewController">
    <children>
       <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
         <items>
-            <Button minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToGameView" styleClass="button selected" text="Back" />
-            <HBox>
+            <HBox HBox.hgrow="ALWAYS" alignment="CENTER">
                <children>
                   <Region HBox.hgrow="ALWAYS" />
                   <Label text="GameName Info" />
@@ -37,7 +36,7 @@
             <Image url="@../../games/img/game1.jpg" />
          </image>
       </ImageView>
-      <TextArea layoutX="36.0" layoutY="229.0" prefHeight="271.0" prefWidth="420.0" promptText="Game Description" wrapText="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <TextArea layoutX="20.0" layoutY="250.0" prefHeight="271.0" prefWidth="420.0" promptText="Game Description" wrapText="true" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
       <GridPane layoutX="245.0" layoutY="74.0" prefHeight="138.0" prefWidth="200.0" AnchorPane.rightAnchor="20.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="85.0" />
@@ -68,5 +67,6 @@
             </HBox>
          </children>
       </GridPane>
+      <Button layoutX="365.0" layoutY="544.0" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#closeWindow" styleClass="button selected" text="Close" AnchorPane.bottomAnchor="20.0" />
    </children>
 </AnchorPane>

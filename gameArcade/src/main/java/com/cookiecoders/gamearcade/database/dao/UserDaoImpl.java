@@ -11,6 +11,14 @@ public class UserDaoImpl implements UserDao {
     private static DatabaseManager dbm = DatabaseManager.getInstance();
     private static Connection connection = dbm.getConnection();
 
+
+    public UserDaoImpl(){}
+
+    // Constructor for injecting connection (used in tests)
+    public UserDaoImpl(Connection connection) {
+        this.connection = connection;
+    }
+
 //    @Override
 //    public void addUser(User user) {
 //        String query = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";

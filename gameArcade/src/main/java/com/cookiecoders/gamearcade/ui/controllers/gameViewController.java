@@ -16,6 +16,7 @@ import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 
@@ -153,12 +154,9 @@ public class gameViewController {
 
     private void navigateToGameInfo(Integer gameId){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/GameInfoView.fxml"));
-
-            // Use a custom controller factory to pass the gameId to the controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml"));
             loader.setControllerFactory(param -> new gameInfoViewController(gameId));
             Parent root = loader.load();
-
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
