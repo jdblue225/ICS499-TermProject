@@ -1,5 +1,5 @@
 package com.cookiecoders.gamearcade.database.dao;
-
+// TODO Clean up extra methods
 import com.cookiecoders.gamearcade.database.DatabaseManager;
 import com.cookiecoders.gamearcade.database.models.User;
 import java.sql.*;

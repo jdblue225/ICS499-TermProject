@@ -34,6 +34,8 @@ public class Navigation {
             case "toolbarForumButton":
                 fxmlFile = "/com/cookiecoders/gamearcade/ui/forum/forumView.fxml";
                 cssFile = "/com/cookiecoders/gamearcade/ui/forum/forumView.css";
+//              TODO standardize views by collating to one document Master.css
+//                cssFile = "/com/cookiecoders/gamearcade/ui/CSS/Master.css";
                 break;
             case "toolbarProfileButton":
                 fxmlFile = "/com/cookiecoders/gamearcade/ui/profile/profileView.fxml";

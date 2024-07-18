@@ -1,3 +1,4 @@
+//TODO verify method coverage by new architecture and delete this class.
 ///**
 // *  The SQLConnection class is designed to function as a
 // *  Singleton class which can be called throughout the
