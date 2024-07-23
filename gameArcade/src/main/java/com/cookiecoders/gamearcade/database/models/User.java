@@ -1,5 +1,7 @@
 package com.cookiecoders.gamearcade.database.models;
 // TODO add column additions (Image support)
+import com.cookiecoders.gamearcade.config.ConfigManager;
+
 import java.util.Date;
 
 public class User {
@@ -10,10 +12,15 @@ public class User {
     private String email;
     private String password;
     private String usertype;
-    private Date createdAt;
+    private Date createdate;
+    private String imageName;
+    private byte[] image;
+    private String profImgDir;
 
 
-    public User() {}
+    public User() {
+        this.profImgDir = ConfigManager.getProperty("prof_images");
+    }
     public User(String username, String firstname, String lastname, String email, String password, String usertype) {
         this.username = username;
         this.firstname = firstname;
@@ -21,9 +28,10 @@ public class User {
         this.email = email;
         this.password = password;
         this.usertype = usertype;
+        this.profImgDir = ConfigManager.getProperty("prof_images");
     }
 
-    public User(Integer id, String username, String firstname, String lastname, String email, String password, String usertype, Date createdAt) {
+    public User(Integer id, String username, String firstname, String lastname, String email, String password, String usertype, Date createdate, String imageName, byte[] image) {
         this.id = id;
         this.username = username;
         this.firstname = firstname;
@@ -31,7 +39,11 @@ public class User {
         this.email = email;
         this.password = password;
         this.usertype = usertype;
-        this.createdAt = createdAt;
+        this.createdate = createdate;
+        this.imageName = imageName;
+        this.image = image;
+        this.profImgDir = ConfigManager.getProperty("prof_images");
+        System.out.println(" ");
     }
 
     // Getters
@@ -57,8 +69,19 @@ public class User {
         return this.usertype;
     }
     public Date getCreatedAt(){
-        return this.createdAt;
+        return this.createdate;
     }
+    public String getImageName(){
+        return this.imageName;
+    }
+    public byte[] getImage(){
+        return this.image;
+    }
+    public String getFullImagePath(){
+        String fullImagePath = this.profImgDir + imageName;
+        return fullImagePath;
+    }
+
 
     // Setters
     public void setUser(User user){
@@ -69,7 +92,9 @@ public class User {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.usertype = user.getUsertype();
-        this.createdAt = user.getCreatedAt();
+        this.createdate = user.getCreatedAt();
+        this.imageName = user.getImageName();
+        this.image = user.getImage();
     }
     public void setId(Integer id){
         this.id = id;
@@ -93,7 +118,13 @@ public class User {
         this.usertype = usertype;
     }
     public void setCreatedAt(Date date){
-        this.createdAt = date;
+        this.createdate = date;
+    }
+    public void setImageName(String imageName){
+        this.imageName = imageName;
+    }
+    public void setImage(byte[] image){
+        this.image = image;
     }
 
 }

@@ -32,7 +32,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class ConfigManager {
-    private static final String CONFIG_FILE = "/config/application.config";
+    private static final String CONFIG_FILE = "/com/cookiecoders/gamearcade/config/app.config";
     private static Properties properties = new Properties();
 
     // Static block to load properties at class loading time

@@ -109,7 +109,7 @@ public class SecurityManager {
             return null;
         }
 
-        String emailListPath = ConfigManager.getProperty("Email List");
+        String emailListPath = ConfigManager.getProperty("email_list");
         List<String> emailList = ConfigManager.getEmailList(emailListPath);
 
         List<String> approvedList = new ArrayList<>();

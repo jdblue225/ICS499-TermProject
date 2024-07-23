@@ -59,20 +59,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByUsername(String username) {
         String hashedPass;
-        String query = "SELECT * FROM users WHERE username = ?;";
+        String query = "SELECT * FROM users WHERE UserName = ?;";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, username);
             try (ResultSet resultSet = stmt.executeQuery()) {
                 if (resultSet.next()) {
                     User user = new User(
-                            resultSet.getInt("userid"),
-                            resultSet.getString("username"),
-                            resultSet.getString("firstname"),
-                            resultSet.getString("lastname"),
-                            resultSet.getString("email"),
-                            resultSet.getString("password"),
-                            resultSet.getString("usertype"),
-                            resultSet.getDate("createdat")
+                            resultSet.getInt("UserID"),
+                            resultSet.getString("UserName"),
+                            resultSet.getString("FirstName"),
+                            resultSet.getString("LastName"),
+                            resultSet.getString("Email"),
+                            resultSet.getString("Password"),
+                            resultSet.getString("UserType"),
+                            resultSet.getDate("CreateDate"),
+                            resultSet.getString("ImageName"),
+                            resultSet.getBytes("Image")
                     );
                     return user;
                 }
@@ -105,7 +107,7 @@ public class UserDaoImpl implements UserDao {
 //    }
     @Override
     public boolean insertUser(User user) {
-        String query = "INSERT INTO users (username, firstname, lastname, email, password, usertype, createdat) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO users (username, firstname, lastname, email, password, usertype, createdat, imagename, image) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getFirstname());
@@ -114,11 +116,21 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(5, user.getPassword());
             stmt.setString(6, user.getUsertype());
 
+
             // If createdAt is not set, use the current timestamp
             if (user.getCreatedAt() != null) {
                 stmt.setTimestamp(7, new Timestamp(user.getCreatedAt().getTime()));
             } else {
                 stmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
+            }
+
+            stmt.setString(8, user.getImageName());
+            if (user.getImage() != null){
+                stmt.setString(9, null);
+//                stmt.setString(9, image);
+
+            }else{
+                stmt.setString(9, null);
             }
 
             int rowsAffected = stmt.executeUpdate();
