@@ -760,3 +760,99 @@
 2024-07-16 13:58:40 - INFO: Starting Cookie Arcade
 2024-07-16 13:58:52 - INFO: Database connected successfully.
 2024-07-16 13:58:52 - INFO: user01 login successful.
+2024-07-18 08:31:42 - INFO: Starting Cookie Arcade
+2024-07-18 08:31:56 - INFO: Database connected successfully.
+2024-07-18 08:31:56 - INFO: user02 login successful.
+2024-07-18 08:38:14 - INFO: Starting Cookie Arcade
+2024-07-18 08:49:48 - INFO: Starting Cookie Arcade
+2024-07-18 08:49:59 - INFO: Database connected successfully.
+2024-07-18 08:49:59 - INFO: user02 login successful.
+2024-07-18 08:50:56 - INFO: Starting Cookie Arcade
+2024-07-18 08:51:07 - INFO: Database connected successfully.
+2024-07-18 08:51:08 - INFO: user02 login successful.
+2024-07-18 08:53:28 - INFO: Starting Cookie Arcade
+2024-07-18 08:53:47 - INFO: Database connected successfully.
+2024-07-18 08:53:47 - INFO: user02 login successful.
+2024-07-18 08:54:59 - INFO: Starting Cookie Arcade
+2024-07-18 08:55:12 - INFO: Database connected successfully.
+2024-07-18 08:55:12 - INFO: user02 login successful.
+2024-07-18 08:55:31 - WARNING: Title, Content, or Category is empty
+2024-07-18 09:04:54 - INFO: Starting Cookie Arcade
+2024-07-18 09:05:04 - INFO: Database connected successfully.
+2024-07-18 09:05:04 - INFO: user01 login successful.
+2024-07-18 09:06:06 - INFO: Starting Cookie Arcade
+2024-07-18 09:06:17 - INFO: Database connected successfully.
+2024-07-18 09:06:17 - WARNING: user01 login failed.
+2024-07-18 09:06:20 - INFO: user01 login successful.
+2024-07-18 09:14:50 - INFO: Starting Cookie Arcade
+2024-07-18 09:15:01 - INFO: Database connected successfully.
+2024-07-18 09:15:02 - INFO: user01 login successful.
+2024-07-18 09:19:29 - INFO: Starting Cookie Arcade
+2024-07-18 09:19:39 - INFO: Database connected successfully.
+2024-07-18 09:19:39 - INFO: user01 login successful.
+2024-07-18 09:19:40 - ERROR: Failed to load /com/cookiecoders/gamearcade/ui/store/storeView.fxml: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/store/storeView.fxml
+
+2024-07-18 09:20:31 - ERROR: Failed to load /com/cookiecoders/gamearcade/ui/store/storeView.fxml: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/store/storeView.fxml
+
+2024-07-18 09:21:45 - INFO: Starting Cookie Arcade
+2024-07-18 09:21:57 - INFO: Database connected successfully.
+2024-07-18 09:21:57 - WARNING: user01 login failed.
+2024-07-18 09:22:00 - INFO: user01 login successful.
+2024-07-18 09:22:02 - ERROR: Failed to load /com/cookiecoders/gamearcade/ui/store/storeView.fxml: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/store/storeView.fxml
+
+2024-07-18 09:24:00 - INFO: Starting Cookie Arcade
+2024-07-18 09:24:10 - INFO: Database connected successfully.
+2024-07-18 09:24:10 - INFO: user01 login successful.
+2024-07-18 09:24:12 - ERROR: Failed to load /com/cookiecoders/gamearcade/ui/store/storeView.fxml: 
+/G:/My%20Drive/Documents/School/Metropolitan%20State/24-2%20Summer%20(Current)/(Thurs)%20-%20ICS%20499-51%20Software%20Engineering%20and%20Capstone%20Project/ICS499-TermProject/gameArcade/target/classes/com/cookiecoders/gamearcade/ui/store/storeView.fxml
+
+2024-07-18 09:24:43 - INFO: Starting Cookie Arcade
+2024-07-18 09:24:53 - INFO: Database connected successfully.
+2024-07-18 09:24:54 - INFO: user01 login successful.
+2024-07-18 09:41:50 - INFO: Starting Cookie Arcade
+2024-07-18 09:42:12 - INFO: Database connected successfully.
+2024-07-18 13:33:34 - INFO: Starting Cookie Arcade
+2024-07-18 13:33:49 - INFO: Database connected successfully.
+2024-07-18 13:33:49 - INFO: user02 login successful.
+2024-07-18 14:13:02 - INFO: Starting Cookie Arcade
+2024-07-18 14:21:51 - INFO: Database connected successfully.
+2024-07-18 14:21:51 - INFO: user01 login successful.
+2024-07-18 14:31:37 - INFO: Starting Cookie Arcade
+2024-07-18 14:31:55 - INFO: Database connected successfully.
+2024-07-18 14:31:55 - INFO: user02 login successful.
+2024-07-18 17:12:58 - INFO: Starting Cookie Arcade
+2024-07-18 17:13:22 - INFO: Database connected successfully.
+2024-07-18 17:15:27 - INFO: testuser1 login successful.
+2024-07-18 17:26:23 - INFO: Starting Cookie Arcade
+2024-07-18 17:27:09 - INFO: Database connected successfully.
+2024-07-18 17:27:09 - INFO: user01 login successful.
+2024-07-18 17:33:44 - WARNING: Title, Content, or Category is empty
+2024-07-18 17:34:21 - WARNING: Title, Content, or Category is empty
+2024-07-18 17:34:26 - WARNING: Title, Content, or Category is empty
+2024-07-18 17:35:01 - INFO: Starting Cookie Arcade
+2024-07-18 17:35:10 - INFO: Database connected successfully.
+2024-07-18 17:35:10 - INFO: user01 login successful.
+2024-07-18 17:37:42 - INFO: Starting Cookie Arcade
+2024-07-18 17:37:54 - INFO: Database connected successfully.
+2024-07-18 17:37:54 - INFO: user01 login successful.
+2024-07-18 17:38:47 - INFO: Starting Cookie Arcade
+2024-07-18 17:38:57 - INFO: Database connected successfully.
+2024-07-18 17:38:57 - INFO: user01 login successful.
+2024-07-18 17:39:44 - INFO: Starting Cookie Arcade
+2024-07-18 17:39:54 - INFO: Database connected successfully.
+2024-07-18 17:39:54 - INFO: user01 login successful.
+2024-07-18 17:56:32 - INFO: Starting Cookie Arcade
+2024-07-18 17:58:09 - INFO: Database connected successfully.
+2024-07-18 17:58:09 - INFO: user01 login successful.
+2024-07-18 18:07:08 - INFO: Starting Cookie Arcade
+2024-07-18 18:36:33 - INFO: Starting Cookie Arcade
+2024-07-18 19:24:37 - INFO: Starting Cookie Arcade
+2024-07-18 20:16:27 - INFO: Starting Cookie Arcade
+2024-07-18 20:16:45 - INFO: Database connected successfully.
+2024-07-18 20:18:23 - INFO: user99 login successful.
+2024-07-18 20:19:04 - INFO: Starting Cookie Arcade
+2024-07-18 20:19:16 - INFO: Database connected successfully.
+2024-07-18 20:19:16 - INFO: user01 login successful.

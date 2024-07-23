@@ -1,5 +1,5 @@
 package com.cookiecoders.gamearcade.database.models;
-
+// TODO add column additions (Image support)
 import java.util.Date;
 
 public class User {
