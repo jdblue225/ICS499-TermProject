@@ -5,25 +5,29 @@ import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
 import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.util.Logger;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
-
+import javafx.util.Duration;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 import java.util.Map;
+
 
 public class gameViewController {
     private UserSession userSession;
     private GameDao gameDao;
+    private boolean doubleClickFlag = false;
 
     @FXML
     private TilePane gamesTilePane;
@@ -115,9 +119,7 @@ public class gameViewController {
         imageView.setPickOnBounds(false);
 //        imageView.setPreserveRatio(true);
 
-
-        // Set click event to navigate to game info
-        imageView.setOnMouseClicked(event -> navigateToGameInfo(gameId));
+        imageView.setOnMouseClicked(event -> handleMouseClick(event, gameId));
 
 
         TilePane.setMargin(imageView, new javafx.geometry.Insets(15));
@@ -152,6 +154,30 @@ public class gameViewController {
     }
 
 
+    private void handleMouseClick(MouseEvent event, Integer gameId) {
+        if (event.getClickCount() == 2) {
+            doubleClickFlag = true;
+            launchGame(gameId);
+        } else if (event.getClickCount() == 1) {
+            PauseTransition pause = new PauseTransition(Duration.millis(200));
+            pause.setOnFinished(e -> {
+                if (!doubleClickFlag) {
+                    navigateToGameInfo(gameId);
+                }
+                doubleClickFlag = false;
+            });
+            pause.play();
+        }
+    }
+
+    private void launchGame(Integer gameId){
+        // Add your launch game logic here
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Launch Game");
+        alert.setHeaderText(null);
+        alert.setContentText("Launching game with ID: " + gameId);
+        alert.showAndWait();
+    }
 
 
     private void navigateToGameInfo(Integer gameId){
