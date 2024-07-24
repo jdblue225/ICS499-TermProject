@@ -6,7 +6,6 @@ import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.database.models.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -22,7 +21,7 @@ import org.controlsfx.control.Rating;
  */
 
 
-public class gameInfoViewController {
+public class gameBuyViewController {
 
     private Integer gameId;
     private UserSession userSession;
@@ -43,7 +42,7 @@ public class gameInfoViewController {
     public Label paneTitle;
 
 
-    public gameInfoViewController(Integer gameId){
+    public gameBuyViewController(Integer gameId){
         this.gameId = gameId;
     }
 

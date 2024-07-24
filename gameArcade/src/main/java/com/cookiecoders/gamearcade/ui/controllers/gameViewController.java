@@ -154,6 +154,7 @@ public class gameViewController {
     }
 
 
+
     private void handleMouseClick(MouseEvent event, Integer gameId) {
         if (event.getClickCount() == 2) {
             doubleClickFlag = true;

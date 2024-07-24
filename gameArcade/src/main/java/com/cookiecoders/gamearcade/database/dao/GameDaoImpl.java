@@ -27,8 +27,9 @@ public class GameDaoImpl implements GameDao{
                             resultSet.getString("Developer"),
                             resultSet.getDate("ReleaseDate"),
                             resultSet.getDouble("Price"),
-                            resultSet.getString("ImagePath"),
-                            resultSet.getTimestamp("CreatedAt")
+                            resultSet.getString("ImageName"),
+                            resultSet.getTimestamp("CreatedAt"),
+                            resultSet.getDouble("AverageRating")
                     );
                     return game;
                 }
@@ -74,7 +75,36 @@ public class GameDaoImpl implements GameDao{
                     Map<String, Object> gameSummary = new HashMap<>();
                     gameSummary.put("GameID", resultSet.getInt("GameID"));
                     gameSummary.put("Title", resultSet.getString("Title"));
-                    gameSummary.put("ImagePath", resultSet.getString("ImagePath"));
+                    gameSummary.put("ImageName", resultSet.getString("ImageName"));
+                    gamesSummary.add(gameSummary);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return gamesSummary;
+    }
+
+    @Override
+    public List<Map<String, Object>> getUnownedGames(Integer userID){
+        String query = """
+                SELECT g.GameID, g.Title, g.ImageName, g.AverageRating\s
+                FROM Games g
+                LEFT JOIN OwnedGames og ON g.GameID = og.GameID AND og.UserId = ?
+                WHERE og.GameID IS NULL;
+            """;
+        List<Map<String, Object>> gamesSummary = new ArrayList<>();
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, userID);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                while (resultSet.next()) {
+                    Map<String, Object> gameSummary = new HashMap<>();
+                    gameSummary.put("GameID", resultSet.getInt("GameID"));
+                    gameSummary.put("Title", resultSet.getString("Title"));
+                    gameSummary.put("ImageName", resultSet.getString("ImageName"));
+                    gameSummary.put("AverageRating", resultSet.getDouble("AverageRating"));
                     gamesSummary.add(gameSummary);
                 }
             }
@@ -124,7 +154,8 @@ public class GameDaoImpl implements GameDao{
                         resultSet.getDate("ReleaseDate"),
                         resultSet.getDouble("Price"),
                         resultSet.getString("ImagePath"),
-                        resultSet.getTimestamp("CreatedAt")
+                        resultSet.getTimestamp("CreatedAt"),
+                        resultSet.getDouble("AverageRating")
                 );
                 games.add(game);
             }
@@ -164,6 +195,8 @@ public class GameDaoImpl implements GameDao{
             return false;
         }
     }
+
+
 
 
 }

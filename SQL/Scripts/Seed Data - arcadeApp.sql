@@ -14,17 +14,17 @@ INSERT INTO users (username, firstname, lastname, email, password, usertype, Ima
 ('user10', 'Jack', 'White', 'jack.white@example.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'user', NULL, NULL);
 
 -- Seed data for Games table
-INSERT INTO Games (Title, Description, Developer, ReleaseDate, Price, ImageName) VALUES
-('Game Title 1', 'Description of Game 1', 'Developer 1', '2023-01-01', 19.99, 'game1.jpg'),
-('Game Title 2', 'Description of Game 2', 'Developer 2', '2023-02-15', 29.99, 'game2.jpg'),
-('Game Title 3', 'Description of Game 3', 'Developer 3', '2023-03-20', 39.99, 'game3.jpg'),
-('Game Title 4', 'Description of Game 4', 'Developer 4', '2023-04-25', 49.99, 'game4.jpg'),
-('Game Title 5', 'Description of Game 5', 'Developer 5', '2023-05-30', 59.99, 'game5.jpg'),
-('Game Title 6', 'Description of Game 6', 'Developer 6', '2023-06-10', 9.99, 'game6.jpg'),
-('Game Title 7', 'Description of Game 7', 'Developer 7', '2023-07-15', 14.99, 'game7.jpg'),
-('Game Title 8', 'Description of Game 8', 'Developer 8', '2023-08-20', 24.99, 'game8.jpg'),
-('Game Title 9', 'Description of Game 9', 'Developer 9', '2023-09-25', 34.99, 'game9.jpg'),
-('Game Title 10', 'Description of Game 10', 'Developer 10', '2023-10-30', 44.99, 'game10.jpg');
+INSERT INTO Games (Title, Description, Developer, ReleaseDate, Price, ImageName, AverageRating) VALUES
+('Game Title 1', 'Description of Game 1', 'Developer 1', '2023-01-01', 19.99, 'game1.jpg', 4.50),
+('Game Title 2', 'Description of Game 2', 'Developer 2', '2023-02-15', 29.99, 'game2.jpg', 5.00),
+('Game Title 3', 'Description of Game 3', 'Developer 3', '2023-03-20', 39.99, 'game3.jpg', 3.20 ),
+('Game Title 4', 'Description of Game 4', 'Developer 4', '2023-04-25', 49.99, 'game4.jpg', 4.20),
+('Game Title 5', 'Description of Game 5', 'Developer 5', '2023-05-30', 59.99, 'game5.jpg', 4.20),
+('Game Title 6', 'Description of Game 6', 'Developer 6', '2023-06-10', 9.99, 'game6.jpg', 2.10),
+('Game Title 7', 'Description of Game 7', 'Developer 7', '2023-07-15', 14.99, 'game7.jpg', 1.50),
+('Game Title 8', 'Description of Game 8', 'Developer 8', '2023-08-20', 24.99, 'game8.jpg', 1.60),
+('Game Title 9', 'Description of Game 9', 'Developer 9', '2023-09-25', 34.99, 'game9.jpg', 5.00),
+('Game Title 10', 'Description of Game 10', 'Developer 10', '2023-10-30', 44.99, 'game10.jpg', 3.50);
 
 -- Seed data for OwnedGames table
 INSERT INTO OwnedGames (UserID, GameID, PurchaseDate, PlayTime, LastPlayedDate, AchievementsUnlocked, Score, HighScore, Rating, Review, IsFavorite, GameVersion, CompletionStatus) VALUES

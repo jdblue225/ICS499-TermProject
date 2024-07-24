@@ -1,5 +1,7 @@
 package com.cookiecoders.gamearcade.database.models;
 
+import com.cookiecoders.gamearcade.config.ConfigManager;
+
 import java.util.Date;
 
 public class Game {
@@ -11,6 +13,7 @@ public class Game {
     private Double price;
     private String imagePath;
     private Date createdAt;
+    private Double averageRating;
 
     // Default constructor
     public Game() {
@@ -27,15 +30,16 @@ public class Game {
     }
 
     // Full constructor
-    public Game(Integer gameId, String title, String description, String developer, Date releaseDate, Double price, String imagePath, Date createdAt) {
+    public Game(Integer gameId, String title, String description, String developer, Date releaseDate, Double price, String imageName, Date createdAt, Double averageRating) {
         this.gameId = gameId;
         this.title = title;
         this.description = description;
         this.developer = developer;
         this.releaseDate = releaseDate;
         this.price = price;
-        this.imagePath = imagePath;
+        this.imagePath = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("game_image_path") + imageName;
         this.createdAt = createdAt;
+        this.averageRating = averageRating;
     }
 
     // Getters
@@ -69,6 +73,10 @@ public class Game {
 
     public Date getCreatedAt() {
         return this.createdAt;
+    }
+
+    public Double getAverageRating(){
+        return this.averageRating;
     }
 
     // Setters
@@ -113,5 +121,9 @@ public class Game {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setAverageRating(Double averageRating){
+        this.averageRating = averageRating;
     }
 }

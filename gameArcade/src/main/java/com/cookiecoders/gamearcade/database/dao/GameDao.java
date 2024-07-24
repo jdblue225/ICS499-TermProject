@@ -10,6 +10,7 @@ public interface GameDao {
     List<Game> getAllGames();
     List<Map<String, Object>> getAllGamesSummary();
     List<Map<String, Object>> getOwnedGamesSummary(Integer userID);
+    List<Map<String, Object>> getUnownedGames(Integer userID);
     boolean updateGame(Game game);
     boolean deleteGame(int id);
 
