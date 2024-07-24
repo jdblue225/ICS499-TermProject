@@ -1,6 +1,7 @@
 package com.cookiecoders.gamearcade.database;
 
 
+import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.util.Logger;
 
 import java.sql.*;
@@ -9,9 +10,13 @@ public class DatabaseManager {
     private com.cookiecoders.gamearcade.util.Logger logger = Logger.getInstance();
     private static DatabaseManager instance;
     private Connection connection;
-    private static final String DATABASE_NAME = "arcadeapp";
-    private static final String SQL_USERNAME = "root";  // Edit username to reflect YOUR SQL database username
-    private static final String SQL_PASSWORD = "password";  // Edit password to reflect YOUR SQL database password
+//    private static final String DATABASE_NAME = "arcadeapp";
+//    private static final String SQL_USERNAME = "root";  // Edit username to reflect YOUR SQL database username
+//    private static final String SQL_PASSWORD = "password";  // Edit password to reflect YOUR SQL database password
+    private static String DATABASE_URL;
+    private static String DATABASE_NAME;
+    private static String SQL_USERNAME;
+    private static String SQL_PASSWORD;
 
     /**
      * This method is called from within the SQLConnection
@@ -30,6 +35,10 @@ public class DatabaseManager {
      */
     public static synchronized DatabaseManager getInstance() {
         if (instance == null) {
+            DATABASE_URL = ConfigManager.getProperty("db_URL");
+            DATABASE_NAME = ConfigManager.getProperty("db_name");
+            SQL_USERNAME = ConfigManager.getProperty("db_uname");
+            SQL_PASSWORD = ConfigManager.getProperty("db_pass");
             instance = new DatabaseManager();
         }
         return instance;
@@ -41,7 +50,7 @@ public class DatabaseManager {
 
     private void connect() {
         try {
-            String url = "jdbc:mysql://localhost/" + DATABASE_NAME + "?user=" + SQL_USERNAME + "&password=" + SQL_PASSWORD;
+            String url = DATABASE_URL + DATABASE_NAME + "?user=" + SQL_USERNAME + "&password=" + SQL_PASSWORD;
             connection = DriverManager.getConnection(url);
             logger.log(Logger.LogLevel.INFO, "Database connected successfully.");
         } catch (SQLException e) {

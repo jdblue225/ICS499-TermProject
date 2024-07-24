@@ -54,6 +54,7 @@ public class ConfigManager {
 
     // Method to get a property value
     public static String getProperty(String key) {
+        String property = properties.getProperty(key);
         return properties.getProperty(key);
     }
 
