@@ -10,9 +10,6 @@ public class DatabaseManager {
     private com.cookiecoders.gamearcade.util.Logger logger = Logger.getInstance();
     private static DatabaseManager instance;
     private Connection connection;
-//    private static final String DATABASE_NAME = "arcadeapp";
-//    private static final String SQL_USERNAME = "root";  // Edit username to reflect YOUR SQL database username
-//    private static final String SQL_PASSWORD = "password";  // Edit password to reflect YOUR SQL database password
     private static String DATABASE_URL;
     private static String DATABASE_NAME;
     private static String SQL_USERNAME;

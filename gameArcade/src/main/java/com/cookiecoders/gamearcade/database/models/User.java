@@ -42,8 +42,7 @@ public class User {
         this.createdate = createdate;
         this.imageName = imageName;
         this.image = image;
-        this.profImgDir = ConfigManager.getProperty("prof_images");
-        System.out.println(" ");
+        this.profImgDir = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_images");
     }
 
     // Getters

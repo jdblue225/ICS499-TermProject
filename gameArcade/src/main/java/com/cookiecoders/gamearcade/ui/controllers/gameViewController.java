@@ -1,5 +1,6 @@
 package com.cookiecoders.gamearcade.ui.controllers;
 
+import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
 import com.cookiecoders.gamearcade.users.UserSession;
@@ -63,7 +64,9 @@ public class gameViewController {
                 mainTilePane.setVgap(0); // Vertical gap between tiles
             }
 
-            String imagePath = "/com/cookiecoders/gamearcade" + (String) game.get("ImagePath");
+            String imagePath = ConfigManager.getProperty("root_path") +
+                    ConfigManager.getProperty("game_image_path") +
+                    (String) game.get("ImageName");
             Integer gameId = (Integer) game.get("GameID");
             ImageView imageView = createImageView(imagePath, gameId);
             tilePane.getChildren().add(imageView);

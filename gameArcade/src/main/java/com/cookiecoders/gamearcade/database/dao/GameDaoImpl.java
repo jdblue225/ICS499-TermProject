@@ -41,7 +41,7 @@ public class GameDaoImpl implements GameDao{
 
     @Override
     public List<Map<String, Object>> getAllGamesSummary() {
-        String query = "SELECT GameID, Title, ImagePath FROM Games";
+        String query = "SELECT GameID, Title, ImageName FROM Games";
         List<Map<String, Object>> gamesSummary = new ArrayList<>();
         try (PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet resultSet = stmt.executeQuery()) {
@@ -49,7 +49,7 @@ public class GameDaoImpl implements GameDao{
                 Map<String, Object> gameSummary = new HashMap<>();
                 gameSummary.put("GameID", resultSet.getInt("GameID"));
                 gameSummary.put("Title", resultSet.getString("Title"));
-                gameSummary.put("ImagePath", resultSet.getString("ImagePath"));
+                gameSummary.put("ImageName", resultSet.getString("ImageName"));
                 gamesSummary.add(gameSummary);
             }
         } catch (SQLException e) {
@@ -61,7 +61,7 @@ public class GameDaoImpl implements GameDao{
     @Override
     public List<Map<String, Object>> getOwnedGamesSummary(Integer userID) {
         String query = """
-                SELECT g.GameID, g.Title, g.ImagePath FROM Games g\s
+                SELECT g.GameID, g.Title, g.ImageName FROM Games g\s
                 JOIN OwnedGames og ON g.GameID = og.GameID
                 WHERE og.UserId = ?;
             """;
