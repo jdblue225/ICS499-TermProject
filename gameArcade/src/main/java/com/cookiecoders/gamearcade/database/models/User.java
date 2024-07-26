@@ -21,14 +21,16 @@ public class User {
     public User() {
         this.profImgDir = ConfigManager.getProperty("prof_images");
     }
-    public User(String username, String firstname, String lastname, String email, String password, String usertype) {
+    public User(String username, String firstname, String lastname, String email, String password, String usertype,String imageName, byte[] image) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.usertype = usertype;
-        this.profImgDir = ConfigManager.getProperty("prof_images");
+        this.profImgDir = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_images");
+        this.imageName = imageName;
+        this.image = image;
     }
 
     public User(Integer id, String username, String firstname, String lastname, String email, String password, String usertype, Date createdate, String imageName, byte[] image) {

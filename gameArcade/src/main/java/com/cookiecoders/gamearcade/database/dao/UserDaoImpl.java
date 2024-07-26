@@ -105,9 +105,10 @@ public class UserDaoImpl implements UserDao {
 //        }
 //        return users;
 //    }
+
     @Override
     public boolean insertUser(User user) {
-        String query = "INSERT INTO users (username, firstname, lastname, email, password, usertype, createdat, imagename, image) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
+        String query = "INSERT INTO users (UserName, FirstName, LastName, Email, Password, UserType, ImageName, Image) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getFirstname());
@@ -115,24 +116,8 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(4, user.getEmail());
             stmt.setString(5, user.getPassword());
             stmt.setString(6, user.getUsertype());
-
-
-            // If createdAt is not set, use the current timestamp
-            if (user.getCreatedAt() != null) {
-                stmt.setTimestamp(7, new Timestamp(user.getCreatedAt().getTime()));
-            } else {
-                stmt.setTimestamp(7, new Timestamp(System.currentTimeMillis()));
-            }
-
+            stmt.setString(7, user.getImageName());
             stmt.setString(8, user.getImageName());
-            if (user.getImage() != null){
-                stmt.setString(9, null);
-//                stmt.setString(9, image);
-
-            }else{
-                stmt.setString(9, null);
-            }
-
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

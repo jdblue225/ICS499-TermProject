@@ -11,30 +11,21 @@ import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
 import com.cookiecoders.gamearcade.users.UserSession;
-import com.cookiecoders.gamearcade.util.Logger;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
 public class storeViewController {
-
-    //TODO Copy gameViewController logic to build scrollpane of games not owned
-
     private UserSession userSession;
     private GameDao gameDao;
     private boolean doubleClickFlag = false;
@@ -192,17 +183,7 @@ public class storeViewController {
 
 
     private void navigateToGameBuy(Integer gameId){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameBuyView.fxml"));
-            loader.setControllerFactory(param -> new gameInfoViewController(gameId));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
-        }
+        Navigation.navigateToGameBuyView(gameId);
     }
 
     @FXML

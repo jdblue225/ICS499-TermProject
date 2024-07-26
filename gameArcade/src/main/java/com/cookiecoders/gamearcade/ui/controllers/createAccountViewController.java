@@ -1,74 +1,76 @@
 package com.cookiecoders.gamearcade.ui.controllers;
 
-//import com.cookiecoders.gamearcade.SQLConnection;
+import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.UserDao;
 import com.cookiecoders.gamearcade.database.dao.UserDaoImpl;
 import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
+import com.cookiecoders.gamearcade.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class createAccountViewController {
-//    private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
     private UserDao userDao;
     private User user;
+    private File imageFile;
 
+    @FXML
+    private ImageView profileImage;
     @FXML
     private TextField userNameField;
-
     @FXML
     private TextField firstNameField;
-
     @FXML
     private TextField lastNameField;
-
     @FXML
     private TextField emailField;
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private PasswordField confirmPasswordField;
-
     @FXML
     private Button checkButton;
-
     @FXML
     private Button submitButton;
-
     @FXML
     private Button uploadButton;
-
     @FXML
     private Button cancelButton;
-
     @FXML
     private Label errorMessageUName;
-
     @FXML
     private Label errorMessageFName;
-
     @FXML
     private Label errorMessageLName;
-
     @FXML
     private Label errorMessageEmail;
-
     @FXML
     private Label errorMessagePass;
-
     @FXML
     private Label errorMessagePassCheck;
+
+
+    @FXML
+    private void initialize() {
+        checkButton.setOnAction(this::handleCheckButtonAction);
+        submitButton.setOnAction(this::handleSubmitButtonAction);
+        uploadButton.setOnAction(this::handleUploadButtonAction);
+        cancelButton.setOnAction(this::navigateLoginView);
+    }
+
 
     @FXML
     private void handleCheckButtonAction(ActionEvent event) {
@@ -88,21 +90,36 @@ public class createAccountViewController {
         if (validateForm()) {
             System.out.println("User Created!");
             // Proceed with form submission logic
-            createUser();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("User Creation");
-            alert.setHeaderText(null);
-            alert.setContentText("User Created Successfully!");
-            alert.showAndWait();
-            navigateLoginView(event);
+            if (createUser()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("User Creation");
+                alert.setHeaderText(null);
+                alert.setContentText("User Created Successfully!");
+                alert.showAndWait();
+                navigateLoginView(event);
+            }
         }
     }
 
     @FXML
     private void handleUploadButtonAction(ActionEvent event) {
-        // Handle Upload button action
-        System.out.println("Upload button clicked!");
-        // You can add file upload logic here
+        // Create a FileChooser
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Image");
+        // Set extension filters (optional)
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Open the FileChooser dialog
+        Stage stage = (Stage) uploadButton.getScene().getWindow(); // Get the current window
+        this.imageFile = fileChooser.showOpenDialog(stage);
+
+        if (imageFile != null) {
+            // Load the selected image file into the ImageView
+            Image image = new Image(imageFile.toURI().toString());
+            profileImage.setImage(image);
+        }
     }
 
     @FXML
@@ -118,14 +135,6 @@ public class createAccountViewController {
             e.printStackTrace();
             logger.log(Logger.LogLevel.CRITICAL, "Failed to load login page: " + e.getMessage());
         }
-    }
-
-    @FXML
-    private void initialize() {
-        checkButton.setOnAction(this::handleCheckButtonAction);
-        submitButton.setOnAction(this::handleSubmitButtonAction);
-        uploadButton.setOnAction(this::handleUploadButtonAction);
-        cancelButton.setOnAction(this::navigateLoginView);
     }
 
     private boolean validateForm() {
@@ -200,21 +209,28 @@ public class createAccountViewController {
         if(this.userDao == null){
             this.userDao = new UserDaoImpl();
         }
+        String username = userNameField.getText();
         String encrPass = SecurityManager.hashString(passwordField.getText());
+        byte[] profImageByte = null;
+        String imageName = null;
+        if (imageFile != null){
+            String imageExtension = Utils.getFileExtension(imageFile.toURI().toString());
+            imageName = username + "." + imageExtension;
+            String relativeSavePath = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_image_path") + imageName;
+            Utils.saveFile(imageFile, relativeSavePath);
+            profImageByte = Utils.imageToByteArray(relativeSavePath);
+        }
         this.user = new User(
-                userNameField.getText(),
+                username,
                 firstNameField.getText(),
                 lastNameField.getText(),
                 emailField.getText(),
                 encrPass,
-                "user"
+                "user",
+                imageName,
+                profImageByte
         );
         return userDao.insertUser(user);
     }
-    @FXML
-    private void navigationButtonClicked(ActionEvent event){
-        Navigation.toolbarNavigate(event);
-    }
 
-    // TODO handle profile image import to SQL db
 }
