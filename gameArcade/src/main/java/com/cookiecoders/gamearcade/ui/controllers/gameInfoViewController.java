@@ -52,14 +52,23 @@ public class gameInfoViewController {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
         this.game = gameDao.getGameById(gameId);
-        paneTitle.setText(game.getTitle() + " Info");
-        gameName.setText(game.getTitle());
-        releaseDate.setText(String.valueOf(game.getReleaseDate()));
-        gameDescription.setText(game.getDescription());
-        String imagePath = game.getImagePath();
-        Image image = new Image(getClass().getResourceAsStream(imagePath));
-        gameImage.setImage(image);
-        starRating.setRating(this.game.getAverageRating());
+        if (this.game != null) {
+            paneTitle.setText(game.getTitle() + " Info");
+            gameName.setText(game.getTitle());
+            releaseDate.setText(String.valueOf(game.getReleaseDate()));
+            gameDescription.setText(game.getDescription());
+            String imagePath = game.getImagePath();
+            Image image = new Image(getClass().getResourceAsStream(imagePath));
+            gameImage.setImage(image);
+            starRating.setRating(this.game.getAverageRating());
+        } else {
+            paneTitle.setText("Game Info");
+            gameName.setText("Game not found");
+            releaseDate.setText("");
+            gameDescription.setText("");
+            gameImage.setImage(null);
+            starRating.setRating(0);
+        }
     }
 
     @FXML
