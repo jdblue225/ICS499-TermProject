@@ -3,8 +3,13 @@ package com.cookiecoders.gamearcade.ui.controllers;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.games.Game;
+import com.cookiecoders.gamearcade.games.PongGame;
+import com.cookiecoders.gamearcade.games.MinesweeperGame;
+import com.cookiecoders.gamearcade.games.GameManager;
 import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.util.Logger;
+import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +22,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
@@ -27,6 +33,7 @@ public class gameViewController {
     private UserSession userSession;
     private GameDao gameDao;
     private boolean doubleClickFlag = false;
+    private GameManager gameManager;
 
     @FXML
     private TilePane gamesTilePane;
@@ -35,8 +42,8 @@ public class gameViewController {
     private void initialize() {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
+        this.gameManager = new GameManager();
         populateOGSP();
-
     }
 
     private void populateOGSP(){  // Owned Games Scroll Pane
@@ -169,16 +176,67 @@ public class gameViewController {
     }
 
     private void launchGame(Integer gameId){
-        // Add your launch game logic here
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Launch Game");
-        alert.setHeaderText(null);
-        alert.setContentText("Launching game with ID: " + gameId);
-        alert.showAndWait();
+        // Find game by gameId and launch it
+        Game game = getGameById(gameId);
+        if (game != null) {
+            Stage gameStage = new Stage();
+            setupGameStage(gameStage, game);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Game not fount!");
+            alert.showAndWait();
+        }
+    }
+
+    private Game getGameById(Integer gameId) {
+        // This method should return the game instance based on the gameId
+        // For demonstration, we'll return a new PongGame or MinesweeperGame based on gameId
+        // You should implement this to return the correct game instance from your database or list
+        switch (gameId) {
+            case 1:
+                return new PongGame();
+            case 2:
+                return new MinesweeperGame();
+            // Add other games here
+            default:
+                return null;
+        }
+    }
+
+    private void setupGameStage(Stage gameStage, Game game) {
+        gameManager.loadGame(game);
+        gameManager.startGame();
+
+        StackPane gameRoot = gameManager.getGamePane();
+        Scene gameScene = new Scene(gameRoot, 800, 600);
+
+        gameStage.setTitle(game.getClass().getSimpleName());
+        gameStage.setScene(gameScene);
+        gameStage.show();
+
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                gameManager.updateGame();
+                gameManager.renderGame();
+            }
+        }.start();
     }
 
     private void navigateToGameInfo(Integer gameId){
-        Navigation.navigateToGameInfoView(gameId);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml"));
+            loader.setControllerFactory(param -> new gameInfoViewController(gameId));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
+        }
     }
 
     @FXML
