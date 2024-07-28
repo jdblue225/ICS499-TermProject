@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Began work on Game, GameManager classes. Created a skeleton for Pong and Minesweepr.">
-      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/minesweeper.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/pong.png" afterDir="false" />
+    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Implemented a very simple Pong game for game 1, minesweeper for game 2. Added AI gen images for pong and minesweeper but still need to hook them up. Double click launch game working, single click launch game view working.">
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/frogger.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/minesweeper.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/pong.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/snake.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/words.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/sql/CREATE SCHEMA - arcadeApp.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/sql/Seed Data - arcadeApp.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameInfoViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameInfoViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQL/Scripts/Seed Data - arcadeApp.sql" beforeDir="false" afterPath="$PROJECT_DIR$/SQL/Scripts/Seed Data - arcadeApp.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/minesweeper.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/pong.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,30 +63,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Dookie Arcade.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApp.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.Unnamed (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Application.main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;brandons-branch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Brandon/Downloads/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.28045976&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ClasspathDebugger.executor": "Run",
+    "Application.ClasspathEntriesDebugger.executor": "Run",
+    "Application.Dookie Arcade.executor": "Run",
+    "Application.MainApp.executor": "Debug",
+    "Application.TestConfigLoading.executor": "Run",
+    "Application.TestConfigLoadingAlternative.executor": "Run",
+    "Application.TestImageLoading.executor": "Run",
+    "Application.Unnamed (1).executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "Application.main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.UserDaoImplTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "brandons-branch",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28045976",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\resources\sql" />
+      <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\java\com\cookiecoders\gamearcade\games" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\resources" />
       <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\resources\com\cookiecoders\gamearcade\games\img" />
     </key>
   </component>
@@ -112,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721914972361</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented a very simple Pong game for game 1, minesweeper for game 2. Added AI gen images for pong and minesweeper but still need to hook them up. Double click launch game working, single click launch game view working.">
+      <option name="closed" value="true" />
+      <created>1722167893601</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722167893601</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,7 +163,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Began work on Game, GameManager classes. Created a skeleton for Pong and Minesweepr." />
-    <option name="LAST_COMMIT_MESSAGE" value="Began work on Game, GameManager classes. Created a skeleton for Pong and Minesweepr." />
+    <MESSAGE value="Implemented a very simple Pong game for game 1, minesweeper for game 2. Added AI gen images for pong and minesweeper but still need to hook them up. Double click launch game working, single click launch game view working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented a very simple Pong game for game 1, minesweeper for game 2. Added AI gen images for pong and minesweeper but still need to hook them up. Double click launch game working, single click launch game view working." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -150,6 +174,10 @@
           <line>62</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

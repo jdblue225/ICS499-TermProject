@@ -15,11 +15,11 @@ INSERT INTO users (username, firstname, lastname, email, password, usertype, Ima
 
 -- Seed data for Games table
 INSERT INTO Games (Title, Description, Developer, ReleaseDate, Price, ImageName, AverageRating) VALUES
-('Game Title 1', 'Description of Game 1', 'Developer 1', '2023-01-01', 19.99, 'game1.jpg', 4.50),
-('Game Title 2', 'Description of Game 2', 'Developer 2', '2023-02-15', 29.99, 'game2.jpg', 5.00),
-('Game Title 3', 'Description of Game 3', 'Developer 3', '2023-03-20', 39.99, 'game3.jpg', 3.20 ),
-('Game Title 4', 'Description of Game 4', 'Developer 4', '2023-04-25', 49.99, 'game4.jpg', 4.20),
-('Game Title 5', 'Description of Game 5', 'Developer 5', '2023-05-30', 59.99, 'game5.jpg', 4.20),
+('Pong', 'Pong is one of the earliest arcade video games, featuring a simple two-dimensional table tennis game. Players control paddles to hit a ball back and forth, aiming to score points by getting the ball past the opponent\'s paddle.', 'Developer 1', '2023-01-01', 19.99, 'pong.jpg', 4.50),
+('Minesweeper', 'Minesweeper is a classic puzzle game where players must clear a grid of hidden mines without detonating any. By revealing squares and using numerical hints, players can strategically mark and avoid mines to win the game', 'Developer 2', '2023-02-15', 29.99, 'minesweeper.jpg', 5.00),
+('Snake', 'Snake is a popular arcade game where players control a growing snake that must navigate a confined space, consuming food items to grow longer. The challenge increases as the snake grows, requiring careful maneuvering to avoid collisions with itself and the walls.', 'Developer 3', '2023-03-20', 39.99, 'snake.jpg', 3.20 ),
+('Frogger', 'Frogger is a classic arcade game where players guide a frog across a busy road and a treacherous river. The goal is to reach the frog\'s home on the other side while avoiding traffic, jumping on logs, and dodging various obstacles.', 'Developer 4', '2023-04-25', 49.99, 'frogger.jpg', 4.20),
+('Words', 'Words is a word puzzle game where players form words from a random selection of letters. The objective is to create as many valid words as possible within a given time limit, testing players\' vocabulary and quick thinking.', 'Developer 5', '2023-05-30', 59.99, 'words.jpg', 4.20),
 ('Game Title 6', 'Description of Game 6', 'Developer 6', '2023-06-10', 9.99, 'game6.jpg', 2.10),
 ('Game Title 7', 'Descripton of Game 7', 'Developer 7', '2023-07-15', 14.99, 'game7.jpg', 1.50),
 ('Game Title 8', 'Description of Game 8', 'Developer 8', '2023-08-20', 24.99, 'game8.jpg', 1.60),
