@@ -23,7 +23,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-
 public class gameViewController {
     private UserSession userSession;
     private GameDao gameDao;
@@ -153,8 +152,6 @@ public class gameViewController {
         }
     }
 
-
-
     private void handleMouseClick(MouseEvent event, Integer gameId) {
         if (event.getClickCount() == 2) {
             doubleClickFlag = true;
@@ -180,21 +177,9 @@ public class gameViewController {
         alert.showAndWait();
     }
 
-
     private void navigateToGameInfo(Integer gameId){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml"));
-            loader.setControllerFactory(param -> new gameInfoViewController(gameId));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
-        }
+        Navigation.navigateToGameInfoView(gameId);
     }
-
 
     @FXML
     private void navigationButtonClicked(ActionEvent event){

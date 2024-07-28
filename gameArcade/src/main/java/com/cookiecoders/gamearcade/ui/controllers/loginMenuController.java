@@ -10,17 +10,17 @@ package com.cookiecoders.gamearcade.ui.controllers;
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-//import com.cookiecoders.gamearcade.SQLConnection;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import com.cookiecoders.gamearcade.database.DatabaseManager;
 import com.cookiecoders.gamearcade.database.dao.UserDao;
 import com.cookiecoders.gamearcade.database.dao.UserDaoImpl;
 import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
 import com.cookiecoders.gamearcade.users.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +37,7 @@ import javafx.stage.Stage;
 public class loginMenuController {
 //    private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
+    private ScheduledExecutorService scheduler;
 
     @FXML
     private TextField usernameField;
@@ -60,13 +61,24 @@ public class loginMenuController {
         usernameField.setOnKeyPressed(event -> handleKeyPress(event, loginButton));
         passwordField.setOnKeyPressed(event -> handleKeyPress(event, loginButton));
         createUserButton.setOnKeyPressed(event -> handleKeyPress(event, createUserButton));
-
+        startConnectionCheck();
     }
 
     private void handleKeyPress(KeyEvent event, Button button) {
         if (event.getCode() == KeyCode.ENTER) {
             button.fire();
         }
+    }
+
+
+    private void startConnectionCheck() {
+        scheduler = Executors.newScheduledThreadPool(1);
+        scheduler.scheduleAtFixedRate(() -> {
+            DatabaseManager.getInstance().getConnection();
+            boolean isConnected = DatabaseManager.getInstance().verifyConnection();
+            Platform.runLater(() -> loginButton.setDisable(!isConnected));
+        }, 0, 30, TimeUnit.SECONDS);
+        DatabaseManager.getInstance().getConnection();
     }
 
 
@@ -115,18 +127,8 @@ public class loginMenuController {
      * This method handles creating a new account if one does not exist.
      */
     @FXML
-    private void newAccount() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/login/createAccountView.fxml"));
-            Parent profileRoot = fxmlLoader.load();
-            Stage stage = (Stage) usernameField.getScene().getWindow();
-            Scene scene = new Scene(profileRoot);
-            scene.getStylesheets().add(getClass().getResource("/com/cookiecoders/gamearcade/ui/login/createAccountView.css").toExternalForm());
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-            logger.log(Logger.LogLevel.ERROR, "Failed to load profile page: " + e.getMessage());
-        }
+    private void newAccount(ActionEvent event) {
+        Navigation.navigateToCreateProfileView(event);
     }
     @FXML
     private void navigationButtonClicked(ActionEvent event){

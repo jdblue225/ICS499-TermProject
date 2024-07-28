@@ -49,6 +49,7 @@ public class DatabaseManager {
         try {
             String url = DATABASE_URL + DATABASE_NAME + "?user=" + SQL_USERNAME + "&password=" + SQL_PASSWORD;
             connection = DriverManager.getConnection(url);
+            connection.isValid(5);
             logger.log(Logger.LogLevel.INFO, "Database connected successfully.");
         } catch (SQLException e) {
             System.out.println("Error connecting to the database: " + e.getMessage());
@@ -61,8 +62,9 @@ public class DatabaseManager {
     public void connectionClose(){
         try{
             connection.close();
+            logger.log(Logger.LogLevel.INFO, "Closing server connection.");
         }catch (SQLException e) {
-            System.out.println("Error closing connection to the database: " + e.getMessage());
+            logger.log(Logger.LogLevel.ERROR,"Error closing connection to the database: " + e.getMessage());
             connection = null;
         }
     }
@@ -72,6 +74,18 @@ public class DatabaseManager {
         }
         return this.connection;
     }
+
+    public boolean verifyConnection() {
+        try{
+            if (this.connection != null && !connection.isClosed()){
+                return connection.isValid(5);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public ResultSet runQuery(PreparedStatement stmt){
             try {
                 ResultSet rs = stmt.executeQuery();
