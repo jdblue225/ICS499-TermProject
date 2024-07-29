@@ -36,6 +36,8 @@ public class GameManager {
             root = new StackPane(((PongGame) currentGame).getCanvas());
         } else if (currentGame instanceof MinesweeperGame) {
             root = new StackPane(((MinesweeperGame) currentGame).getCanvas());
+        } else if (currentGame instanceof SnakeGame) {
+            root = new StackPane(((SnakeGame) currentGame).getCanvas());
         }
         return root;
     }
