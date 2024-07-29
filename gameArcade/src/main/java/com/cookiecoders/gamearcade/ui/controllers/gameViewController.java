@@ -3,10 +3,7 @@ package com.cookiecoders.gamearcade.ui.controllers;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
-import com.cookiecoders.gamearcade.games.Game;
-import com.cookiecoders.gamearcade.games.PongGame;
-import com.cookiecoders.gamearcade.games.MinesweeperGame;
-import com.cookiecoders.gamearcade.games.GameManager;
+import com.cookiecoders.gamearcade.games.*;
 import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.util.Logger;
 import javafx.animation.AnimationTimer;
@@ -18,9 +15,11 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -28,6 +27,9 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+
 
 public class gameViewController {
     private UserSession userSession;
@@ -39,19 +41,34 @@ public class gameViewController {
     private TilePane gamesTilePane;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
+    private Button searchButton;
+
+    @FXML
     private void initialize() {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
         this.gameManager = new GameManager();
-        populateOGSP();
+        populateOGSP("");
+        searchButton.setOnAction(event -> handleSearch());
     }
 
-    private void populateOGSP(){  // Owned Games Scroll Pane
+    private void populateOGSP(String searchQuery){  // Owned Games Scroll Pane
         List<Map<String, Object>> ownedGames;
         if (userSession.getCurrentUser().getUsertype().equals("admin")){
             ownedGames = gameDao.getAllGamesSummary();
         } else{
             ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+        }
+
+        // Filter games based on the search query
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            ownedGames.removeIf(game -> {
+                String gameName = (String) game.get("Title");
+                return gameName == null || !gameName.toLowerCase().contains(searchQuery.toLowerCase());
+            });
         }
 
         TilePane mainTilePane = new TilePane();
@@ -94,6 +111,7 @@ public class gameViewController {
         // Add the last TilePane
         mainTilePane.getChildren().add(tilePane);
 
+        gamesTilePane.getChildren().clear();
         // Add the mainTilePane to the ScrollPane
         gamesTilePane.getChildren().add(mainTilePane);
     }
@@ -199,6 +217,8 @@ public class gameViewController {
                 return new PongGame();
             case 2:
                 return new MinesweeperGame();
+            case 3:
+                return new SnakeGame();
             // Add other games here
             default:
                 return null;
@@ -242,5 +262,79 @@ public class gameViewController {
     @FXML
     private void navigationButtonClicked(ActionEvent event){
         Navigation.toolbarNavigate(event);
+    }
+
+    @FXML
+    private void handleSearch() {
+        String searchText = searchField.getText().trim().toLowerCase();
+
+        // Clear existing games from TilePane
+        gamesTilePane.getChildren().clear();
+
+        // Fetch filtered games
+        List<Map<String, Object>> filteredGames = filterGames(searchText);
+
+        // Populate the TilePane with filtered games
+        populateGamesTilePane(filteredGames);
+    }
+
+    private List<Map<String, Object>> filterGames(String searchText) {
+        List<Map<String, Object>> allGames = fetchAllGames(); // Fetch all games from your data source
+
+        // Filter games based on the search text
+        return allGames.stream()
+                .filter(game -> {
+                    String gameName = (String) game.get("Title");
+                    return gameName != null && gameName.toLowerCase().contains(searchText);
+                })
+                .collect(Collectors.toList());
+    }
+
+    private List<Map<String, Object>> fetchAllGames() {
+        // Replace with your actual method to fetch all games
+        if (userSession.getCurrentUser().getUsertype().equals("admin")) {
+            return gameDao.getAllGamesSummary();
+        } else {
+            return gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+        }
+    }
+
+    private void populateGamesTilePane(List<Map<String, Object>> games) {
+        TilePane mainTilePane = new TilePane();
+        mainTilePane.setPrefColumns(1);
+        mainTilePane.setVgap(0);
+
+        int imageCount = 0;
+        TilePane tilePane = new TilePane();
+        tilePane.getStyleClass().add("tile-pane");
+        tilePane.setPrefColumns(3);
+        tilePane.setVgap(0);
+
+        for (Map<String, Object> game : games) {
+            if (imageCount % 3 == 0 && imageCount != 0) {
+                mainTilePane.getChildren().add(tilePane);
+                tilePane = new TilePane();
+                tilePane.setPrefColumns(3);
+                tilePane.getStyleClass().add("tile-pane");
+                mainTilePane.setVgap(0);
+            }
+
+            String imagePath = ConfigManager.getProperty("root_path") +
+                    ConfigManager.getProperty("game_image_path") +
+                    (String) game.get("ImageName");
+            Integer gameId = (Integer) game.get("GameID");
+            ImageView imageView = createImageView(imagePath, gameId);
+            tilePane.getChildren().add(imageView);
+            imageCount++;
+        }
+
+        while (imageCount % 3 != 0) {
+            ImageView emptyImageView = createImageView(null, null);
+            tilePane.getChildren().add(emptyImageView);
+            imageCount++;
+        }
+
+        mainTilePane.getChildren().add(tilePane);
+        gamesTilePane.getChildren().add(mainTilePane);
     }
 }

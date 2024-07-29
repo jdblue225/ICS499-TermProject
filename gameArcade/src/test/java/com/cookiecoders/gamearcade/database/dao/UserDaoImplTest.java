@@ -36,7 +36,7 @@ class UserDaoImplTest {
 
     @Test
     void testInsertUser() {
-        User user = new User(1, "testuser", "Test", "User", "testuser@example.com", "password", "regular", new Date());
+        User user = new User("1", "testuser", "Test", "User", "testuser@example.com", "password", "regular", new byte[0]);
         boolean result = userDao.insertUser(user);
         assertTrue(result);
 
@@ -47,7 +47,7 @@ class UserDaoImplTest {
 
     @Test
     void testGetUserByUsername() {
-        User user = new User(1, "testuser", "Test", "User", "testuser@example.com", "password", "regular", new Date());
+        User user = new User("1", "testuser", "Test", "User", "testuser@example.com", "password", "regular", new byte[0]);
         userDao.insertUser(user);
 
         User retrievedUser = userDao.getUserByUsername("testuser");
