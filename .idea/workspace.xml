@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added images for games 1 - 5 with descriptions. Created an sql folder under resources and copied the schemas over. Modified the seed data to accurately reflect games 1 - 5.">
-      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/cardz.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/dice.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/invaderz.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/games/img/tictactoe.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/sql/Seed Data - arcadeApp.sql" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/sql/Seed Data - arcadeApp.sql" afterDir="false" />
-    </list>
+    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added images and descriptions for games 6 - 10. Added fictional developers, prices, and release dates for each game." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722176288774</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added images and descriptions for games 6 - 10. Added fictional developers, prices, and release dates for each game.">
+      <option name="closed" value="true" />
+      <created>1722256738183</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722256738183</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,7 +169,8 @@
     <MESSAGE value="Began work on Game, GameManager classes. Created a skeleton for Pong and Minesweepr." />
     <MESSAGE value="Implemented a very simple Pong game for game 1, minesweeper for game 2. Added AI gen images for pong and minesweeper but still need to hook them up. Double click launch game working, single click launch game view working." />
     <MESSAGE value="Added images for games 1 - 5 with descriptions. Created an sql folder under resources and copied the schemas over. Modified the seed data to accurately reflect games 1 - 5." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added images for games 1 - 5 with descriptions. Created an sql folder under resources and copied the schemas over. Modified the seed data to accurately reflect games 1 - 5." />
+    <MESSAGE value="Added images and descriptions for games 6 - 10. Added fictional developers, prices, and release dates for each game." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added images and descriptions for games 6 - 10. Added fictional developers, prices, and release dates for each game." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
