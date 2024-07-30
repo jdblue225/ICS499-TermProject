@@ -12,8 +12,9 @@ import javafx.fxml.FXML;
 
 public class profileViewController {
 
-    //TODO Build profile
-
+    private void initialize() {
+        // TODO: Add code to initialize the profile view, e.g., load user data.
+    }
 
 
     @FXML

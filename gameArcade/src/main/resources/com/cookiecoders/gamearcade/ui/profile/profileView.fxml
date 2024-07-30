@@ -8,14 +8,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" stylesheets="@profileView.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
    <children>
-      <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
+      <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" stylesheets="@profileView.css" AnchorPane.leftAnchor="0.0">
         <items>
             <Button fx:id="toolbarStoreButton" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Store" />
             <Button fx:id="toolbarGameButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Game" />
             <Button fx:id="toolbarForumButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Forum" />
             <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Profile" />
+            <Button fx:id="toolbarEditProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" stylesheets="@profileView.css" text="Edit Profile" />
         </items>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />

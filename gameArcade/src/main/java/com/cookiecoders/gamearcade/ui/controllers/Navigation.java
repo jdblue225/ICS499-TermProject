@@ -41,6 +41,11 @@ public class Navigation {
                 fxmlFile = "/com/cookiecoders/gamearcade/ui/profile/profileView.fxml";
                 cssFile = "/com/cookiecoders/gamearcade/ui/profile/profileView.css";
                 break;
+            case "toolbarEditProfileButton":
+                fxmlFile = "/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.fxml";
+                cssFile = "/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.css";
+                break;
+
             default:
                 throw new IllegalArgumentException("Unexpected button ID: " + buttonId);
         }

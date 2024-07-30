@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Documents/GitHub/ICS499-TermProject/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/CSS/Master.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="600.0" prefWidth="281.0" spacing="50.0" styleClass="toolbar" stylesheets="@profileDetailsView.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="182.0" prefWidth="228.0" spacing="15.0">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/icon.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="105.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Username" textFill="#ffffff00">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" text="Edit Profile" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="296.0" prefWidth="340.0" spacing="15.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/user_profile.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="31.0" prefWidth="220.0" style="-fx-font-size: 18;" text="Profile" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/rewards.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="31.0" prefWidth="220.0" style="-fx-font-size: 18;" text="Rewards" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/settings.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="31.0" prefWidth="220.0" style="-fx-font-size: 18;" text="Settings" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="105.0" text="Log Out" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="600.0" prefWidth="500.0" spacing="50.0" styleClass="anchor-pane" stylesheets="@profileDetailsView.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 25px; -fx-font-weight: bold;" text="Profile Settings" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <VBox prefHeight="427.0" prefWidth="780.0" spacing="30.0">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Profile details" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="780.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="109.0" style="-fx-font-size: 17px;" text="First name" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="50.0" prefWidth="70.0" />
+                        <TextField prefHeight="26.0" prefWidth="298.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="780.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="131.0" style="-fx-font-size: 17px;" text="Last name" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="50.0" prefWidth="62.0" />
+                        <TextField prefHeight="26.0" prefWidth="302.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="780.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="121.0" style="-fx-font-size: 17px;" text="Username" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="50.0" prefWidth="62.0" />
+                        <TextField prefHeight="26.0" prefWidth="296.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="780.0">
+                     <children>
+                        <Label prefHeight="26.0" prefWidth="109.0" style="-fx-font-size: 17px;" text="Email" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="50.0" prefWidth="114.0" />
+                        <TextField prefHeight="26.0" prefWidth="387.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </TextField>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Pane prefHeight="78.0" prefWidth="599.0">
+               <children>
+                  <Button alignment="CENTER" layoutX="145.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="125.0" styleClass="search-toolbar" text="Save Changes" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+         <padding>
+            <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
