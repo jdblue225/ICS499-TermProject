@@ -23,13 +23,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+
 import javafx.util.Duration;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-
 
 public class gameViewController {
     private UserSession userSession;
@@ -55,11 +55,11 @@ public class gameViewController {
         searchButton.setOnAction(event -> handleSearch());
     }
 
-    private void populateOGSP(String searchQuery){  // Owned Games Scroll Pane
+    private void populateOGSP(String searchQuery) {  // Owned Games Scroll Pane
         List<Map<String, Object>> ownedGames;
-        if (userSession.getCurrentUser().getUsertype().equals("admin")){
+        if (userSession.getCurrentUser().getUsertype().equals("admin")) {
             ownedGames = gameDao.getAllGamesSummary();
-        } else{
+        } else {
             ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
         }
 
@@ -81,7 +81,6 @@ public class gameViewController {
         tilePane.setPrefColumns(3); // Set the number of columns to 3 for each TilePane
         tilePane.setVgap(0); // Vertical gap between tiles
 
-
         for (Map<String, Object> game : ownedGames) {
             if (imageCount % 3 == 0 && imageCount != 0) {
                 mainTilePane.getChildren().add(tilePane);
@@ -102,11 +101,10 @@ public class gameViewController {
 
         // Add empty images if the last TilePane has fewer than 3 images
         while (imageCount % 3 != 0) {
-            ImageView emptyImageView = createImageView(null,null);
+            ImageView emptyImageView = createImageView(null, null);
             tilePane.getChildren().add(emptyImageView);
             imageCount++;
         }
-
 
         // Add the last TilePane
         mainTilePane.getChildren().add(tilePane);
@@ -141,10 +139,8 @@ public class gameViewController {
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
         imageView.setPickOnBounds(false);
-//        imageView.setPreserveRatio(true);
 
         imageView.setOnMouseClicked(event -> handleMouseClick(event, gameId));
-
 
         TilePane.setMargin(imageView, new javafx.geometry.Insets(15));
         return imageView;
@@ -193,17 +189,18 @@ public class gameViewController {
         }
     }
 
-    private void launchGame(Integer gameId){
+    private void launchGame(Integer gameId) {
         // Find game by gameId and launch it
         Game game = getGameById(gameId);
         if (game != null) {
             Stage gameStage = new Stage();
+            gameStage.setOnCloseRequest(event -> gameManager.stopGame()); //listen to when game window close
             setupGameStage(gameStage, game);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Game not fount!");
+            alert.setContentText("Game not found!");
             alert.showAndWait();
         }
     }
@@ -212,22 +209,19 @@ public class gameViewController {
         // This method should return the game instance based on the gameId
         // For demonstration, we'll return a new PongGame or MinesweeperGame based on gameId
         // You should implement this to return the correct game instance from your database or list
-        switch (gameId) {
-            case 1:
-                return new PongGame();
-            case 2:
-                return new MinesweeperGame();
-            case 3:
-                return new SnakeGame();
+        return switch (gameId) {
+            case 1 -> new PongGame();
+            case 2 -> new MinesweeperGame();
+            case 3 -> new SnakeGame();
             // Add other games here
-            default:
-                return null;
-        }
+            default -> null;
+        };
     }
 
     private void setupGameStage(Stage gameStage, Game game) {
         gameManager.loadGame(game);
         gameManager.startGame();
+        long startTime = System.currentTimeMillis();
 
         StackPane gameRoot = gameManager.getGamePane();
         Scene gameScene = new Scene(gameRoot, 800, 600);
@@ -236,16 +230,25 @@ public class gameViewController {
         gameStage.setScene(gameScene);
         gameStage.show();
 
+        gameStage.setOnCloseRequest(event -> {
+            long endTime = System.currentTimeMillis();
+            long duration = (endTime - startTime);
+            gameManager.recordTime(duration/1000);
+
+            System.out.println("duration: " + (endTime-startTime));
+        });
+
         new AnimationTimer() {
             @Override
             public void handle(long now) {
                 gameManager.updateGame();
                 gameManager.renderGame();
+
             }
         }.start();
     }
 
-    private void navigateToGameInfo(Integer gameId){
+    private void navigateToGameInfo(Integer gameId) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml"));
             loader.setControllerFactory(param -> new gameInfoViewController(gameId));
@@ -260,7 +263,7 @@ public class gameViewController {
     }
 
     @FXML
-    private void navigationButtonClicked(ActionEvent event){
+    private void navigationButtonClicked(ActionEvent event) {
         Navigation.toolbarNavigate(event);
     }
 

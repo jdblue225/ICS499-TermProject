@@ -1,9 +1,19 @@
 package com.cookiecoders.gamearcade.games;
+
+import com.cookiecoders.gamearcade.database.dao.GameDao;
+import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.users.UserSession;
 import javafx.scene.layout.StackPane;
+
 
 public class GameManager {
     private Game currentGame;
-    private StackPane root;
+    private       StackPane root;
+    private final GameDao   gameDao;
+
+    public GameManager() {
+        this.gameDao = new GameDaoImpl();
+    }
 
     public void loadGame(Game game) {
         if (currentGame != null) {
@@ -46,5 +56,12 @@ public class GameManager {
         if (currentGame != null) {
             currentGame.stop();
         }
+    }
+
+    public void recordTime(long time) {
+        UserSession userSession = UserSession.getInstance();
+        int userId = userSession.getCurrentUser().getId();
+
+        gameDao.recordGameDuration(userId,currentGame.getName(),time);
     }
 }
