@@ -4,6 +4,8 @@ package com.cookiecoders.gamearcade.database;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.util.Logger;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
 
 public class DatabaseManager {
@@ -35,7 +37,8 @@ public class DatabaseManager {
             DATABASE_URL = ConfigManager.getProperty("db_URL");
             DATABASE_NAME = ConfigManager.getProperty("db_name");
             SQL_USERNAME = ConfigManager.getProperty("db_uname");
-            SQL_PASSWORD = ConfigManager.getProperty("db_pass");
+            SQL_PASSWORD = URLEncoder.encode(ConfigManager.getProperty("db_pass"), StandardCharsets.UTF_8);
+//            SQL_PASSWORD = ConfigManager.getProperty("db_pass");
             instance = new DatabaseManager();
         }
         return instance;

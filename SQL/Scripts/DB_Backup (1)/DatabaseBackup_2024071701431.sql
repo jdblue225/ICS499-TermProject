@@ -31,7 +31,7 @@ CREATE TABLE `forumcategories` (
   `CreatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`CategoryID`),
   UNIQUE KEY `CategoryName` (`CategoryName`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,6 @@ CREATE TABLE `forumcategories` (
 
 LOCK TABLES `forumcategories` WRITE;
 /*!40000 ALTER TABLE `forumcategories` DISABLE KEYS */;
-INSERT INTO `forumcategories` VALUES (1,'General Discussion','A place for general topics and casual conversation.','2024-07-18 13:57:49'),(2,'Game Help','Ask for help and share tips about games.','2024-07-18 13:57:49'),(3,'Announcements','Official announcements and updates.','2024-07-18 13:57:49');
 /*!40000 ALTER TABLE `forumcategories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,8 +60,8 @@ CREATE TABLE `forumcomments` (
   KEY `PostID` (`PostID`),
   KEY `UserID` (`UserID`),
   CONSTRAINT `forumcomments_ibfk_1` FOREIGN KEY (`PostID`) REFERENCES `forumposts` (`PostID`),
-  CONSTRAINT `forumcomments_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `forumcomments_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`userid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +70,6 @@ CREATE TABLE `forumcomments` (
 
 LOCK TABLES `forumcomments` WRITE;
 /*!40000 ALTER TABLE `forumcomments` DISABLE KEYS */;
-INSERT INTO `forumcomments` VALUES (1,1,2,'Thanks for the welcome! Looking forward to participating.','2024-07-18 13:57:49'),(2,2,1,'Try using the blue key on the door. It worked for me.','2024-07-18 13:57:49'),(3,3,1,'Great news! Can’t wait to try the new features.','2024-07-18 13:57:49');
 /*!40000 ALTER TABLE `forumcomments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,9 +90,9 @@ CREATE TABLE `forumposts` (
   PRIMARY KEY (`PostID`),
   KEY `UserID` (`UserID`),
   KEY `CategoryID` (`CategoryID`),
-  CONSTRAINT `forumposts_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`),
+  CONSTRAINT `forumposts_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`userid`),
   CONSTRAINT `forumposts_ibfk_2` FOREIGN KEY (`CategoryID`) REFERENCES `forumcategories` (`CategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +101,6 @@ CREATE TABLE `forumposts` (
 
 LOCK TABLES `forumposts` WRITE;
 /*!40000 ALTER TABLE `forumposts` DISABLE KEYS */;
-INSERT INTO `forumposts` VALUES (1,1,1,'Welcome to the Forum!','Hello everyone, welcome to our new forum. Feel free to introduce yourselves!','2024-07-18 13:57:49'),(2,2,2,'Need help with Level 5','I am stuck on level 5 of the game. Any tips?','2024-07-18 13:57:49'),(3,3,3,'New Update Released!','We are excited to announce the release of a new update for our game.','2024-07-18 13:57:49'),(9,1,1,'Test1','Test1 details','2024-07-19 01:20:36');
 /*!40000 ALTER TABLE `forumposts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,10 +118,8 @@ CREATE TABLE `games` (
   `Developer` varchar(100) DEFAULT NULL,
   `ReleaseDate` date DEFAULT NULL,
   `Price` decimal(10,2) DEFAULT NULL,
-  `Image` longblob,
-  `ImageName` varchar(255) DEFAULT NULL,
   `CreatedAt` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `AverageRating` decimal(3,2) DEFAULT '0.00',
+  `ImagePath` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`GameID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -135,7 +130,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,'Game Title 1','Description of Game 1','Developer 1','2023-01-01',19.99,NULL,'game1.jpg','2024-07-24 21:00:02',4.50),(2,'Game Title 2','Description of Game 2','Developer 2','2023-02-15',29.99,NULL,'game2.jpg','2024-07-24 21:00:02',5.00),(3,'Game Title 3','Description of Game 3','Developer 3','2023-03-20',39.99,NULL,'game3.jpg','2024-07-24 21:00:02',3.20),(4,'Game Title 4','Description of Game 4','Developer 4','2023-04-25',49.99,NULL,'game4.jpg','2024-07-24 21:00:02',4.20),(5,'Game Title 5','Description of Game 5','Developer 5','2023-05-30',59.99,NULL,'game5.jpg','2024-07-24 21:00:02',4.20),(6,'Game Title 6','Description of Game 6','Developer 6','2023-06-10',9.99,NULL,'game6.jpg','2024-07-24 21:00:02',2.10),(7,'Game Title 7','Description of Game 7','Developer 7','2023-07-15',14.99,NULL,'game7.jpg','2024-07-24 21:00:02',1.50),(8,'Game Title 8','Description of Game 8','Developer 8','2023-08-20',24.99,NULL,'game8.jpg','2024-07-24 21:00:02',1.60),(9,'Game Title 9','Description of Game 9','Developer 9','2023-09-25',34.99,NULL,'game9.jpg','2024-07-24 21:00:02',5.00),(10,'Game Title 10','Description of Game 10','Developer 10','2023-10-30',44.99,NULL,'game10.jpg','2024-07-24 21:00:02',3.50);
+INSERT INTO `games` VALUES (1,'Game Title 1','Description of Game 1','Developer 1','2023-01-01',19.99,'2024-07-07 17:37:22','/games/img/game1.jpg'),(2,'Game Title 2','Description of Game 2','Developer 2','2023-02-15',29.99,'2024-07-07 17:37:22','/games/img/game2.jpg'),(3,'Game Title 3','Description of Game 3','Developer 3','2023-03-20',39.99,'2024-07-07 17:37:22','/games/img/game3.jpg'),(4,'Game Title 4','Description of Game 4','Developer 4','2023-04-25',49.99,'2024-07-07 17:37:22','/games/img/game4.jpg'),(5,'Game Title 5','Description of Game 5','Developer 5','2023-05-30',59.99,'2024-07-07 17:37:22','/games/img/game5.jpg'),(6,'Game Title 6','Description of Game 6','Developer 6','2023-06-10',9.99,'2024-07-07 17:37:22','/games/img/game6.jpg'),(7,'Game Title 7','Description of Game 7','Developer 7','2023-07-15',14.99,'2024-07-07 17:37:22','/games/img/game7.jpg'),(8,'Game Title 8','Description of Game 8','Developer 8','2023-08-20',24.99,'2024-07-07 17:37:22','/games/img/game8.jpg'),(9,'Game Title 9','Description of Game 9','Developer 9','2023-09-25',34.99,'2024-07-07 17:37:22','/games/img/game9.jpg'),(10,'Game Title 10','Description of Game 10','Developer 10','2023-10-30',44.99,'2024-07-07 17:37:22','/games/img/game10.jpg');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +178,7 @@ CREATE TABLE `orders` (
   `TotalAmount` decimal(10,2) NOT NULL,
   PRIMARY KEY (`OrderID`),
   KEY `UserID` (`UserID`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`)
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -211,15 +206,14 @@ CREATE TABLE `ownedgames` (
   `LastPlayedDate` date DEFAULT NULL,
   `AchievementsUnlocked` int DEFAULT '0',
   `Score` int NOT NULL,
-  `HighScore` int DEFAULT NULL,
   `Rating` decimal(2,1) DEFAULT NULL,
   `Review` text,
   `IsFavorite` tinyint(1) DEFAULT '0',
   `GameVersion` varchar(20) DEFAULT NULL,
   `CompletionStatus` enum('Not Started','In Progress','Completed') DEFAULT 'Not Started',
-  PRIMARY KEY (`UserID`,`GameID`),
+  KEY `UserID` (`UserID`),
   KEY `GameID` (`GameID`),
-  CONSTRAINT `ownedgames_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`),
+  CONSTRAINT `ownedgames_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`userid`),
   CONSTRAINT `ownedgames_ibfk_2` FOREIGN KEY (`GameID`) REFERENCES `games` (`GameID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -230,7 +224,7 @@ CREATE TABLE `ownedgames` (
 
 LOCK TABLES `ownedgames` WRITE;
 /*!40000 ALTER TABLE `ownedgames` DISABLE KEYS */;
-INSERT INTO `ownedgames` VALUES (1,1,'2024-01-01',120,'2024-06-30',5,8500,9000,4.5,'Great game!',1,'1.0','Completed'),(1,2,'2024-02-15',80,'2024-06-29',3,7200,8000,4.0,'Enjoyable.',0,'1.1','In Progress'),(2,3,'2024-03-20',200,'2024-07-01',7,9800,10000,5.0,'Outstanding!',1,'1.0','Completed'),(2,4,'2024-04-25',50,'2024-06-28',1,6400,7000,3.5,'Pretty good.',0,'1.2','In Progress'),(3,5,'2024-05-30',150,'2024-06-27',6,8700,9500,4.8,'Loved it!',1,'1.0','Completed'),(3,6,'2024-06-10',10,'2024-06-26',0,2000,2500,2.5,'Not my type.',0,'1.0','Not Started'),(4,7,'2024-07-15',90,'2024-06-25',4,7500,8500,4.2,'Fun to play.',0,'1.1','In Progress'),(4,8,'2024-08-20',70,'2024-06-24',2,6200,7000,3.8,'Decent.',1,'1.0','In Progress'),(5,9,'2024-09-25',130,'2024-06-23',5,8400,9500,4.5,'Very engaging.',1,'1.0','Completed'),(5,10,'2024-10-30',60,'2024-06-22',1,5500,6000,3.0,'Okay.',0,'1.1','In Progress'),(6,1,'2024-01-01',120,'2024-06-30',5,8500,9000,4.5,'Great game!',1,'1.0','Completed'),(7,2,'2024-02-15',80,'2024-06-29',3,7200,8000,4.0,'Enjoyable.',0,'1.1','In Progress'),(8,3,'2024-03-20',200,'2024-07-01',7,9800,10000,5.0,'Outstanding!',1,'1.0','Completed'),(9,4,'2024-04-25',50,'2024-06-28',1,6400,7000,3.5,'Pretty good.',0,'1.2','In Progress'),(10,5,'2024-05-30',150,'2024-06-27',6,8700,9500,4.8,'Loved it!',1,'1.0','Completed');
+INSERT INTO `ownedgames` VALUES (1,1,'2024-01-01',120,'2024-06-30',5,8500,4.5,'Great game!',1,'1.0','Completed'),(1,2,'2024-02-15',80,'2024-06-29',3,7200,4.0,'Enjoyable.',0,'1.1','In Progress'),(2,3,'2024-03-20',200,'2024-07-01',7,9800,5.0,'Outstanding!',1,'1.0','Completed'),(2,4,'2024-04-25',50,'2024-06-28',1,6400,3.5,'Pretty good.',0,'1.2','In Progress'),(3,5,'2024-05-30',150,'2024-06-27',6,8700,4.8,'Loved it!',1,'1.0','Completed'),(3,6,'2024-06-10',10,'2024-06-26',0,2000,2.5,'Not my type.',0,'1.0','Not Started'),(4,7,'2024-07-15',90,'2024-06-25',4,7500,4.2,'Fun to play.',0,'1.1','In Progress'),(4,8,'2024-08-20',70,'2024-06-24',2,6200,3.8,'Decent.',1,'1.0','In Progress'),(5,9,'2024-09-25',130,'2024-06-23',5,8400,4.5,'Very engaging.',1,'1.0','Completed'),(5,10,'2024-10-30',60,'2024-06-22',1,5500,3.0,'Okay.',0,'1.1','In Progress'),(6,1,'2024-01-01',120,'2024-06-30',5,8500,4.5,'Great game!',1,'1.0','Completed'),(7,2,'2024-02-15',80,'2024-06-29',3,7200,4.0,'Enjoyable.',0,'1.1','In Progress'),(8,3,'2024-03-20',200,'2024-07-01',7,9800,5.0,'Outstanding!',1,'1.0','Completed'),(9,4,'2024-04-25',50,'2024-06-28',1,6400,3.5,'Pretty good.',0,'1.2','In Progress'),(10,5,'2024-05-30',150,'2024-06-27',6,8700,4.8,'Loved it!',1,'1.0','Completed');
 /*!40000 ALTER TABLE `ownedgames` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +271,7 @@ CREATE TABLE `subscriptions` (
   PRIMARY KEY (`SubscriptionID`),
   KEY `UserID` (`UserID`),
   KEY `ItemID` (`ItemID`),
-  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`),
+  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`userid`),
   CONSTRAINT `subscriptions_ibfk_2` FOREIGN KEY (`ItemID`) REFERENCES `storeitems` (`ItemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -299,20 +293,18 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `UserID` int NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(50) NOT NULL,
-  `FirstName` varchar(50) DEFAULT NULL,
-  `LastName` varchar(50) DEFAULT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  `UserType` varchar(50) DEFAULT NULL,
-  `CreateDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `ImageName` varchar(255) DEFAULT NULL,
-  `Image` longblob,
-  PRIMARY KEY (`UserID`),
-  UNIQUE KEY `UserName` (`UserName`),
-  UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `userid` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `firstname` varchar(50) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `usertype` varchar(50) DEFAULT NULL,
+  `createdat` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`userid`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +313,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user01','John','Doe','john.doe@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','admin','2024-07-24 21:00:02',NULL,NULL),(2,'user02','Jane','Doe','jane.doe@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(3,'user03','Jim','Beam','jim.beam@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(4,'user04','Jack','Daniels','jack.daniels@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(5,'user05','Johnny','Walker','johnny.walker@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(6,'user06','Jose','Cuervo','jose.cuervo@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(7,'user07','Captain','Morgan','captain.morgan@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(8,'user08','Evan','Williams','evan.williams@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(9,'user09','Jim','Taylor','jim.taylor@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL),(10,'user10','Jack','White','jack.white@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-07-24 21:00:02',NULL,NULL);
+INSERT INTO `users` VALUES (1,'user01','John','Doe','john.doe@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','admin','2024-06-18 21:51:18'),(2,'user02','Jane','Doe','jane.doe@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(3,'user03','Jim','Beam','jim.beam@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(4,'user04','Jack','Daniels','jack.daniels@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(5,'user05','Johnny','Walker','johnny.walker@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(6,'user06','Jose','Cuervo','jose.cuervo@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(7,'user07','Captain','Morgan','captain.morgan@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(8,'user08','Evan','Williams','evan.williams@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(9,'user09','Jim','Taylor','jim.taylor@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18'),(10,'user10','Jack','White','jack.white@example.com','5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8','user','2024-06-18 21:51:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -334,4 +326,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-24 16:02:53
+-- Dump completed on 2024-07-17 14:32:45
