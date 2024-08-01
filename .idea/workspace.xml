@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Placeholder implementations for games 1-10">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_23_2024_2_06_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_23_2024_2_06_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_24_2024_8_19_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_24_2024_8_19_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_25_2024_8_13_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_25_2024_8_13_AM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added interactivity and scores to Pong">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/FroggerGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/MinesweeperGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/MinesweeperGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722297004094</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added interactivity and scores to Pong">
+      <option name="closed" value="true" />
+      <created>1722524882892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722524882892</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -238,7 +238,8 @@
     <MESSAGE value="Added working search feature in games" />
     <MESSAGE value="Fixed compile errors in UserDaoImplTest" />
     <MESSAGE value="Placeholder implementations for games 1-10" />
-    <option name="LAST_COMMIT_MESSAGE" value="Placeholder implementations for games 1-10" />
+    <MESSAGE value="Added interactivity and scores to Pong" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added interactivity and scores to Pong" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
