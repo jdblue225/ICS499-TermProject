@@ -9,10 +9,10 @@ import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-public class GameDaoImpl implements GameDao{
+public class GameDaoImpl implements GameDao {
 
-    private static DatabaseManager dbm = DatabaseManager.getInstance();
-    private static Connection connection = dbm.getConnection();
+    private static DatabaseManager dbm        = DatabaseManager.getInstance();
+    private static Connection      connection = dbm.getConnection();
 
     public Game getGameById(int id) {
         String query = "SELECT * FROM Games WHERE GameID = ?";
@@ -62,10 +62,10 @@ public class GameDaoImpl implements GameDao{
     @Override
     public List<Map<String, Object>> getOwnedGamesSummary(Integer userID) {
         String query = """
-                SELECT g.GameID, g.Title, g.ImageName FROM Games g\s
-                JOIN OwnedGames og ON g.GameID = og.GameID
-                WHERE og.UserId = ?;
-            """;
+                    SELECT g.GameID, g.Title, g.ImageName FROM Games g\s
+                    JOIN OwnedGames og ON g.GameID = og.GameID
+                    WHERE og.UserId = ?;
+                """;
         List<Map<String, Object>> gamesSummary = new ArrayList<>();
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -87,13 +87,13 @@ public class GameDaoImpl implements GameDao{
     }
 
     @Override
-    public List<Map<String, Object>> getUnownedGames(Integer userID){
+    public List<Map<String, Object>> getUnownedGames(Integer userID) {
         String query = """
-                SELECT g.GameID, g.Title, g.ImageName, g.AverageRating\s
-                FROM Games g
-                LEFT JOIN OwnedGames og ON g.GameID = og.GameID AND og.UserId = ?
-                WHERE og.GameID IS NULL;
-            """;
+                    SELECT g.GameID, g.Title, g.ImageName, g.AverageRating\s
+                    FROM Games g
+                    LEFT JOIN OwnedGames og ON g.GameID = og.GameID AND og.UserId = ?
+                    WHERE og.GameID IS NULL;
+                """;
         List<Map<String, Object>> gamesSummary = new ArrayList<>();
 
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -194,9 +194,48 @@ public class GameDaoImpl implements GameDao{
             e.printStackTrace();
             return false;
         }
+
     }
 
+    @Override
+    public void recordGameDuration(int userId, String name, long time) {
+        String sql = "UPDATE OwnedGames SET PlayTime = PlayTime + ? WHERE UserID = ? AND GameID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(2, userId);
+            pstmt.setString(3, name);
+            pstmt.setLong(1, time);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public List<Map<String, Object>> getLeaderboardData() {
+        String query = """
+                SELECT u.Username, g.Title, og.PlayTime
+                FROM OwnedGames og
+                JOIN Users u ON og.UserID = u.UserID
+                JOIN Games g ON og.GameID = g.GameID
+                ORDER BY og.PlayTime DESC
+                """;
+        List<Map<String, Object>> leaderboardData = new ArrayList<>();
 
+        try (PreparedStatement stmt = connection.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Map<String, Object> row = new HashMap<>();
+                row.put("Username", rs.getString("Username"));
+                row.put("Title", rs.getString("Title"));
+                row.put("PlayTime", rs.getInt("PlayTime"));
+                leaderboardData.add(row);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return leaderboardData;
+    }
 
 }
