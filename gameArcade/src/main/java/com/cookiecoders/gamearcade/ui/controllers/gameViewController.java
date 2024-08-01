@@ -209,17 +209,13 @@ public class gameViewController {
         // This method should return the game instance based on the gameId
         // For demonstration, we'll return a new PongGame or MinesweeperGame based on gameId
         // You should implement this to return the correct game instance from your database or list
-        switch (gameId) {
-            case 1:
-                return new PongGame();
-            case 2:
-                return new MinesweeperGame();
-            case 3:
-                return new SnakeGame();
+        return switch (gameId) {
+            case 1 -> new PongGame();
+            case 2 -> new MinesweeperGame();
+            case 3 -> new SnakeGame();
             // Add other games here
-            default:
-                return null;
-        }
+            default -> null;
+        };
     }
 
     private void setupGameStage(Stage gameStage, Game game) {

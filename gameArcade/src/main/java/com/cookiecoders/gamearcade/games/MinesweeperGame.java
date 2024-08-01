@@ -9,17 +9,17 @@ import javafx.scene.text.Font;
 
 public class MinesweeperGame implements Game {
     private static final int TILE_SIZE = 20;
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 20;
+    private static final int WIDTH     = 20;
+    private static final int HEIGHT    = 20;
     private static final int NUM_MINES = 40;
 
-    private Canvas canvas;
+    private Canvas          canvas;
     private GraphicsContext gc;
-    private boolean[][] mines;
-    private boolean[][] revealed;
-    private boolean[][] flagged;
-    private boolean gameOver;
-    private boolean gameWon;
+    private boolean[][]     mines;
+    private boolean[][]     revealed;
+    private boolean[][]     flagged;
+    private boolean         gameOver;
+    private boolean         gameWon;
 
     @Override
     public void initialize() {
@@ -32,6 +32,7 @@ public class MinesweeperGame implements Game {
 
         gameOver = false;
         gameWon = false;
+
 
         // Place mines
         for (int i = 0; i < NUM_MINES; i++) {
@@ -95,6 +96,11 @@ public class MinesweeperGame implements Game {
     @Override
     public void stop() {
         // Cleanup resources if needed
+    }
+
+    @Override
+    public String getName() {
+        return "2";
     }
 
     private void handleMouseClick(MouseEvent event) {
@@ -166,3 +172,4 @@ public class MinesweeperGame implements Game {
         return canvas;
     }
 }
+
