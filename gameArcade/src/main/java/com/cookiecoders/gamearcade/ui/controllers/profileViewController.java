@@ -20,7 +20,7 @@ public class profileViewController {
 
     @FXML
     public void initialize(){
-        loadLeaderboard();
+//        loadLeaderboard();
     }
 
     private void loadLeaderboard() {
