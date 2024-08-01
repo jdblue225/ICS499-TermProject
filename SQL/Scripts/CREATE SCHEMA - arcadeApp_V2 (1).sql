@@ -1,18 +1,16 @@
--- DROP SCHEMA IF EXISTS arcadeapp;
--- CREATE SCHEMA arcadeApp; 
+DROP SCHEMA IF EXISTS arcadeapp;
+CREATE SCHEMA arcadeApp; 
 USE arcadeApp;
 DROP TABLE IF EXISTS users; 
-CREATE TABLE Users
-    (UserID INT AUTO_INCREMENT PRIMARY KEY,
-    UserName VARCHAR(50) NOT NULL UNIQUE,
-	FirstName VARCHAR(50), 
-    LastName VARCHAR(50),
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Password VARCHAR(255) NOT NULL,
-    UserType varchar(50),
-    CreateDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ImageName VARCHAR(255),
-    Image LONGBLOB
+CREATE TABLE users
+    (userid INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,users
+	firstname VARCHAR(50), 
+    lastname VARCHAR(50),
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    usertype varchar(50),
+    createdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 CREATE TABLE Games (
     GameID INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,10 +19,8 @@ CREATE TABLE Games (
     Developer VARCHAR(100),
     ReleaseDate DATE,
     Price DECIMAL(10, 2),
-    Image LONGBLOB,
-    ImageName VARCHAR(255),
-    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    AverageRating DECIMAL(3, 2) DEFAULT 0.00
+    ImagePath VARCHAR(255),
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE ForumCategories (
     CategoryID INT AUTO_INCREMENT PRIMARY KEY,
@@ -93,13 +89,11 @@ CREATE TABLE OwnedGames (
     LastPlayedDate DATE,
     AchievementsUnlocked INT DEFAULT 0,
     Score INT NOT NULL,
-    HighScore INT,
     Rating DECIMAL(2, 1),
     Review TEXT,
     IsFavorite BOOLEAN DEFAULT FALSE,
     GameVersion VARCHAR(20),
     CompletionStatus ENUM('Not Started', 'In Progress', 'Completed') DEFAULT 'Not Started',
-    PRIMARY KEY (UserID, GameID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (GameID) REFERENCES Games(GameID)
 );

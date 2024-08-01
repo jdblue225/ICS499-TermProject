@@ -1,7 +1,7 @@
 USE arcadeApp;
 
 -- Seed data for Users table
-INSERT INTO users (username, firstname, lastname, email, password, usertype, ImageName, Image) VALUES
+INSERT INTO Users (username, firstname, lastname, email, password, usertype, ImageName, Image) VALUES
 ('user01', 'John', 'Doe', 'john.doe@example.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'admin', NULL, NULL),
 ('user02', 'Jane', 'Doe', 'jane.doe@example.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'user', NULL, NULL),
 ('user03', 'Jim', 'Beam', 'jim.beam@example.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'user', NULL, NULL),
@@ -44,18 +44,18 @@ INSERT INTO OwnedGames (UserID, GameID, PurchaseDate, PlayTime, LastPlayedDate, 
 (9, 4, '2024-04-25', 50, '2024-06-28', 1, 6400, 7000, 3.5, 'Pretty good.', FALSE, '1.2', 'In Progress'),
 (10, 5, '2024-05-30', 150, '2024-06-27', 6, 8700, 9500, 4.8, 'Loved it!', TRUE, '1.0', 'Completed');
 
-INSERT INTO forumcategories (CategoryID, CategoryName, Description, CreatedAt) VALUES
+INSERT INTO ForumCategories (CategoryID, CategoryName, Description, CreatedAt) VALUES
 (1, "General Discussion", "A place for general topics and casual conversation.", "2024-07-18 08:57:49"),
 (2, "Game Help", "Ask for help and share tips about games.", "2024-07-18 08:57:49"),
 (3, "Announcements", "Official announcements and updates.", "2024-07-18 08:57:49");
 
-INSERT INTO forumposts(PostID, UserID, CategoryID, Title, Content, CreatedAt) VALUES
+INSERT INTO ForumPosts(PostID, UserID, CategoryID, Title, Content, CreatedAt) VALUES
 (1, 1, 1, "Welcome to the Forum!", "Hello everyone, welcome to our new forum. Feel free to introduce yourselves!", "2024-07-18 08:57:49"),
 (2, 2, 2, "Need help with Level 5", "I am stuck on level 5 of the game. Any tips?", "2024-07-18 08:57:49"),
 (3, 3, 3, "New Update Released!", "We are excited to announce the release of a new update for our game.", "2024-07-18 08:57:49"),
 (9, 1, 1, "Test1", "Test1 details", "2024-07-18 20:20:36");
 
-INSERT INTO forumcomments(CommentID, PostID, UserID, Content, CreatedAt) VALUES
+INSERT INTO ForumComments(CommentID, PostID, UserID, Content, CreatedAt) VALUES
 (1, 1, 2, "Thanks for the welcome! Looking forward to participating.", "2024-07-18 08:57:49"),
 (2, 2, 1, "Try using the blue key on the door. It worked for me.", "2024-07-18 08:57:49"),
 (3, 3, 1, "Great news! Can’t wait to try the new features.", "2024-07-18 08:57:49");
