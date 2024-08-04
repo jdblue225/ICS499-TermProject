@@ -1,5 +1,5 @@
--- DROP SCHEMA IF EXISTS arcadeapp;
--- CREATE SCHEMA arcadeApp; 
+DROP SCHEMA IF EXISTS arcadeapp;
+CREATE SCHEMA arcadeApp; 
 USE arcadeApp;
 DROP TABLE IF EXISTS users; 
 CREATE TABLE Users
