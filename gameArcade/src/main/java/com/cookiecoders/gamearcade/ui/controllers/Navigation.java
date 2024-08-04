@@ -41,7 +41,7 @@ public class Navigation {
                 fxmlFile = "/com/cookiecoders/gamearcade/ui/profile/profileView.fxml";
                 cssFile = "/com/cookiecoders/gamearcade/ui/profile/profileView.css";
                 break;
-            case "toolbarEditProfileButton":
+            case "editProfileButton":
                 fxmlFile = "/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.fxml";
                 cssFile = "/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.css";
                 break;

@@ -7,6 +7,10 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" stylesheets="@profileView.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
    <children>
@@ -16,13 +20,15 @@
             <Button fx:id="toolbarGameButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Game" />
             <Button fx:id="toolbarForumButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Forum" />
             <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Profile" />
-            <Button fx:id="toolbarEditProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" stylesheets="@profileView.css" text="Edit Profile" />
         </items>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </ToolBar>
-      <Label layoutX="166.0" layoutY="79.0" text="userName" />
+      <Label layoutX="166.0" layoutY="79.0" text="userName" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
       <ImageView fitHeight="135.0" fitWidth="121.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/icon.jpg" />
@@ -33,30 +39,85 @@
             <Image url="@../../img/bar.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="172.0" fitWidth="179.0" layoutX="14.0" layoutY="201.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../img/leader_baord.jpg" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="43.0" fitWidth="38.0" layoutX="410.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/level.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="172.0" fitWidth="244.0" layoutX="204.0" layoutY="201.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../img/stats.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="183.0" fitWidth="249.0" layoutX="14.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/friends.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="209.0" fitWidth="244.0" layoutX="204.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/a.jpg" />
-         </image>
-      </ImageView>
+      <Button fx:id="editProfileButton" layoutX="325.0" layoutY="68.0" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="toolbar" stylesheets="@profileView.css" text="Edit Profile" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <VBox layoutX="16.0" layoutY="212.0" prefHeight="353.0" prefWidth="422.0">
+         <children>
+            <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Leaderboard" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="91.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/leader_baord.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Rewards" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="81.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/reward_cup.jpg" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="92.0" prefWidth="28.0" />
+                  <ImageView fitHeight="81.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/reward_joining.png" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="92.0" prefWidth="31.0" />
+                  <ImageView fitHeight="81.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/reward_logo_ribbon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Top 3 Games Played" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../games/img/pong.jpg" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="92.0" prefWidth="31.0" />
+                  <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../games/img/snake.jpg" />
+                     </image>
+                  </ImageView>
+                  <Pane prefHeight="92.0" prefWidth="31.0" />
+                  <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../games/img/minesweeper.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
