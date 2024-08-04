@@ -92,7 +92,7 @@ CREATE TABLE OwnedGames (
     PlayTime INT DEFAULT 0,
     LastPlayedDate DATE,
     AchievementsUnlocked INT DEFAULT 0,
-    Score INT NOT NULL,
+    Score INT DEFAULT 0,
     HighScore INT,
     Rating DECIMAL(2, 1),
     Review TEXT,

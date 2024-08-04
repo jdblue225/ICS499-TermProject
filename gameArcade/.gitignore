@@ -39,3 +39,4 @@ build/
 
 ### Program Extras ###
 log/*
+src/main/resources/com/cookiecoders/gamearcade/config/alt.app.config

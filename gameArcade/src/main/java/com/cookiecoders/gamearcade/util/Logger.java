@@ -1,18 +1,6 @@
-/**
- *     This logger class is designed as a singleton instance to be called
- *     from any class within the package. It crates a log file in the log
- *     directory and creates new log file if the size grows too large or if
- *     the program is run on a new day.
- *
- *     Usage:
- *         Instantiate:
- *              private Logger = Logger.getInstance();
- *         Call:
- *              logger.log(Logger.LogLevel.<loglevel>, "Message");
- */
-
 package com.cookiecoders.gamearcade.util;
 
+import com.cookiecoders.gamearcade.config.ConfigManager;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -28,7 +16,7 @@ public class Logger {
     private String currentLogDate;
 
     /**
-     * This is the constructor for the logger class and is only called
+     * Constructor for the logger class and is only called
      * once from the main method.
      * @param logFilePath
      * @param maxSizeBytes
@@ -36,25 +24,20 @@ public class Logger {
     private Logger(String logFilePath, long maxSizeBytes) {
         this.logFilePath = logFilePath;
         this.maxSizeBytes = maxSizeBytes;
-        this.currentSizeBytes = 0;
+        this.currentSizeBytes = new File(logFilePath).length();
         this.currentLogDate = getCurrentDate();
     }
 
     /**
-     * This method retrieves the active instance of this singleton
+     * Retrieves the active instance of this singleton
      * class. The first time this method is called, it constructs the
      * class. All subsequent calls, it only returns the current instance.
      * @return instance
      */
-    public static Logger getInstance(){
+    public static Logger getInstance() {
         if (instance == null) {
-            instance = new Logger("log/arcade_app.log", 200);
-        }
-        return instance;
-    }
-
-    public static Logger getInstance(String logFilePath, long maxSizeBytes) {
-        if (instance == null) {
+            String logFilePath = ConfigManager.getProperty("log.file.path", "log/arcade_app.log");
+            long maxSizeBytes = Long.parseLong(ConfigManager.getProperty("log.file.maxsize", "1048576"));
             instance = new Logger(logFilePath, maxSizeBytes);
         }
         return instance;
@@ -94,7 +77,7 @@ public class Logger {
 
             if (currentSizeBytes >= maxSizeBytes || !getCurrentDate().equals(currentLogDate)) {
                 createNewLogFile();
-                currentSizeBytes = 0;
+                currentSizeBytes = new File(logFilePath).length();
                 currentLogDate = getCurrentDate();
             }
         } catch (IOException e) {
@@ -103,8 +86,7 @@ public class Logger {
     }
 
     /**
-     * This method is called within the logger class to
-     * retrieve the current timestamp in "yyyy-MM-dd HH:mm:ss"
+     * Retrieves the current timestamp in "yyyy-MM-dd HH:mm:ss"
      * format.
      * @return timeStamp
      */
@@ -115,8 +97,7 @@ public class Logger {
     }
 
     /**
-     * This method is called from within the logger class to
-     * retrieve the current timestamp in "yyyy-MM-dd" format.
+     * Retrieves the current timestamp in "yyyy-MM-dd" format.
      * @return timeStamp
      */
     private String getCurrentDate() {
@@ -126,14 +107,14 @@ public class Logger {
     }
 
     /**
-     * This method is called from within the logger class and is used to create a new
-     * log file.
+     * Creates a new log file.
      * @throws IOException
      */
     private void createNewLogFile() throws IOException {
         String newLogFilePath = logFilePath + "_" + System.currentTimeMillis() + ".log";
         File newLogFile = new File(newLogFilePath);
         if (newLogFile.createNewFile()) {
+            System.out.println("Created new log file: " + newLogFilePath);
         } else {
             throw new IOException("Failed to create a new log file.");
         }

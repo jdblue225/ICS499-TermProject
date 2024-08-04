@@ -10,6 +10,8 @@ package com.cookiecoders.gamearcade.ui.controllers;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
 import com.cookiecoders.gamearcade.users.UserSession;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ import java.util.Map;
 public class storeViewController {
     private UserSession userSession;
     private GameDao gameDao;
+    private OwnedGamesDao ownedGamesDao;
     private boolean doubleClickFlag = false;
 
     @FXML
@@ -37,6 +40,8 @@ public class storeViewController {
     private void initialize() {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
+        this.ownedGamesDao = new OwnedGamesDaoImpl();
+        this.
         populateStoreSP();
 
     }
@@ -46,7 +51,7 @@ public class storeViewController {
         if (userSession.getCurrentUser().getUsertype().equals("admin")){
             ownedGames = gameDao.getAllGamesSummary();
         } else{
-            ownedGames = gameDao.getUnownedGames(userSession.getCurrentUser().getId());
+            ownedGames = ownedGamesDao.getUnownedGames(userSession.getCurrentUser().getId());
         }
 
         TilePane mainTilePane = new TilePane();
@@ -154,8 +159,6 @@ public class storeViewController {
         }
     }
 
-
-
     private void handleMouseClick(MouseEvent event, Integer gameId) {
         if (event.getClickCount() == 2) {
             doubleClickFlag = true;
@@ -164,7 +167,7 @@ public class storeViewController {
             PauseTransition pause = new PauseTransition(Duration.millis(200));
             pause.setOnFinished(e -> {
                 if (!doubleClickFlag) {
-                    navigateToGameBuy(gameId);
+                    navigateToGameBuy(event,gameId);
                 }
                 doubleClickFlag = false;
             });
@@ -181,9 +184,9 @@ public class storeViewController {
         alert.showAndWait();
     }
 
-
-    private void navigateToGameBuy(Integer gameId){
-        Navigation.navigateToGameBuyView(gameId);
+    @FXML
+    private void navigateToGameBuy(MouseEvent event, Integer gameId){
+        Navigation.navigateToGameBuyView(event,gameId);
     }
 
     @FXML
