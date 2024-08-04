@@ -11,8 +11,8 @@ import java.util.*;
 
 public class GameDaoImpl implements GameDao {
 
-    private static DatabaseManager dbm        = DatabaseManager.getInstance();
-    private static Connection      connection = dbm.getConnection();
+    private static DatabaseManager dbm = DatabaseManager.getInstance();
+    private static Connection connection = dbm.getConnection();
 
     public Game getGameById(int id) {
         String query = "SELECT * FROM Games WHERE GameID = ?";
@@ -56,62 +56,6 @@ public class GameDaoImpl implements GameDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return gamesSummary;
-    }
-
-    @Override
-    public List<Map<String, Object>> getOwnedGamesSummary(Integer userID) {
-        String query = """
-                    SELECT g.GameID, g.Title, g.ImageName FROM Games g\s
-                    JOIN OwnedGames og ON g.GameID = og.GameID
-                    WHERE og.UserId = ?;
-                """;
-        List<Map<String, Object>> gamesSummary = new ArrayList<>();
-
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, userID);
-            try (ResultSet resultSet = stmt.executeQuery()) {
-                while (resultSet.next()) {
-                    Map<String, Object> gameSummary = new HashMap<>();
-                    gameSummary.put("GameID", resultSet.getInt("GameID"));
-                    gameSummary.put("Title", resultSet.getString("Title"));
-                    gameSummary.put("ImageName", resultSet.getString("ImageName"));
-                    gamesSummary.add(gameSummary);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return gamesSummary;
-    }
-
-    @Override
-    public List<Map<String, Object>> getUnownedGames(Integer userID) {
-        String query = """
-                    SELECT g.GameID, g.Title, g.ImageName, g.AverageRating\s
-                    FROM Games g
-                    LEFT JOIN OwnedGames og ON g.GameID = og.GameID AND og.UserId = ?
-                    WHERE og.GameID IS NULL;
-                """;
-        List<Map<String, Object>> gamesSummary = new ArrayList<>();
-
-        try (PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, userID);
-            try (ResultSet resultSet = stmt.executeQuery()) {
-                while (resultSet.next()) {
-                    Map<String, Object> gameSummary = new HashMap<>();
-                    gameSummary.put("GameID", resultSet.getInt("GameID"));
-                    gameSummary.put("Title", resultSet.getString("Title"));
-                    gameSummary.put("ImageName", resultSet.getString("ImageName"));
-                    gameSummary.put("AverageRating", resultSet.getDouble("AverageRating"));
-                    gamesSummary.add(gameSummary);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         return gamesSummary;
     }
 
@@ -237,5 +181,4 @@ public class GameDaoImpl implements GameDao {
 
         return leaderboardData;
     }
-
 }

@@ -3,6 +3,8 @@ package com.cookiecoders.gamearcade.ui.controllers;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
 import com.cookiecoders.gamearcade.games.*;
 import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.util.Logger;
@@ -34,6 +36,7 @@ import java.util.stream.Collectors;
 public class gameViewController {
     private UserSession userSession;
     private GameDao gameDao;
+    private OwnedGamesDao ownedGamesDao;
     private boolean doubleClickFlag = false;
     private GameManager gameManager;
 
@@ -50,6 +53,7 @@ public class gameViewController {
     private void initialize() {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
+        this.ownedGamesDao = new OwnedGamesDaoImpl();
         this.gameManager = new GameManager();
         populateOGSP("");
         searchButton.setOnAction(event -> handleSearch());
@@ -60,7 +64,7 @@ public class gameViewController {
         if (userSession.getCurrentUser().getUsertype().equals("admin")) {
             ownedGames = gameDao.getAllGamesSummary();
         } else {
-            ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+            ownedGames = ownedGamesDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
         }
 
         // Filter games based on the search query
@@ -173,6 +177,7 @@ public class gameViewController {
         }
     }
 
+    @FXML
     private void handleMouseClick(MouseEvent event, Integer gameId) {
         if (event.getClickCount() == 2) {
             doubleClickFlag = true;
@@ -181,7 +186,7 @@ public class gameViewController {
             PauseTransition pause = new PauseTransition(Duration.millis(200));
             pause.setOnFinished(e -> {
                 if (!doubleClickFlag) {
-                    navigateToGameInfo(gameId);
+                    navigateToGameReview(event, gameId);
                 }
                 doubleClickFlag = false;
             });
@@ -248,18 +253,20 @@ public class gameViewController {
         }.start();
     }
 
-    private void navigateToGameInfo(Integer gameId) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml"));
-            loader.setControllerFactory(param -> new gameInfoViewController(gameId));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
-        }
+    @FXML
+    private void navigateToGameReview(MouseEvent event, Integer gameId) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/gameReviewView.fxml"));
+//            loader.setControllerFactory(param -> new gameReviewViewController(gameId));
+//            Parent root = loader.load();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
+//        }
+        Navigation.navigateToGameReviewView(event, gameId);
     }
 
     @FXML
@@ -298,7 +305,7 @@ public class gameViewController {
         if (userSession.getCurrentUser().getUsertype().equals("admin")) {
             return gameDao.getAllGamesSummary();
         } else {
-            return gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+            return ownedGamesDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
         }
     }
 
