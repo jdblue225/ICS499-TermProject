@@ -53,7 +53,7 @@ public class PongGame implements Game {
 
     @Override
     public String getName(){
-        return "Pong";
+        return "1";
     }
 
     @Override
