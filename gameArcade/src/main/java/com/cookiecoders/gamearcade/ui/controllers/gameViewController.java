@@ -3,16 +3,15 @@ package com.cookiecoders.gamearcade.ui.controllers;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
 import com.cookiecoders.gamearcade.games.*;
 import com.cookiecoders.gamearcade.users.UserSession;
-import com.cookiecoders.gamearcade.util.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -24,16 +23,14 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-
-
 public class gameViewController {
     private UserSession userSession;
     private GameDao gameDao;
+    private OwnedGamesDao ownedGamesDao;
     private boolean doubleClickFlag = false;
     private GameManager gameManager;
 
@@ -50,17 +47,18 @@ public class gameViewController {
     private void initialize() {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
+        this.ownedGamesDao = new OwnedGamesDaoImpl();
         this.gameManager = new GameManager();
         populateOGSP("");
         searchButton.setOnAction(event -> handleSearch());
     }
 
-    private void populateOGSP(String searchQuery){  // Owned Games Scroll Pane
+    private void populateOGSP(String searchQuery) {  // Owned Games Scroll Pane
         List<Map<String, Object>> ownedGames;
-        if (userSession.getCurrentUser().getUsertype().equals("admin")){
+        if (userSession.getCurrentUser().getUsertype().equals("admin")) {
             ownedGames = gameDao.getAllGamesSummary();
-        } else{
-            ownedGames = gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+        } else {
+            ownedGames = ownedGamesDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
         }
 
         // Filter games based on the search query
@@ -80,7 +78,6 @@ public class gameViewController {
         tilePane.getStyleClass().add("tile-pane");
         tilePane.setPrefColumns(3); // Set the number of columns to 3 for each TilePane
         tilePane.setVgap(0); // Vertical gap between tiles
-
 
         for (Map<String, Object> game : ownedGames) {
             if (imageCount % 3 == 0 && imageCount != 0) {
@@ -102,11 +99,10 @@ public class gameViewController {
 
         // Add empty images if the last TilePane has fewer than 3 images
         while (imageCount % 3 != 0) {
-            ImageView emptyImageView = createImageView(null,null);
+            ImageView emptyImageView = createImageView(null, null);
             tilePane.getChildren().add(emptyImageView);
             imageCount++;
         }
-
 
         // Add the last TilePane
         mainTilePane.getChildren().add(tilePane);
@@ -141,10 +137,8 @@ public class gameViewController {
         imageView.setFitHeight(100);
         imageView.setFitWidth(100);
         imageView.setPickOnBounds(false);
-//        imageView.setPreserveRatio(true);
 
         imageView.setOnMouseClicked(event -> handleMouseClick(event, gameId));
-
 
         TilePane.setMargin(imageView, new javafx.geometry.Insets(15));
         return imageView;
@@ -177,6 +171,7 @@ public class gameViewController {
         }
     }
 
+    @FXML
     private void handleMouseClick(MouseEvent event, Integer gameId) {
         if (event.getClickCount() == 2) {
             doubleClickFlag = true;
@@ -185,7 +180,7 @@ public class gameViewController {
             PauseTransition pause = new PauseTransition(Duration.millis(200));
             pause.setOnFinished(e -> {
                 if (!doubleClickFlag) {
-                    navigateToGameInfo(gameId);
+                    navigateToGameReview(event, gameId);
                 }
                 doubleClickFlag = false;
             });
@@ -193,17 +188,18 @@ public class gameViewController {
         }
     }
 
-    private void launchGame(Integer gameId){
+    private void launchGame(Integer gameId) {
         // Find game by gameId and launch it
         Game game = getGameById(gameId);
         if (game != null) {
             Stage gameStage = new Stage();
+            gameStage.setOnCloseRequest(event -> gameManager.stopGame()); //listen to when game window close
             setupGameStage(gameStage, game);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText(null);
-            alert.setContentText("Game not fount!");
+            alert.setContentText("Game not found!");
             alert.showAndWait();
         }
     }
@@ -212,22 +208,19 @@ public class gameViewController {
         // This method should return the game instance based on the gameId
         // For demonstration, we'll return a new PongGame or MinesweeperGame based on gameId
         // You should implement this to return the correct game instance from your database or list
-        switch (gameId) {
-            case 1:
-                return new PongGame();
-            case 2:
-                return new MinesweeperGame();
-            case 3:
-                return new SnakeGame();
+        return switch (gameId) {
+            case 1 -> new PongGame();
+            case 2 -> new MinesweeperGame();
+            case 3 -> new SnakeGame();
             // Add other games here
-            default:
-                return null;
-        }
+            default -> null;
+        };
     }
 
     private void setupGameStage(Stage gameStage, Game game) {
         gameManager.loadGame(game);
         gameManager.startGame();
+        long startTime = System.currentTimeMillis();
 
         StackPane gameRoot = gameManager.getGamePane();
         Scene gameScene = new Scene(gameRoot, 800, 600);
@@ -236,31 +229,42 @@ public class gameViewController {
         gameStage.setScene(gameScene);
         gameStage.show();
 
+        gameStage.setOnCloseRequest(event -> {
+            long endTime = System.currentTimeMillis();
+            long duration = (endTime - startTime);
+            gameManager.recordTime(duration/1000);
+
+            System.out.println("duration: " + (endTime-startTime));
+        });
+
         new AnimationTimer() {
             @Override
             public void handle(long now) {
                 gameManager.updateGame();
                 gameManager.renderGame();
+
             }
         }.start();
     }
 
-    private void navigateToGameInfo(Integer gameId){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/GameInfoView.fxml"));
-            loader.setControllerFactory(param -> new gameInfoViewController(gameId));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
-        }
+    @FXML
+    private void navigateToGameReview(MouseEvent event, Integer gameId) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/gameReviewView.fxml"));
+//            loader.setControllerFactory(param -> new gameReviewViewController(gameId));
+//            Parent root = loader.load();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
+//        }
+        Navigation.navigateToGameReviewView(event, gameId);
     }
 
     @FXML
-    private void navigationButtonClicked(ActionEvent event){
+    private void navigationButtonClicked(ActionEvent event) {
         Navigation.toolbarNavigate(event);
     }
 
@@ -295,7 +299,7 @@ public class gameViewController {
         if (userSession.getCurrentUser().getUsertype().equals("admin")) {
             return gameDao.getAllGamesSummary();
         } else {
-            return gameDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
+            return ownedGamesDao.getOwnedGamesSummary(userSession.getCurrentUser().getId());
         }
     }
 
