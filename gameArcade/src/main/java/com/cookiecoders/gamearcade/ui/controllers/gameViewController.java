@@ -219,7 +219,6 @@ public class gameViewController {
                 return new MinesweeperGame();
             case 3:
                 return new SnakeGame();
-
             // Add other games here
             default:
                 return null;

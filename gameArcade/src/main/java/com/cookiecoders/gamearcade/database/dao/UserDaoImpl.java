@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getUserByUsername(String username) {
         String hashedPass;
-        String query = "SELECT * FROM users WHERE UserName = ?;";
+        String query = "SELECT * FROM Users WHERE UserName = ?;";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, username);
             try (ResultSet resultSet = stmt.executeQuery()) {
@@ -108,7 +108,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean insertUser(User user) {
-        String query = "INSERT INTO users (UserName, FirstName, LastName, Email, Password, UserType, ImageName, Image) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+        String query = "INSERT INTO Users (UserName, FirstName, LastName, Email, Password, UserType, ImageName, Image) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getFirstname());

@@ -2,11 +2,14 @@ package com.cookiecoders.gamearcade.ui.controllers;
 
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.database.dao.StoreDao;
+import com.cookiecoders.gamearcade.database.dao.StoreDaoImpl;
 import com.cookiecoders.gamearcade.users.UserSession;
 import com.cookiecoders.gamearcade.database.models.Game;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -26,6 +29,7 @@ public class gameBuyViewController {
     private Integer gameId;
     private UserSession userSession;
     private GameDao gameDao;
+    private StoreDao storeDao;
     private Game game;
 
     @FXML
@@ -40,6 +44,8 @@ public class gameBuyViewController {
     private TextArea gameDescription;
     @FXML
     public Label paneTitle;
+    @FXML
+    public Button BuyButton;
 
 
     public gameBuyViewController(Integer gameId){
@@ -50,6 +56,7 @@ public class gameBuyViewController {
     private void initialize(){
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
+        this.storeDao = new StoreDaoImpl();
         this.game = gameDao.getGameById(gameId);
         paneTitle.setText(game.getTitle() + " Info");
         gameName.setText(game.getTitle());
@@ -70,7 +77,15 @@ public class gameBuyViewController {
     }
 
     @FXML
-    private void navigateToRating(ActionEvent event){
-        //Navigation logic
+    private void navigateToStoreView(ActionEvent event){
+        Navigation.navigateToStoreView(event);
+    }
+
+    @FXML
+    private void buyGameButtonClicked(ActionEvent event){
+        Integer UserId = userSession.getCurrentUser().getId();
+        if (storeDao.addToOwnedGames(UserId, this.gameId)){
+            BuyButton.setDisable(true);
+        }
     }
 }

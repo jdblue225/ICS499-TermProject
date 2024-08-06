@@ -3,27 +3,23 @@ package com.cookiecoders.gamearcade.games;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.input.KeyCode;
 
 public class MinesweeperGame implements Game {
     private static final int TILE_SIZE = 20;
-    private static final int WIDTH = 20;
-    private static final int HEIGHT = 20;
+    private static final int WIDTH     = 20;
+    private static final int HEIGHT    = 20;
     private static final int NUM_MINES = 40;
 
-    private Canvas canvas;
+    private Canvas          canvas;
     private GraphicsContext gc;
-    private boolean[][] mines;
-    private boolean[][] revealed;
-    private boolean[][] flagged;
-    private boolean gameOver;
-    private boolean gameWon;
-    private boolean gamePaused; // Add a paused state
+    private boolean[][]     mines;
+    private boolean[][]     revealed;
+    private boolean[][]     flagged;
+    private boolean         gameOver;
+    private boolean         gameWon;
 
     @Override
     public void initialize() {
@@ -36,24 +32,29 @@ public class MinesweeperGame implements Game {
 
         gameOver = false;
         gameWon = false;
-        gamePaused = true; // Start game as paused
 
-        // Add mouse event handler
+
+        // Place mines
+        for (int i = 0; i < NUM_MINES; i++) {
+            int x, y;
+            do {
+                x = (int) (Math.random() * WIDTH);
+                y = (int) (Math.random() * HEIGHT);
+            } while (mines[x][y]);
+            mines[x][y] = true;
+        }
+
         canvas.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleMouseClick);
-
-        // Add key event handler for spacebar
-        canvas.setFocusTraversable(true);
-        canvas.setOnKeyPressed(this::handleKeyPressed);
     }
 
     @Override
     public void start() {
-        render(); // Render initial state
+        render();
     }
 
     @Override
     public void update() {
-        // Update game logic if needed (not used here)
+        // Update game logic if needed
     }
 
     @Override
@@ -90,13 +91,6 @@ public class MinesweeperGame implements Game {
                 gc.strokeRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
             }
         }
-
-        // Display a message when paused
-        if (gamePaused) {
-            gc.setFill(Color.BLACK);
-            gc.setFont(new Font(30));
-            gc.fillText("Press Spacebar to Start", WIDTH * TILE_SIZE / 4, HEIGHT * TILE_SIZE / 2);
-        }
     }
 
     @Override
@@ -104,81 +98,31 @@ public class MinesweeperGame implements Game {
         // Cleanup resources if needed
     }
 
-    private void handleMouseClick(MouseEvent event) {
-        // Ensure the game is not paused and is running
-        if (gamePaused || gameOver || gameWon) {
-            return; // Ignore clicks when paused or game over
-        }
+    @Override
+    public String getName() {
+        return "2";
+    }
 
-        // Calculate tile position based on mouse click coordinates
+    private void handleMouseClick(MouseEvent event) {
         int x = (int) (event.getX() / TILE_SIZE);
         int y = (int) (event.getY() / TILE_SIZE);
 
-        // Check bounds to prevent ArrayIndexOutOfBoundsException
-        if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT) {
-            return;
-        }
-
-        // Process left click separately
-        if (event.getButton().equals(MouseButton.PRIMARY)) {
-            handleLeftClick(x, y);
-        }
-        // Process right click separately
-        else if (event.getButton().equals(MouseButton.SECONDARY)) {
-            handleRightClick(x, y);
-        }
-
-        render(); // Redraw canvas after any action
-    }
-
-    private void handleLeftClick(int x, int y) {
-        if (!revealed[x][y] && !flagged[x][y]) {
-            revealed[x][y] = true;
-            if (mines[x][y]) {
-                gameOver = true;
-                revealAllMines();
-                showAlert("Game Over", "You hit a mine! Game Over.");
-            } else if (isGameWon()) {
-                gameWon = true;
-                showAlert("Congratulations", "You won!");
+        if (event.isPrimaryButtonDown()) {
+            if (!revealed[x][y]) {
+                revealed[x][y] = true;
+                if (mines[x][y]) {
+                    gameOver = true;
+                    revealAllMines();
+                    showAlert("Game Over", "You hit a mine! Game Over.");
+                } else if (isGameWon()) {
+                    gameWon = true;
+                    showAlert("Congratulations", "You won!");
+                }
             }
-        }
-    }
-
-    private void handleRightClick(int x, int y) {
-        if (!revealed[x][y]) {
+        } else if (event.isSecondaryButtonDown()) {
             flagged[x][y] = !flagged[x][y];
         }
-    }
-
-    private void handleKeyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.SPACE) {
-            if (gamePaused || gameOver || gameWon) {
-                resetGame();
-                gamePaused = false; // Start the game
-                render();
-            }
-        }
-    }
-
-    private void resetGame() {
-        // Reset all game variables
-        mines = new boolean[WIDTH][HEIGHT];
-        revealed = new boolean[WIDTH][HEIGHT];
-        flagged = new boolean[WIDTH][HEIGHT];
-        gameOver = false;
-        gameWon = false;
-        gamePaused = true; // Reset to paused state
-
-        // Place mines again
-        for (int i = 0; i < NUM_MINES; i++) {
-            int x, y;
-            do {
-                x = (int) (Math.random() * WIDTH);
-                y = (int) (Math.random() * HEIGHT);
-            } while (mines[x][y]);
-            mines[x][y] = true;
-        }
+        render();
     }
 
     private void revealAllMines() {
@@ -228,3 +172,4 @@ public class MinesweeperGame implements Game {
         return canvas;
     }
 }
+

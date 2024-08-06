@@ -4,9 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added interactivity and scores to Pong">
+    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Fixed compile errors in UserDaoImplTest">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_23_2024_2_06_PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_23_2024_2_06_PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_24_2024_8_19_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_24_2024_8_19_AM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_25_2024_8_13_AM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_25_2024_8_13_AM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/database/dao/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/database/dao/GameDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/MinesweeperGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/MinesweeperGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/SnakeGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/config/app.config" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/config/app.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,31 +49,10 @@
     &quot;assignee&quot;: &quot;crasss&quot;
   }
 }</component>
-  <component name="GitHubPullRequestState">{
-  &quot;prStates&quot;: [
-    {
-      &quot;id&quot;: {
-        &quot;id&quot;: &quot;PR_kwDOMAFjfM52wJDP&quot;,
-        &quot;number&quot;: 9
-      },
-      &quot;lastSeen&quot;: 1722261875028
-    }
-  ]
-}</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/jdblue225/ICS499-TermProject.git&quot;,
     &quot;accountId&quot;: &quot;78e56757-8571-419f-b657-ccdf4b551564&quot;
-  },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
-    },
-    &quot;owner&quot;: &quot;jdblue225&quot;,
-    &quot;repository&quot;: &quot;ICS499-TermProject&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -75,34 +69,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ClasspathDebugger.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ClasspathEntriesDebugger.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Dookie Arcade.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApp.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.TestConfigLoading.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestConfigLoadingAlternative.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestImageLoading.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Application.main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.UserDaoImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;brandons-branch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.28045976&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ClasspathDebugger.executor": "Run",
+    "Application.ClasspathEntriesDebugger.executor": "Run",
+    "Application.Dookie Arcade.executor": "Run",
+    "Application.MainApp.executor": "Debug",
+    "Application.TestConfigLoading.executor": "Run",
+    "Application.TestConfigLoadingAlternative.executor": "Run",
+    "Application.TestImageLoading.executor": "Run",
+    "Application.Unnamed (1).executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "Application.main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.UserDaoImplTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "gameTest2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28045976",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\resources\sql" />
@@ -171,39 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722256951375</updated>
     </task>
-    <task id="LOCAL-00006" summary="Added working search feature in games">
+    <task id="LOCAL-00006" summary="Fixed compile errors in UserDaoImplTest">
       <option name="closed" value="true" />
-      <created>1722261790488</created>
+      <created>1722545061492</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1722261790489</updated>
+      <updated>1722545061492</updated>
     </task>
-    <task id="LOCAL-00007" summary="Fixed compile errors in UserDaoImplTest">
-      <option name="closed" value="true" />
-      <created>1722262563478</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1722262563478</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Placeholder implementations for games 1-10">
-      <option name="closed" value="true" />
-      <created>1722297004094</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1722297004094</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Added interactivity and scores to Pong">
-      <option name="closed" value="true" />
-      <created>1722524882892</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1722524882892</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -217,7 +187,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="brandons-branch" />
+                        <option value="origin/brandons-branch" />
                       </list>
                     </value>
                   </entry>
@@ -237,9 +207,7 @@
     <MESSAGE value="MySQL syntax error in seed data fixed" />
     <MESSAGE value="Added working search feature in games" />
     <MESSAGE value="Fixed compile errors in UserDaoImplTest" />
-    <MESSAGE value="Placeholder implementations for games 1-10" />
-    <MESSAGE value="Added interactivity and scores to Pong" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added interactivity and scores to Pong" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed compile errors in UserDaoImplTest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
