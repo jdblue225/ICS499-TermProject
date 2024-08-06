@@ -7,14 +7,11 @@ import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
 import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
 import com.cookiecoders.gamearcade.games.*;
 import com.cookiecoders.gamearcade.users.UserSession;
-import com.cookiecoders.gamearcade.util.Logger;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -25,10 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 import javafx.util.Duration;
-
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
