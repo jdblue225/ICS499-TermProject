@@ -9,9 +9,10 @@ public interface GameDao {
     boolean insertGame(Game game);
     List<Game> getAllGames();
     List<Map<String, Object>> getAllGamesSummary();
-    List<Map<String, Object>> getOwnedGamesSummary(Integer userID);
-    List<Map<String, Object>> getUnownedGames(Integer userID);
+
+    List<Map<String, Object>> getLeaderboardData();
     boolean updateGame(Game game);
     boolean deleteGame(int id);
+    void recordGameDuration(int userId, String name, long time);
 
 }

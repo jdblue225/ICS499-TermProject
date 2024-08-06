@@ -2,7 +2,7 @@ DROP SCHEMA IF EXISTS arcadeapp;
 CREATE SCHEMA arcadeApp; 
 USE arcadeApp;
 DROP TABLE IF EXISTS users; 
-CREATE TABLE users
+CREATE TABLE Users
     (UserID INT AUTO_INCREMENT PRIMARY KEY,
     UserName VARCHAR(50) NOT NULL UNIQUE,
 	FirstName VARCHAR(50), 
@@ -92,7 +92,7 @@ CREATE TABLE OwnedGames (
     PlayTime INT DEFAULT 0,
     LastPlayedDate DATE,
     AchievementsUnlocked INT DEFAULT 0,
-    Score INT NOT NULL,
+    Score INT DEFAULT 0,
     HighScore INT,
     Rating DECIMAL(2, 1),
     Review TEXT,

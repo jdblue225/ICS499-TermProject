@@ -1,27 +1,6 @@
-/*
-    public class MainApp {
-       public static void main(String[] args) {
-            // Accessing properties
-            String appName = ConfigManager.getProperty("app.name");
-            String appVersion = ConfigManager.getProperty("app.version");
-
-            System.out.println("Application Name: " + appName);
-            System.out.println("Application Version: " + appVersion);
-
-            // Accessing database configuration
-            String dbUrl = ConfigManager.getProperty("database.url");
-            String dbUsername = ConfigManager.getProperty("database.username");
-            String dbPassword = ConfigManager.getProperty("database.password");
-
-            System.out.println("Database URL: " + dbUrl);
-            System.out.println("Database Username: " + dbUsername);
-            System.out.println("Database Password: " + dbPassword);
-        }
-    }
- */
-
 package com.cookiecoders.gamearcade.config;
 
+import com.cookiecoders.gamearcade.util.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -32,17 +11,28 @@ import java.util.List;
 import java.util.Properties;
 
 public class ConfigManager {
+    private static final String ALT_CONFIG_FILE = "/com/cookiecoders/gamearcade/config/alt.app.config";
     private static final String CONFIG_FILE = "/com/cookiecoders/gamearcade/config/app.config";
     private static Properties properties = new Properties();
 
     // Static block to load properties at class loading time
     static {
-        try (InputStream input = ConfigManager.class.getResourceAsStream(CONFIG_FILE)) {
-            if (input == null) {
-                System.out.println("Sorry, unable to find " + CONFIG_FILE);
+        try (InputStream input = ConfigManager.class.getResourceAsStream(ALT_CONFIG_FILE)) {
+            if (input != null) {
+                // Load the alt.app.config if it exists
+                properties.load(input);
+                Logger.getInstance().log(Logger.LogLevel.INFO,"Loaded configuration from " + String.valueOf(ALT_CONFIG_FILE));
+            } else {
+                // Fallback to app.config if alt.app.config is not found
+                try (InputStream fallbackInput = ConfigManager.class.getResourceAsStream(CONFIG_FILE)) {
+                    if (fallbackInput != null) {
+                        properties.load(fallbackInput);
+                        Logger.getInstance().log(Logger.LogLevel.INFO,"Loaded configuration from " + String.valueOf(CONFIG_FILE));
+                    } else {
+                        Logger.getInstance().log(Logger.LogLevel.INFO,"Sorry, unable to find " + String.valueOf(CONFIG_FILE));
+                    }
+                }
             }
-            // Load the properties file from the classpath
-            properties.load(input);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -54,7 +44,6 @@ public class ConfigManager {
 
     // Method to get a property value
     public static String getProperty(String key) {
-        String property = properties.getProperty(key);
         return properties.getProperty(key);
     }
 

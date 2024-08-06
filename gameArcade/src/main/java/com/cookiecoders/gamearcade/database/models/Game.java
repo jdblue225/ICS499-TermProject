@@ -126,4 +126,5 @@ public class Game {
     public void setAverageRating(Double averageRating){
         this.averageRating = averageRating;
     }
+
 }

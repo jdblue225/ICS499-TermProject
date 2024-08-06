@@ -9,11 +9,29 @@ package com.cookiecoders.gamearcade.ui.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class profileViewController {
+    @FXML
+    private VBox leaderboardContainer;
 
-    private void initialize() {
-        // TODO: Add code to initialize the profile view, e.g., load user data.
+    @FXML
+    public void initialize(){
+//        loadLeaderboard();
+    }
+
+    private void loadLeaderboard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/leaderboard/leaderboardView.fxml"));
+            VBox leaderboardView = loader.load();
+            leaderboardContainer.getChildren().add(leaderboardView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

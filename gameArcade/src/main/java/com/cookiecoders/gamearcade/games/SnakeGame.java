@@ -14,17 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SnakeGame implements Game {
-    private static final int WIDTH = 600;
-    private static final int HEIGHT = 400;
+    private static final int WIDTH      = 600;
+    private static final int HEIGHT     = 400;
     private static final int BLOCK_SIZE = 20;
 
-    private List<Block> snake;
-    private Block food;
-    private Direction direction;
-    private boolean running;
+    private List<Block>     snake;
+    private Block           food;
+    private Direction       direction;
+    private boolean         running;
     private GraphicsContext gc;
-    private Timeline timeline;
-    private Canvas canvas;
+    private Timeline        timeline;
+    private Canvas          canvas;
 
     private enum Direction {
         UP, DOWN, LEFT, RIGHT
@@ -138,6 +138,11 @@ public class SnakeGame implements Game {
         }
     }
 
+    @Override
+    public String getName() {
+        return "Snake";
+    }
+
     private static class Block {
         int x, y;
 
@@ -151,12 +156,7 @@ public class SnakeGame implements Game {
             if (this == obj) return true;
             if (obj == null || getClass() != obj.getClass()) return false;
             Block block = (Block) obj;
-            return x == block.x && y == block.y;
-        }
-
-        @Override
-        public int hashCode() {
-            return 31 * x + y;
+            return x == block.x;
         }
     }
 }
