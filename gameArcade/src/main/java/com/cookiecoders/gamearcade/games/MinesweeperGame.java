@@ -47,7 +47,7 @@ public class MinesweeperGame implements Game {
     }
     @Override
     public String getName(){
-        return "Mine Sweeper";
+        return "2";
     }
 
     @Override
