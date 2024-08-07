@@ -4,24 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Fixed compile errors in UserDaoImplTest">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_23_2024_2_06_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_23_2024_2_06_PM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_24_2024_8_19_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_24_2024_8_19_AM__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_25_2024_8_13_AM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_7_25_2024_8_13_AM__Changes_.xml" beforeDir="false" />
+    <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added interactivity and scores to Pong">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/database/dao/GameDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/database/dao/GameDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/MinesweeperGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/MinesweeperGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/PongGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/SnakeGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/games/SnakeGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/gameViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/config/app.config" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/config/app.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,34 +53,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClasspathDebugger.executor": "Run",
-    "Application.ClasspathEntriesDebugger.executor": "Run",
-    "Application.Dookie Arcade.executor": "Run",
-    "Application.MainApp.executor": "Debug",
-    "Application.TestConfigLoading.executor": "Run",
-    "Application.TestConfigLoadingAlternative.executor": "Run",
-    "Application.TestImageLoading.executor": "Run",
-    "Application.Unnamed (1).executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "Application.main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.UserDaoImplTest.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "gameTest2",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.28045976",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClasspathDebugger.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ClasspathEntriesDebugger.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Dookie Arcade.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApp.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.TestConfigLoading.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestConfigLoadingAlternative.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestImageLoading.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.UserDaoImplTest.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#12 on brandons-branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.28045976&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\resources\sql" />
@@ -207,7 +191,9 @@
     <MESSAGE value="MySQL syntax error in seed data fixed" />
     <MESSAGE value="Added working search feature in games" />
     <MESSAGE value="Fixed compile errors in UserDaoImplTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed compile errors in UserDaoImplTest" />
+    <MESSAGE value="Placeholder implementations for games 1-10" />
+    <MESSAGE value="Added interactivity and scores to Pong" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added interactivity and scores to Pong" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
