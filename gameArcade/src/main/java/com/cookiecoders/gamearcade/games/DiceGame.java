@@ -11,11 +11,30 @@ import javafx.stage.Stage;
 
 import java.util.Random;
 
-public class DiceGame extends Application {
+public class DiceGame extends Application implements Game {
     private Integer score;
     private Label playerRollLabel;
     private Label computerRollLabel;
     private Label resultLabel;
+    private String gameId = "8";
+    @Override
+    public void initialize(){
+
+    }
+    @Override
+    public void start(){
+
+    }
+    @Override
+    public void update(){}
+    @Override
+    public void render(){}
+    @Override
+    public void stop(){}
+    @Override
+    public String getGameID(){
+        return this.gameId;
+    }
 
     public static void main(String[] args) {
         launch(args);

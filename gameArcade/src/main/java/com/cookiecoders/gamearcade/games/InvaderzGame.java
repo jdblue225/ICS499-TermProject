@@ -3,6 +3,7 @@ package com.cookiecoders.gamearcade.games;
 import com.cookiecoders.gamearcade.games.InvaderzGameDir.*;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -14,11 +15,35 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.time.Instant;
 
-public class InvaderzGame extends Application {
+public class InvaderzGame extends Application implements Game {
     private String gameResourcePath;
     public static boolean GAME_SET;
+    private String gameId = "9";
 
+    @Override
+    public void initialize(){
+        this.gameResourcePath = InvaderzConfig.getInstance().getGameResourcePath();
+    }
+    @Override
+    public void start(){
+            //TODO ????
+        new Thread(() -> Application.launch(InvaderzGame.class)).start();
+    }
+    @Override
+    public void update(){}
+    @Override
+    public void render(){
+        render();
+    }
+    @Override
+    public void stop(){
+    }
+    @Override
+    public String getGameID(){
+        return this.gameId;
+    }
     private Parent createContent() {
         Pane root = new Pane();
         // Construct the full path to the resource
@@ -78,12 +103,14 @@ public class InvaderzGame extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.gameResourcePath = InvaderzConfig.getInstance().getGameResourcePath();
-        Scene scene = new Scene(createContent());
-        scene.setFill(Color.BLACK);
-        primaryStage.setTitle("Space Invaders");
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+        Platform.runLater(() -> {
+            Scene scene = new Scene(createContent());
+            scene.setFill(Color.BLACK);
+            primaryStage.setTitle("Space Invaders");
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        });
     }
 
     public static void main(String[] args) {
