@@ -17,14 +17,7 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-/**
- * Space Invaders
- * Created by tonysaavedra on 6/17/16.
- * Modified by CookieCoders for Cooke Arcade.
- * ICS 499 Software Engineering/Capstone
- * Metropolitan State University
- * https://github.com/ajsaavedra/SpaceInvadersFX
- */
+
 public class SpaceInvadersFX extends Application {
     private Sprite[][] enemies = new Sprite[5][13];
     private Sprite[][] enemiesMoved = new Sprite[5][13];
