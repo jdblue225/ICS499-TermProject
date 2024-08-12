@@ -20,6 +20,7 @@ import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
 import com.cookiecoders.gamearcade.users.*;
+import com.cookiecoders.gamearcade.util.Utils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -99,6 +100,7 @@ public class loginMenuController {
             UserSession currentSession = UserSession.getInstance();
             currentSession.setCurrentUser(user);
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
+            Utils.downladUserData(user);
             loadProfilePage();
         } else {
             errorMessage.setText("Invalid Credentials");
