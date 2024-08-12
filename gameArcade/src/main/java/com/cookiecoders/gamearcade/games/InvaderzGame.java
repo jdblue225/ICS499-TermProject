@@ -1,3 +1,14 @@
+/**
+ * Space Invaders
+ * Created by tonysaavedra on 6/17/16.
+ * https://github.com/ajsaavedra/SpaceInvadersFX
+ *
+ * Modified by CookieCoders for Cooke Arcade under
+ * Creative Commons Licensing for Non-commercial use.
+ * ICS 499 Software Engineering/Capstone
+ * Metropolitan State University
+ * Summer 2024
+ */
 package com.cookiecoders.gamearcade.games;
 
 import com.cookiecoders.gamearcade.games.InvaderzGameDir.*;
@@ -15,7 +26,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.net.URL;
-import java.time.Instant;
 
 public class InvaderzGame extends Application implements Game {
     private String gameResourcePath;
@@ -28,7 +38,6 @@ public class InvaderzGame extends Application implements Game {
     }
     @Override
     public void start(){
-            //TODO ????
         new Thread(() -> Application.launch(InvaderzGame.class)).start();
     }
     @Override
@@ -39,6 +48,7 @@ public class InvaderzGame extends Application implements Game {
     }
     @Override
     public void stop(){
+
     }
     @Override
     public String getGameID(){
