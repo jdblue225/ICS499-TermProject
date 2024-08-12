@@ -149,14 +149,18 @@ public class Utils {
     }
 
     public static boolean downladUserData(User user) {
-        // profile Image saved to drive
-        String username = user.getUsername();
-        String rootPath = ConfigManager.getProperty("root_path");
-        String profImageDir = ConfigManager.getProperty("prof_image_path");
-        String profImagePath = rootPath + profImageDir + username + ".jpg";
-        BufferedImage profImage = byteArrayToImage(user.getImage());
-        saveImageAsJpg(profImage, profImagePath);
-        return true;
+        if (user.getImage() != null){
+            // profile Image saved to drive
+            String username = user.getUsername();
+            String rootPath = ConfigManager.getProperty("root_path");
+            String profImageDir = ConfigManager.getProperty("prof_image_path");
+            String profImagePath = rootPath + profImageDir + username + ".jpg";
+            BufferedImage profImage = byteArrayToImage(user.getImage());
+            saveImageAsJpg(profImage, profImagePath);
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }
