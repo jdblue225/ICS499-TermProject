@@ -33,12 +33,13 @@ public class Navigation {
     private static String BUY_VIEW_CSS = uiRoot + "store/gameBuy.css";
     //    Create Account View    //
     private static String CREATE_ACCOUNT_VIEW_FXML = uiRoot + "login/createAccountView.fxml";
-    private static String CREATE_ACCOUNT_VIEW_CSS = uiRoot + "ui/login/createAccountView.css";
+    private static String CREATE_ACCOUNT_VIEW_CSS = uiRoot + "login/createAccountView.css";
     //    Login View    //
     private static String LOGIN_VIEW_FXML = uiRoot + "login/loginView.fxml";
     private static String LOGIN_VIEW_CSS =  uiRoot + "login/loginView.css";
-
-
+    //    Profile Details View    //
+    private static String PROFILE_DEETS_VIEW_FXML  = uiRoot + "profile/profileDetailsView.fxml";
+    private static String PROFILE_DEETS_VIEW_CSS  = uiRoot + "profile/profileDetailsView.css";
 
 
     /**
@@ -70,11 +71,6 @@ public class Navigation {
                 fxmlFile = PROFILE_VIEW_FXML;
                 cssFile = PROFILE_VIEW_CSS;
                 break;
-            case "editProfileButton":
-                fxmlFile = "/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.fxml";
-                cssFile = "/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.css";
-                break;
-
             default:
                 throw new IllegalArgumentException("Unexpected button ID: " + buttonId);
         }
@@ -107,20 +103,6 @@ public class Navigation {
     }
 
     public static void navigateToGameReviewView(MouseEvent event, Integer gameId){
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(Navigation.class.getResource("/com/cookiecoders/gamearcade/ui/games/gameReviewView.fxml"));
-//            fxmlLoader.setControllerFactory(param -> new gameBuyViewController(gameId));  // Changed to match the class name convention
-//            Parent root = fxmlLoader.load();
-//            Scene scene = new Scene(root);
-//            String css = Navigation.class.getResource("/com/cookiecoders/gamearcade/ui/store/gameReview.css").toExternalForm();
-//            scene.getStylesheets().add(css);
-//            Stage stage = new Stage();
-//            stage.setScene(scene);
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
-//        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Navigation.class.getResource(REVIEW_VIEW_FXML));
             fxmlLoader.setControllerFactory(param -> new gameReviewViewController(gameId));
@@ -165,6 +147,37 @@ public class Navigation {
     public static void navigateToGameView(ActionEvent event){
         String fxmlFile = GAME_VIEW_FXML;
         String cssFile = GAME_VIEW_CSS;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Navigation.class.getResource(fxmlFile));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Navigation.class.getResource(cssFile).toExternalForm());
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load " + fxmlFile + ": " + e.getMessage());
+        }
+    }
+
+    public static void navigateToProfileDetailsView(ActionEvent event){
+        String fxmlFile = PROFILE_DEETS_VIEW_FXML;
+        String cssFile = PROFILE_DEETS_VIEW_CSS;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Navigation.class.getResource(fxmlFile));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Navigation.class.getResource(cssFile).toExternalForm());
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load " + fxmlFile + ": " + e.getMessage());
+        }
+    }
+    public static void navigateToProfileView(ActionEvent event){
+        String fxmlFile = PROFILE_VIEW_FXML;
+        String cssFile = PROFILE_VIEW_CSS;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(Navigation.class.getResource(fxmlFile));
             Parent root = fxmlLoader.load();

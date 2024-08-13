@@ -9,6 +9,9 @@ package com.cookiecoders.gamearcade.ui.controllers;
 
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
+import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.leaderboard.LeaderboardEntry;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +25,20 @@ import com.cookiecoders.gamearcade.users.UserSession;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import com.cookiecoders.gamearcade.config.ConfigManager;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
+import com.cookiecoders.gamearcade.users.UserSession;
+import com.cookiecoders.gamearcade.database.models.User;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+
+import javax.swing.*;
+import java.net.URL;
 
 
 import java.io.File;
@@ -30,52 +47,45 @@ import java.util.List;
 import java.util.Map;
 
 public class profileViewController {
+    private Integer userId;
+    private User user;
+    private GameDao gameDao;
+    private OwnedGamesDao ownedGames;
+    @FXML
+    public ImageView profileImage;
+    @FXML
+    public Label userName;
+    @FXML
+    private Label score;
     @FXML
     private TableView<LeaderboardEntry> leaderboardTable;
-
     @FXML
     private TableColumn<LeaderboardEntry, String> usernameColumn;
-
     @FXML
     private TableColumn<LeaderboardEntry, String> gameTitleColumn;
-
     @FXML
     private TableColumn<LeaderboardEntry, Integer> playTimeColumn;
-
-    private GameDao gameDao;
-
-    public profileViewController() {
-        this.gameDao = new GameDaoImpl();
-    }
-
-    @FXML
-    private Label usernameLabel;
-
-    @FXML
-    private ImageView profileImageView;
-
 
 
     @FXML
     private void initialize() {
         // Load the current user's data from UserSession
         User currentUser = UserSession.getInstance().getCurrentUser();
-
-//        if (currentUser != null) {
-//            // Load and set the username
-//            usernameLabel.setText(currentUser.getUsername());
-//
-//            // Load and set the profile image
-//            String imagePath = currentUser.getFullImagePath();
-//
-//            if (imagePath != null && !imagePath.isEmpty()) {
-//                File imageFile = new File(imagePath);
-//                if (imageFile.exists()) {
-//                    Image image = new Image(imageFile.toURI().toString());
-//                    profileImageView.setImage(image);
-//                }
-//            }
-//        }
+        ownedGames = new OwnedGamesDaoImpl();
+        this.gameDao = new GameDaoImpl();
+        this.user = UserSession.getInstance().getCurrentUser();
+        this.userId = this.user.getId();
+        String accountUsername = UserSession.getInstance().getCurrentUser().getUsername();
+        userName.setText(accountUsername);
+        String imagePath = ConfigManager.getProperty("root_path") +
+                ConfigManager.getProperty("prof_image_path") +
+                accountUsername + ".jpg";
+        URL imageUrl = getClass().getResource(imagePath);
+        if (imageUrl != null) {
+            Image image = new Image(imageUrl.toExternalForm());
+            profileImage.setImage(image);
+        }
+        score.setText(String.valueOf(ownedGames.getUserPlaytime(userId)));
         /**
          * Coming in from Kevin
          */
