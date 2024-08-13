@@ -10,7 +10,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        String query = "UPDATE users SET username = ?, firstname = ?, lastname = ?, email = ? WHERE id = ?";
+        String query = "UPDATE Users SET UserName = ?, FirstName = ?, LastName = ?, Email = ? WHERE UserID = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getFirstname());
