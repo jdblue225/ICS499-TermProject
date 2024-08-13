@@ -10,20 +10,21 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        String query = "UPDATE Users SET UserName = ?, FirstName = ?, LastName = ?, Email = ? WHERE UserID = ?";
+        String query = "UPDATE Users SET UserName = ?, FirstName = ?, LastName = ?, Email = ?, ImageName = ?,  Image = ? WHERE UserID = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getFirstname());
             statement.setString(3, user.getLastname());
             statement.setString(4, user.getEmail());
-            statement.setInt(5, user.getId()); // Assuming you have an ID column
+            statement.setString(5, user.getImageName());
+            statement.set;
+            statement.setInt(7, user.getId()); // Assuming you have an ID column
             int rowsUpdated = statement.executeUpdate();
             System.out.println("Rows updated: " + rowsUpdated); // Log the number of rows updated
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     private static DatabaseManager dbm = DatabaseManager.getInstance();
     private static Connection connection = dbm.getConnection();
@@ -134,7 +135,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(5, user.getPassword());
             stmt.setString(6, user.getUsertype());
             stmt.setString(7, user.getImageName());
-            stmt.setString(8, user.getImageName());
+            stmt.setString(8, user.getImage());
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

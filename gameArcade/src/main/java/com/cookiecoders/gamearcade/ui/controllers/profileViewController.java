@@ -12,7 +12,7 @@ import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
 import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
 import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
 import com.cookiecoders.gamearcade.database.models.User;
-import com.cookiecoders.gamearcade.leaderboard.LeaderboardEntry;
+//import com.cookiecoders.gamearcade.leaderboard.LeaderboardEntry;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -49,7 +49,7 @@ public class profileViewController {
     @FXML
     private TableView<LeaderboardEntry> leaderboardTable;
     @FXML
-    private TableColumn<LeaderboardEntry, String> usernameColumn;
+    private TableColumn<LeaderboardEntry, String> userNameColumn;
     @FXML
     private TableColumn<LeaderboardEntry, String> gameTitleColumn;
     @FXML
@@ -59,7 +59,7 @@ public class profileViewController {
     @FXML
     private void initialize() {
         // Load the current user's data from UserSession
-        User currentUser = UserSession.getInstance().getCurrentUser();
+//        User currentUser = UserSession.getInstance().getCurrentUser();
         ownedGames = new OwnedGamesDaoImpl();
         this.gameDao = new GameDaoImpl();
         this.user = UserSession.getInstance().getCurrentUser();
@@ -80,7 +80,7 @@ public class profileViewController {
          */
 
         // Setup columns
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
         gameTitleColumn.setCellValueFactory(new PropertyValueFactory<>("gameTitle"));
         playTimeColumn.setCellValueFactory(new PropertyValueFactory<>("playTime"));
 
@@ -91,11 +91,46 @@ public class profileViewController {
     private void loadLeaderboardData() {
         List<Map<String, Object>> leaderboardData = gameDao.getLeaderboardData();
         for (Map<String, Object> row : leaderboardData) {
-            String username = (String) row.get("Username");
+            String userName = (String) row.get("UserName");
             String gameTitle = (String) row.get("Title");
             Integer playTime = (Integer) row.get("PlayTime");
 
-            leaderboardTable.getItems().add(new LeaderboardEntry(username, gameTitle, playTime));
+            leaderboardTable.getItems().add(new LeaderboardEntry(userName, gameTitle, playTime));
+        }
+    }
+    public static class LeaderboardEntry {
+        private String userName;
+        private String gameTitle;
+        private Integer playTime;
+
+        public LeaderboardEntry(String userName, String gameTitle, Integer playTime) {
+            this.userName = userName;
+            this.gameTitle = gameTitle;
+            this.playTime = playTime;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public void setUserName(String userName) {
+            this.userName = userName;
+        }
+
+        public String getGameTitle() {
+            return gameTitle;
+        }
+
+        public void setGameTitle(String gameTitle) {
+            this.gameTitle = gameTitle;
+        }
+
+        public Integer getPlayTime() {
+            return playTime;
+        }
+
+        public void setPlayTime(Integer playTime) {
+            this.playTime = playTime;
         }
     }
 

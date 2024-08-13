@@ -7,6 +7,8 @@
  */
 package com.cookiecoders.gamearcade.ui.controllers;
 
+import com.cookiecoders.gamearcade.config.ConfigManager;
+import com.cookiecoders.gamearcade.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,53 +27,61 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 
 public class profileDetailsViewController {
+    private User user;
+    private String userName;
+    private File imageFile;
+    private UserDao userDao;
 
     @FXML
     private TextField usernameField;
-
     @FXML
     private Label usernameLabel;
-
     @FXML
     private TextField firstNameField;
-
     @FXML
     private TextField lastNameField;
-
     @FXML
     private TextField emailField;
-
     @FXML
     private Button uploadButton;
-
     @FXML
     private ImageView profileImage;
-
-    private File imageFile;
-
     @FXML
     private Button saveButton;
-
     @FXML
     private Button cancelButton;
 
+
+
     @FXML
     private void initialize() {
+        userDao = new UserDaoImpl();
+        this.user = UserSession.getInstance().getCurrentUser();
+        this.userName = this.user.getUsername();
         // Load user data
-        User currentUser = UserSession.getInstance().getCurrentUser();
-        usernameLabel.setText(currentUser.getUsername());
-        usernameField.setText(currentUser.getUsername());
-        firstNameField.setText(currentUser.getFirstname());
-        lastNameField.setText(currentUser.getLastname());
-        emailField.setText(currentUser.getEmail());
+        usernameLabel.setText(this.userName);
+        usernameField.setText(this.user.getUsername());
+        firstNameField.setText(this.user.getFirstname());
+        lastNameField.setText(this.user.getLastname());
+        emailField.setText(this.user.getEmail());
 
         // Setting up action handlers for the buttons
         uploadButton.setOnAction(this::handleUploadButtonAction);
         saveButton.setOnAction(this::handleSaveButtonAction);
         cancelButton.setOnAction(this::handleCancelButtonAction);
+
+        String imagePath = ConfigManager.getProperty("root_path") +
+                ConfigManager.getProperty("prof_image_path") +
+                this.userName + ".jpg";
+        URL imageUrl = getClass().getResource(imagePath);
+        if (imageUrl != null) {
+            Image image = new Image(imageUrl.toExternalForm());
+            profileImage.setImage(image);
+        }
 
     }
 
@@ -82,19 +92,29 @@ public class profileDetailsViewController {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
+        
+        if (this.user != null) {
+            byte[] profImageByte = null;
+            String imageName = null;
+            if (imageFile != null){
+                String imageExtension = Utils.getFileExtension(imageFile.toURI().toString());
+                imageName = username + "." + imageExtension;
+                String relativeSavePath = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_image_path") + imageName;
+                Utils.saveFile(imageFile, relativeSavePath);
+                profImageByte = Utils.imageToByteArray(relativeSavePath);
+            }
+            this.user.setUsername(username);
+            this.user.setFirstname(firstName);
+            this.user.setLastname(lastName);
+            this.user.setEmail(email);
+            this.user.setImageName(username + ".jpg");  // Hardcoded filetype
+            this.user.setImage(profImageByte);
 
-        User currentUser = UserSession.getInstance().getCurrentUser();
-        if (currentUser != null) {
-            currentUser.setUsername(username);
-            currentUser.setFirstname(firstName);
-            currentUser.setLastname(lastName);
-            currentUser.setEmail(email);
 
-            UserDao userDao = new UserDaoImpl();
-            userDao.updateUser(currentUser);
+            userDao.updateUser(this.user);
 
             // Reload user from the database
-            User updatedUser = userDao.getUserByUsername(currentUser.getUsername());
+            User updatedUser = userDao.getUserByUsername(this.user.getUsername());
             UserSession.getInstance().setCurrentUser(updatedUser);
 
             // Update UI with the refreshed user data
@@ -104,44 +124,28 @@ public class profileDetailsViewController {
 
     @FXML
     private void handleUploadButtonAction(ActionEvent event) {
-        try {
-            // Create a FileChooser
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Select Profile Image");
-            // Set extension filters (optional)
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
-            );
+        // Create a FileChooser
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Profile Image");
+        // Set extension filters (optional)
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
 
-            // Open the FileChooser dialog
-            Stage stage = (Stage) uploadButton.getScene().getWindow();
-            this.imageFile = fileChooser.showOpenDialog(stage);
+        // Open the FileChooser dialog
+        Stage stage = (Stage) uploadButton.getScene().getWindow(); // Get the current window
+        this.imageFile = fileChooser.showOpenDialog(stage);
 
-            if (imageFile != null) {
-                // Load the selected image file into the ImageView
-                Image image = new Image(imageFile.toURI().toString());
-                profileImage.setImage(image);
-            }
-        } catch (Exception e) {
-            e.printStackTrace(); // This will help identify the exact issue
+        if (imageFile != null) {
+            // Load the selected image file into the ImageView
+            Image image = new Image(imageFile.toURI().toString());
+            profileImage.setImage(image);
         }
     }
 
     @FXML
     private void handleCancelButtonAction(ActionEvent event) {
         Navigation.navigateToProfileView(event);
-//        try {
-//            // Load the profile view FXML
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/profile/profileView.fxml"));
-//            Parent root = loader.load();
-//            Stage stage = (Stage) cancelButton.getScene().getWindow();
-//            stage.setScene(new Scene(root));
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
 }
-
-// TODO: Implement save functionality

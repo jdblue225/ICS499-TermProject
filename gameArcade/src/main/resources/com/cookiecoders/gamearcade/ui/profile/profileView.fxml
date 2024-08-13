@@ -105,7 +105,7 @@
            <columns>
                <TableColumn fx:id="gameTitleColumn" prefWidth="144.0" text="Game" />
                <TableColumn fx:id="playTimeColumn" prefWidth="144.0" text="Play Time" />
-               <TableColumn fx:id="usernameColumn" prefWidth="144.0" text="User" />
+               <TableColumn fx:id="userNameColumn" prefWidth="144.0" text="User" />
            </columns>
        </TableView>
       <Sphere layoutX="423.0" layoutY="88.0" radius="30.0" />

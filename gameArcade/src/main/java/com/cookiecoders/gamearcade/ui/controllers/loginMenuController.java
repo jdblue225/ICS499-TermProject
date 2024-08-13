@@ -36,7 +36,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class loginMenuController {
-//    private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
     private ScheduledExecutorService scheduler;
 
