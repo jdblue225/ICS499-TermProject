@@ -11,8 +11,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<junit.version>5.10.0</junit.version>  </properties>
-
+    <junit.version>5.10.0</junit.version>  </properties>
   <dependencies>
     <dependency>
       <groupId>org.controlsfx</groupId>
@@ -51,7 +50,13 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-media</artifactId>
+      <version>22</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <resources>

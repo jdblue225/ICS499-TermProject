@@ -52,7 +52,7 @@ public class PongGame implements Game {
     }
 
     @Override
-    public String getName(){
+    public String getGameID(){
         return "1";
     }
 

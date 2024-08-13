@@ -18,6 +18,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -26,6 +28,7 @@ import javafx.util.Duration;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class storeViewController {
     private UserSession userSession;
@@ -35,23 +38,38 @@ public class storeViewController {
 
     @FXML
     private TilePane gamesTilePane;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private Button searchButton;
 
     @FXML
     private void initialize() {
         this.userSession = UserSession.getInstance();
         this.gameDao = new GameDaoImpl();
         this.ownedGamesDao = new OwnedGamesDaoImpl();
-        this.
-        populateStoreSP();
+        searchButton.setOnAction(event -> handleSearch());
+        populateStoreSP("");
 
     }
 
-    private void populateStoreSP(){  // Owned Games Scroll Pane
-        List<Map<String, Object>> ownedGames;
+    private List<Map<String, Object>> fetchUnownedGames(){
         if (userSession.getCurrentUser().getUsertype().equals("admin")){
-            ownedGames = gameDao.getAllGamesSummary();
+            return gameDao.getAllGamesSummary();
         } else{
-            ownedGames = ownedGamesDao.getUnownedGames(userSession.getCurrentUser().getId());
+            return ownedGamesDao.getUnownedGames(userSession.getCurrentUser().getId());
+        }
+    }
+
+    private void populateStoreSP(String searchQuery){  // Owned Games Scroll Pane
+        List<Map<String, Object>> unownedGames = fetchUnownedGames();
+
+        // Filter games based on the search query
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            unownedGames.removeIf(game -> {
+                String gameName = (String) game.get("Title");
+                return gameName == null || !gameName.toLowerCase().contains(searchQuery.toLowerCase());
+            });
         }
 
         TilePane mainTilePane = new TilePane();
@@ -65,7 +83,7 @@ public class storeViewController {
         tilePane.setVgap(0); // Vertical gap between tiles
 
 
-        for (Map<String, Object> game : ownedGames) {
+        for (Map<String, Object> game : unownedGames) {
             if (imageCount % 3 == 0 && imageCount != 0) {
                 mainTilePane.getChildren().add(tilePane);
                 tilePane = new TilePane();
@@ -160,19 +178,7 @@ public class storeViewController {
     }
 
     private void handleMouseClick(MouseEvent event, Integer gameId) {
-        if (event.getClickCount() == 2) {
-            doubleClickFlag = true;
-            launchGame(gameId);
-        } else if (event.getClickCount() == 1) {
-            PauseTransition pause = new PauseTransition(Duration.millis(200));
-            pause.setOnFinished(e -> {
-                if (!doubleClickFlag) {
-                    navigateToGameBuy(event,gameId);
-                }
-                doubleClickFlag = false;
-            });
-            pause.play();
-        }
+        navigateToGameBuy(event,gameId);
     }
 
     private void launchGame(Integer gameId){
@@ -183,6 +189,26 @@ public class storeViewController {
         alert.setContentText("Launching game with ID: " + gameId);
         alert.showAndWait();
     }
+
+    private void handleSearch() {
+        String searchText = searchField.getText().trim().toLowerCase();
+
+        // Clear existing games from TilePane
+        gamesTilePane.getChildren().clear();
+        populateStoreSP(searchText);
+    }
+
+//    private List<Map<String, Object>> filterGames(String searchText) {
+//        List<Map<String, Object>> allGames = fetchAllGames(); // Fetch all games from your data source
+//
+//        // Filter games based on the search text
+//        return allGames.stream()
+//                .filter(game -> {
+//                    String gameName = (String) game.get("Title");
+//                    return gameName != null && gameName.toLowerCase().contains(searchText);
+//                })
+//                .collect(Collectors.toList());
+//    }
 
     @FXML
     private void navigateToGameBuy(MouseEvent event, Integer gameId){

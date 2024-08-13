@@ -7,14 +7,17 @@
     -fx-background-color: #3C51C6;
 }
 
-.toolbar .button {
+.button {
     -fx-background-color: #885FC9;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 }
-
-.toolbar .button:hover {
+.button:hover {
     -fx-background-color: #6F4FB1;
+}
+
+.button-selected {
+    -fx-background-color: #b69ccf;
 }

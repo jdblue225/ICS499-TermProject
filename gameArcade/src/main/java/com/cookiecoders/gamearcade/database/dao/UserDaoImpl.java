@@ -134,7 +134,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(5, user.getPassword());
             stmt.setString(6, user.getUsertype());
             stmt.setString(7, user.getImageName());
-            stmt.setString(8, user.getImageName());
+            stmt.setBytes(8, user.getImage());
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
