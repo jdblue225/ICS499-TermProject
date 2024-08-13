@@ -33,7 +33,7 @@ public class Navigation {
     private static String BUY_VIEW_CSS = uiRoot + "store/gameBuy.css";
     //    Create Account View    //
     private static String CREATE_ACCOUNT_VIEW_FXML = uiRoot + "login/createAccountView.fxml";
-    private static String CREATE_ACCOUNT_VIEW_CSS = uiRoot + "login/createAccountView.css";
+    private static String CREATE_ACCOUNT_VIEW_CSS = uiRoot + "ui/login/createAccountView.css";
     //    Login View    //
     private static String LOGIN_VIEW_FXML = uiRoot + "login/loginView.fxml";
     private static String LOGIN_VIEW_CSS =  uiRoot + "login/loginView.css";

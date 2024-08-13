@@ -139,7 +139,7 @@ public class SnakeGame implements Game {
     }
 
     @Override
-    public String getGameID() {
+    public String getName() {
         return "Snake";
     }
 

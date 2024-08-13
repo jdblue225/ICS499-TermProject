@@ -1,26 +1,19 @@
 package com.cookiecoders.gamearcade.util;
 import com.cookiecoders.gamearcade.config.ConfigManager;
-import com.cookiecoders.gamearcade.database.models.User;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.ByteBuffer;
+import java.io.ByteArrayInputStream;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.awt.Graphics2D;
-import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.WritablePixelFormat;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
 
 
 public class Utils {
@@ -38,28 +31,33 @@ public class Utils {
         return byteArray;
     }
 
-    public static byte[] imageToByteArray(Image image) {
-        int width = (int) image.getWidth();
-        int height = (int) image.getHeight();
-
-        BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        PixelReader pixelReader = image.getPixelReader();
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int argb = pixelReader.getArgb(x, y);
-                bufferedImage.setRGB(x, y, argb);
-            }
-        }
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    public static void byteArraytoImage(byte[] imageBytes, String imageName, String saveLocation) {
         try {
-            ImageIO.write(bufferedImage, "jpg", baos);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            // Convert saveLocation to URL
+            URL saveURL = new URL(saveLocation);
 
-        return baos.toByteArray();
+            // Create directory if it doesn't exist
+            File directory = new File(saveURL.getPath());
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            // Convert byte array to BufferedImage
+            ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
+            BufferedImage image = ImageIO.read(bais);
+
+            // Write the BufferedImage to a file
+            File outputFile = new File(directory, imageName);
+            String formatName = imageName.substring(imageName.lastIndexOf(".") + 1);
+            ImageIO.write(image, formatName, outputFile);
+
+            System.out.println("Image written to " + outputFile.getAbsolutePath());
+
+        } catch (MalformedURLException e) {
+            System.err.println("Invalid URL: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error writing image: " + e.getMessage());
+        }
     }
 
     public static void saveFile(File file, String relativeFilePath){
@@ -107,60 +105,6 @@ public class Utils {
 
         // If no valid extension is found, return an empty string
         return "";
-    }
-
-    public static BufferedImage byteArrayToImage(byte[] imageBytes) {
-        BufferedImage image = null;
-        try {
-            ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
-            image = ImageIO.read(bais);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
-    }
-
-    public static void saveImageAsJpg(BufferedImage image, String relativeOutputPath) {
-        try {
-            // Attempt to locate the resource
-            URL resourceUrl = Utils.class.getResource(relativeOutputPath);
-            File outputFile;
-
-            if (resourceUrl != null) {
-                // If the resource exists, convert the URL to a File object
-                outputFile = new File(resourceUrl.toURI());
-            } else {
-                // If the resource does not exist, create a new file in the resources directory
-                outputFile = new File("src/main/resources" + relativeOutputPath); // Adjust this base path as needed.
-            }
-
-            // Ensure the parent directories exist
-            File parentDir = outputFile.getParentFile();
-            if (parentDir != null && !parentDir.exists()) {
-                parentDir.mkdirs();
-            }
-
-            // Write the BufferedImage to the output file as a JPG
-            ImageIO.write(image, "jpg", outputFile);
-            System.out.println("Image saved successfully at: " + outputFile.getAbsolutePath());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static boolean downladUserData(User user) {
-        if (user.getImage() != null){
-            // profile Image saved to drive
-            String username = user.getUsername();
-            String rootPath = ConfigManager.getProperty("root_path");
-            String profImageDir = ConfigManager.getProperty("prof_image_path");
-            String profImagePath = rootPath + profImageDir + username + ".jpg";
-            BufferedImage profImage = byteArrayToImage(user.getImage());
-            saveImageAsJpg(profImage, profImagePath);
-            return true;
-        }else {
-            return false;
-        }
     }
 
 }
