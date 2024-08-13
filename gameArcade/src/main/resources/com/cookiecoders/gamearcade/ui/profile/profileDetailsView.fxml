@@ -26,7 +26,7 @@
                         <Image url="@../../img/icon.jpg" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="105.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Username" textFill="#ffffff00">
+                  <Label fx:id="usernameLabel" alignment="CENTER" prefHeight="30.0" prefWidth="105.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Username" textFill="#ffffff00">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

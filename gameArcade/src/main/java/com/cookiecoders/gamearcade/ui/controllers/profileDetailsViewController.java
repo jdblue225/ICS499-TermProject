@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.users.UserSession;
@@ -30,6 +31,9 @@ public class profileDetailsViewController {
 
     @FXML
     private TextField usernameField;
+
+    @FXML
+    private Label usernameLabel;
 
     @FXML
     private TextField firstNameField;
@@ -58,6 +62,7 @@ public class profileDetailsViewController {
     private void initialize() {
         // Load user data
         User currentUser = UserSession.getInstance().getCurrentUser();
+        usernameLabel.setText(currentUser.getUsername());
         usernameField.setText(currentUser.getUsername());
         firstNameField.setText(currentUser.getFirstname());
         lastNameField.setText(currentUser.getLastname());
@@ -67,6 +72,7 @@ public class profileDetailsViewController {
         uploadButton.setOnAction(this::handleUploadButtonAction);
         saveButton.setOnAction(this::handleSaveButtonAction);
         cancelButton.setOnAction(this::handleCancelButtonAction);
+
     }
 
 

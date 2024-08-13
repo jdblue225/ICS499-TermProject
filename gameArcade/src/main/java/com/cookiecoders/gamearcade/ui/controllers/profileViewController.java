@@ -7,11 +7,17 @@
  */
 package com.cookiecoders.gamearcade.ui.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import com.cookiecoders.gamearcade.database.models.User;
+import com.cookiecoders.gamearcade.users.UserSession;
 
+import javafx.event.ActionEvent;
+import java.io.File;
 import java.io.IOException;
 
 public class profileViewController {
@@ -19,9 +25,37 @@ public class profileViewController {
     private VBox leaderboardContainer;
 
     @FXML
-    public void initialize(){
-//        loadLeaderboard();
+    private Label usernameLabel;
+
+    @FXML
+    private ImageView profileImageView;
+
+
+
+    @FXML
+    private void initialize() {
+        // Load the current user's data from UserSession
+        User currentUser = UserSession.getInstance().getCurrentUser();
+
+        if (currentUser != null) {
+            // Load and set the username
+            usernameLabel.setText(currentUser.getUsername());
+
+            // Load and set the profile image
+            String imagePath = currentUser.getFullImagePath();
+
+            if (imagePath != null && !imagePath.isEmpty()) {
+                File imageFile = new File(imagePath);
+                if (imageFile.exists()) {
+                    Image image = new Image(imageFile.toURI().toString());
+                    profileImageView.setImage(image);
+                }
+            }
+        }
+        //        loadLeaderboard();
     }
+
+
 
     private void loadLeaderboard() {
         try {
@@ -41,9 +75,3 @@ public class profileViewController {
     }
 
 }
-
-// TODO: Implement functionality to update the username and profile picture upon user login in ProfileViewController.
-//       - Retrieve the logged-in user's username and profile picture from the database.
-//       - Display the retrieved username in the appropriate label or text field.
-//       - Load and display the user's profile picture in the ImageView component.
-//       - Ensure the UI reflects these updates immediately after the user logs in.

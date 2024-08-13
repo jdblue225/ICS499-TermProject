@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added interactivity and scores to Pong">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileDetailsViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileDetailsViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileDetailsView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
