@@ -20,6 +20,7 @@ import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
 import com.cookiecoders.gamearcade.users.*;
+import com.cookiecoders.gamearcade.util.Utils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,11 +97,13 @@ public class loginMenuController {
         try {
             user = userDao.getUserByUsername(username);  // Populate user object from server
         } catch (Exception e) {
+            logger.log(Logger.LogLevel.ERROR, "Error fetching user: " + e.getMessage());
             loginFailed(username);
             return;
         }
         // Check if the user is found
         if (user == null) {
+            logger.log(Logger.LogLevel.INFO, "Invalid Credentials: " + username);
             loginFailed(username);
             return;
         }
@@ -110,10 +113,10 @@ public class loginMenuController {
             UserSession currentSession = UserSession.getInstance();
             currentSession.setCurrentUser(user);
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
+            Utils.downladUserData(user);
             loadProfilePage();
         } else {
             loginFailed(username);
-            return;
         }
     }
 
