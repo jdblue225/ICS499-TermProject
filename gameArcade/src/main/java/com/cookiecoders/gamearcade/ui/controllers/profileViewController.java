@@ -41,3 +41,9 @@ public class profileViewController {
     }
 
 }
+
+// TODO: Implement functionality to update the username and profile picture upon user login in ProfileViewController.
+//       - Retrieve the logged-in user's username and profile picture from the database.
+//       - Display the retrieved username in the appropriate label or text field.
+//       - Load and display the user's profile picture in the ImageView component.
+//       - Ensure the UI reflects these updates immediately after the user logs in.

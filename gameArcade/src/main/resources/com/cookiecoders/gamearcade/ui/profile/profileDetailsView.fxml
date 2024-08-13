@@ -12,7 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../Documents/GitHub/ICS499-TermProject/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/CSS/Master.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0"
+            stylesheets="@profileDetailsView.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileDetailsViewController">
    <left>
       <VBox prefHeight="600.0" prefWidth="281.0" spacing="50.0" styleClass="toolbar" stylesheets="@profileDetailsView.css" BorderPane.alignment="CENTER">
          <children>
@@ -128,7 +130,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="50.0" prefWidth="70.0" />
-                        <TextField prefHeight="26.0" prefWidth="298.0">
+                        <TextField fx:id="firstNameField" prefHeight="26.0" prefWidth="298.0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -143,7 +145,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="50.0" prefWidth="62.0" />
-                        <TextField prefHeight="26.0" prefWidth="302.0">
+                        <TextField fx:id="lastNameField" prefHeight="26.0" prefWidth="302.0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -158,7 +160,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="50.0" prefWidth="62.0" />
-                        <TextField prefHeight="26.0" prefWidth="296.0">
+                        <TextField fx:id="usernameField" prefHeight="26.0" prefWidth="296.0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -173,7 +175,7 @@
                            </font>
                         </Label>
                         <Pane prefHeight="50.0" prefWidth="114.0" />
-                        <TextField prefHeight="26.0" prefWidth="387.0">
+                        <TextField fx:id="emailField" prefHeight="26.0" prefWidth="387.0">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
@@ -184,7 +186,7 @@
             </VBox>
             <Pane prefHeight="78.0" prefWidth="599.0">
                <children>
-                  <Button alignment="CENTER" layoutX="145.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="125.0" styleClass="search-toolbar" text="Save Changes" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="145.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleSaveButtonAction" prefHeight="32.0" prefWidth="125.0" styleClass="search-toolbar" stylesheets="@profileDetailsView.css" text="Save Changes" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

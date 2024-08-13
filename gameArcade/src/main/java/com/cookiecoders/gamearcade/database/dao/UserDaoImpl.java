@@ -8,6 +8,23 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
+    @Override
+    public void updateUser(User user) {
+        String query = "UPDATE users SET username = ?, firstname = ?, lastname = ?, email = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getFirstname());
+            statement.setString(3, user.getLastname());
+            statement.setString(4, user.getEmail());
+            statement.setInt(5, user.getId()); // Assuming you have an ID column
+            int rowsUpdated = statement.executeUpdate();
+            System.out.println("Rows updated: " + rowsUpdated); // Log the number of rows updated
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private static DatabaseManager dbm = DatabaseManager.getInstance();
     private static Connection connection = dbm.getConnection();
 
