@@ -3,13 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
    <children>
       <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
         <items>
@@ -33,31 +35,33 @@
             <Image url="@../../img/bar.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="172.0" fitWidth="179.0" layoutX="14.0" layoutY="201.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../img/leader_baord.jpg" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="43.0" fitWidth="38.0" layoutX="410.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/level.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="172.0" fitWidth="244.0" layoutX="204.0" layoutY="201.0" pickOnBounds="true">
+      <ImageView fitHeight="172.0" fitWidth="244.0" layoutX="214.0" layoutY="191.0" pickOnBounds="true">
          <image>
             <Image url="@../../img/stats.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="183.0" fitWidth="249.0" layoutX="14.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="183.0" fitWidth="249.0" layoutX="24.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/friends.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="209.0" fitWidth="244.0" layoutX="204.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="209.0" fitWidth="250.0" layoutX="204.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/a.jpg" />
          </image>
       </ImageView>
-      <VBox fx:id="leaderboardContainer" layoutX="20.0" layoutY="300.0" prefHeight="200.0" prefWidth="400.0" />
+       <!-- TableView for Leaderboard -->
+       <TableView fx:id="leaderboardTable" layoutX="14.0" layoutY="192.0" prefHeight="200.0" prefWidth="432.0">
+           <columns>
+               <TableColumn fx:id="gameTitleColumn" prefWidth="144.0" text="Game" />
+               <TableColumn fx:id="playTimeColumn" prefWidth="144.0" text="Play Time" />
+               <TableColumn fx:id="usernameColumn" prefWidth="144.0" text="User"/>
+           </columns>
+       </TableView>
    </children>
 </AnchorPane>

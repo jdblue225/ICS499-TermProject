@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="14bcf7da-288c-4bc9-8b95-943dd92a8306" name="Changes" comment="Added interactivity and scores to Pong">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/java/com/cookiecoders/gamearcade/ui/controllers/profileViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/config/app.config" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/config/app.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/gameArcade/src/main/resources/com/cookiecoders/gamearcade/ui/profile/profileView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +39,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/jdblue225/ICS499-TermProject.git&quot;,
-    &quot;accountId&quot;: &quot;78e56757-8571-419f-b657-ccdf4b551564&quot;
+    &quot;accountId&quot;: &quot;944dbf16-62bb-40c3-b318-2d199fbd6bfe&quot;
   }
 }</component>
   <component name="ProblemsViewState">
@@ -53,34 +56,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ClasspathDebugger.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ClasspathEntriesDebugger.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Dookie Arcade.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainApp.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.TestConfigLoading.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestConfigLoadingAlternative.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestImageLoading.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;Application.main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.UserDaoImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;#12 on brandons-branch&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.28045976&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ClasspathDebugger.executor": "Run",
+    "Application.ClasspathEntriesDebugger.executor": "Run",
+    "Application.Dookie Arcade.executor": "Run",
+    "Application.MainApp.executor": "Debug",
+    "Application.TestConfigLoading.executor": "Run",
+    "Application.TestConfigLoadingAlternative.executor": "Run",
+    "Application.TestImageLoading.executor": "Run",
+    "Application.Unnamed (1).executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "Application.main.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "false",
+    "JUnit.UserDaoImplTest.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "kt-branch",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Brandon/IdeaProjects/ICS499-TermProject2/gameArcade/src/main/resources/sql",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.28045976",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Brandon\IdeaProjects\ICS499-TermProject2\gameArcade\src\main\resources\sql" />
