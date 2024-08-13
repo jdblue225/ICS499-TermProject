@@ -9,4 +9,5 @@ public interface OwnedGamesDao {
     Map<Double, String> getOwnedGameReview(Integer UserId, Integer GameId);
     boolean updateGameReview(Integer userId, Integer gameId, Double rating, String review);
     boolean recordGameDuration(int userId, String name, long time);
+    Integer getUserPlaytime(Integer userId);
 }

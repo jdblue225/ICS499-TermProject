@@ -12,10 +12,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Sphere?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="460.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cookiecoders.gamearcade.ui.controllers.profileViewController">
    <children>
+      <Label prefHeight="18.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Leaderboard" textFill="WHITE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="155.0">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
       <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0">
         <items>
             <Button fx:id="toolbarStoreButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Store" />
@@ -27,43 +33,19 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </ToolBar>
-      <Label layoutX="166.0" layoutY="79.0" text="userName" />
+      <Label fx:id="userName" layoutX="166.0" layoutY="79.0" text="userName" />
       <ImageView fitHeight="135.0" fitWidth="121.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/icon.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="75.0" fitWidth="244.0" layoutX="160.0" layoutY="110.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../img/bar.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="43.0" fitWidth="38.0" layoutX="410.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/level.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="editProfileButton" layoutX="325.0" layoutY="68.0" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="toolbar" stylesheets="@profileView.css" text="Edit Profile" textFill="WHITE">
+      <Button fx:id="editProfileButton" layoutX="282.0" layoutY="66.0" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToProfileDeets" styleClass="toolbar" stylesheets="@profileView.css" text="Edit Profile" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <VBox layoutX="16.0" layoutY="212.0" prefHeight="353.0" prefWidth="422.0">
+      <VBox alignment="CENTER" layoutX="16.0" layoutY="212.0" prefHeight="353.0" prefWidth="422.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="400.0">
          <children>
-            <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Leaderboard" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="91.0" fitWidth="258.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../img/leader_baord.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
             <Label prefHeight="18.0" prefWidth="713.0" style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Rewards" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -118,33 +100,19 @@
             </HBox>
          </children>
       </VBox>
-      <ImageView fitHeight="43.0" fitWidth="38.0" layoutX="410.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/level.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="172.0" fitWidth="244.0" layoutX="214.0" layoutY="191.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../img/stats.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="183.0" fitWidth="249.0" layoutX="24.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/friends.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="209.0" fitWidth="250.0" layoutX="204.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../img/a.jpg" />
-         </image>
-      </ImageView>
        <!-- TableView for Leaderboard -->
        <TableView fx:id="leaderboardTable" layoutX="14.0" layoutY="192.0" prefHeight="200.0" prefWidth="432.0">
            <columns>
                <TableColumn fx:id="gameTitleColumn" prefWidth="144.0" text="Game" />
                <TableColumn fx:id="playTimeColumn" prefWidth="144.0" text="Play Time" />
-               <TableColumn fx:id="usernameColumn" prefWidth="144.0" text="User"/>
+               <TableColumn fx:id="usernameColumn" prefWidth="144.0" text="User" />
            </columns>
        </TableView>
+      <Sphere layoutX="423.0" layoutY="88.0" radius="30.0" />
+      <AnchorPane layoutX="393.0" layoutY="60.0" prefHeight="60.0" prefWidth="60.0">
+         <children>
+            <Label fx:id="score" contentDisplay="CENTER" text="score" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" alignment="CENTER"/>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

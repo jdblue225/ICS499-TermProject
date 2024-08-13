@@ -26,18 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.cookiecoders.gamearcade.config.ConfigManager;
-import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
-import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
-import com.cookiecoders.gamearcade.users.UserSession;
-import com.cookiecoders.gamearcade.database.models.User;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
-import javax.swing.*;
 import java.net.URL;
 
 
@@ -111,8 +100,14 @@ public class profileViewController {
     }
 
     @FXML
+    private void navigateToProfileDeets(ActionEvent event){
+        Navigation.navigateToProfileDetailsView(event);
+    }
+
+    @FXML
     private void navigationButtonClicked(ActionEvent event){
         Navigation.toolbarNavigate(event);
     }
+
 
 }
