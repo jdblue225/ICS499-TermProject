@@ -128,17 +128,18 @@ public class profileDetailsViewController {
     }
 
     @FXML
-    private void handleCancelButtonAction(ActionEvent actionEvent) {
-        try {
-            // Load the profile view FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/profile/profileView.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void handleCancelButtonAction(ActionEvent event) {
+        Navigation.navigateToProfileView(event);
+//        try {
+//            // Load the profile view FXML
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/profile/profileView.fxml"));
+//            Parent root = loader.load();
+//            Stage stage = (Stage) cancelButton.getScene().getWindow();
+//            stage.setScene(new Scene(root));
+//            stage.show();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }

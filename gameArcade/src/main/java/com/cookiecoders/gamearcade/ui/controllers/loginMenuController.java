@@ -92,7 +92,18 @@ public class loginMenuController {
     private void login() {
         String username = usernameField.getText();
         UserDao userDao = new UserDaoImpl();        //instatiate User data access object
-        User user = userDao.getUserByUsername(username); //populate user object from server
+        User user = null;
+        try {
+            user = userDao.getUserByUsername(username);  // Populate user object from server
+        } catch (Exception e) {
+            loginFailed(username);
+            return;
+        }
+        // Check if the user is found
+        if (user == null) {
+            loginFailed(username);
+            return;
+        }
         String enteredPasswordHashed = SecurityManager.hashString(passwordField.getText());
         String passFromServer= user.getPassword();
         if (SecurityManager.authenticate(enteredPasswordHashed,passFromServer)){
@@ -101,9 +112,14 @@ public class loginMenuController {
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
             loadProfilePage();
         } else {
-            errorMessage.setText("Invalid Credentials");
-            logger.log(Logger.LogLevel.WARNING, username.toString() + " login failed.");
+            loginFailed(username);
+            return;
         }
+    }
+
+    private void loginFailed(String username){
+        errorMessage.setText("Invalid Credentials");
+        logger.log(Logger.LogLevel.WARNING, username.toString() + " login failed.");
     }
 
     /**

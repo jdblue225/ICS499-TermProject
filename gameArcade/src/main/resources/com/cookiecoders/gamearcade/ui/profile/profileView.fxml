@@ -34,7 +34,7 @@
          </padding>
       </ToolBar>
       <Label fx:id="userName" layoutX="166.0" layoutY="79.0" text="userName" />
-      <ImageView fitHeight="135.0" fitWidth="121.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="profileImage" fitHeight="135.0" fitWidth="121.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/icon.jpg" />
          </image>
