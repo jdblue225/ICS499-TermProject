@@ -14,4 +14,5 @@ module com.cookiecoders.gamearcade {
     opens com.cookiecoders.gamearcade.util to javafx.fxml;
     exports com.cookiecoders.gamearcade.ui.controllers;
     opens com.cookiecoders.gamearcade.ui.controllers to javafx.fxml;
+    exports com.cookiecoders.gamearcade.games to javafx.graphics;
 }
