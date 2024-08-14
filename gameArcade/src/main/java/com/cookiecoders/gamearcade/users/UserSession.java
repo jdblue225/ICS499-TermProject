@@ -42,5 +42,7 @@ public class UserSession {
     // Method to clear the current user
     public void clearSession() {
         this.currentUser = null;
+        this.sessionID = null;
+        this.instance = null;
     }
 }

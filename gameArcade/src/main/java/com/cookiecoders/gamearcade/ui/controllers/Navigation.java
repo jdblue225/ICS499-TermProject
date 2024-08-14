@@ -190,5 +190,20 @@ public class Navigation {
             Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load " + fxmlFile + ": " + e.getMessage());
         }
     }
+    public static void navigateToLoginView(ActionEvent event){
+        String fxmlFile = LOGIN_VIEW_FXML;
+        String cssFile = LOGIN_VIEW_CSS;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Navigation.class.getResource(fxmlFile));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Navigation.class.getResource(cssFile).toExternalForm());
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load " + fxmlFile + ": " + e.getMessage());
+        }
+    }
 
 }
