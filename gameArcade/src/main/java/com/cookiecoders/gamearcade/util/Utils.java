@@ -24,19 +24,7 @@ import java.io.IOException;
 
 
 public class Utils {
-    public static byte[] imageToByteArray(String filePath) {
-        byte[] byteArray = null;
-        try {
-            File file = new File(filePath);
-            FileInputStream fis = new FileInputStream(file);
-            byteArray = new byte[(int) file.length()];
-            fis.read(byteArray);
-            fis.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return byteArray;
-    }
+
 
     public static byte[] imageToByteArray(Image image) {
         int width = (int) image.getWidth();
@@ -109,14 +97,11 @@ public class Utils {
         return "";
     }
 
-    public static BufferedImage byteArrayToImage(byte[] imageBytes) {
-        BufferedImage image = null;
-        try {
-            ByteArrayInputStream bais = new ByteArrayInputStream(imageBytes);
-            image = ImageIO.read(bais);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    public static Image byteArrayToImage(byte[] imageBytes) {
+        ByteArrayInputStream bis = new ByteArrayInputStream(imageBytes);
+        // Convert InputStream to Image
+        Image image = new Image(bis);
         return image;
     }
 
@@ -148,19 +133,19 @@ public class Utils {
         }
     }
 
-    public static boolean downladUserData(User user) {
-        if (user.getImage() != null){
-            // profile Image saved to drive
-            String username = user.getUsername();
-            String rootPath = ConfigManager.getProperty("root_path");
-            String profImageDir = ConfigManager.getProperty("prof_image_path");
-            String profImagePath = rootPath + profImageDir + username + ".jpg";
-            BufferedImage profImage = byteArrayToImage(user.getImage());
-            saveImageAsJpg(profImage, profImagePath);
-            return true;
-        }else {
-            return false;
-        }
-    }
+//    public static boolean downladUserData(User user) {
+//        if (user.getImage() != null){
+////            // profile Image saved to drive
+////            String username = user.getUsername();
+////            String rootPath = ConfigManager.getProperty("root_path");
+////            String profImageDir = ConfigManager.getProperty("prof_image_path");
+////            String profImagePath = rootPath + profImageDir + username + ".jpg";
+////            BufferedImage profImage = byteArrayToImage(user.getImage());
+////            saveImageAsJpg(profImage, profImagePath);
+//            return true;
+//        }else {
+//            return false;
+//        }
+//    }
 
 }

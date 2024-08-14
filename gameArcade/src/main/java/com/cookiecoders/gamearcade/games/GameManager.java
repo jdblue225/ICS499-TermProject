@@ -10,20 +10,15 @@ import javafx.scene.layout.StackPane;
 
 public class GameManager {
     private Game currentGame;
-    private StackPane root;
+    private       StackPane root;
+    private final GameDao   gameDao;
     private OwnedGamesDao ownedGamesDao;
 
     public GameManager() {
+        this.gameDao = new GameDaoImpl();
         this.ownedGamesDao = new OwnedGamesDaoImpl();
     }
 
-    /**
-     * This method sets the current game in the GameManager in this class
-     * and calls the <Game Name>.java initialize() method from the Game.java
-     * interface.
-     *
-     * @param game
-     */
     public void loadGame(Game game) {
         if (currentGame != null) {
             currentGame.stop();
@@ -32,9 +27,6 @@ public class GameManager {
         currentGame.initialize();
     }
 
-    /**
-     * This method accesses the Game interfaces start() method.
-     */
     public void startGame() {
         if (currentGame != null) {
             currentGame.start();
@@ -73,6 +65,6 @@ public class GameManager {
     public void recordTime(long time) {
         UserSession userSession = UserSession.getInstance();
         int userId = userSession.getCurrentUser().getId();
-        this.ownedGamesDao.recordGameDuration(userId,currentGame.getGameID(),time);
+        this.ownedGamesDao.recordGameDuration(userId,currentGame.getName(),time);
     }
 }

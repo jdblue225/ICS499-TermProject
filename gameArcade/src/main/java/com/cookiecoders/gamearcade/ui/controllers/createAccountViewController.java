@@ -71,6 +71,7 @@ public class createAccountViewController {
         cancelButton.setOnAction(this::navigateLoginView);
     }
 
+
     @FXML
     private void handleCheckButtonAction(ActionEvent event) {
         // Handle Check button action
@@ -215,11 +216,7 @@ public class createAccountViewController {
         if (imageFile != null){
             String imageExtension = Utils.getFileExtension(imageFile.toURI().toString());
             imageName = username + "." + imageExtension;
-            String relativeSavePath = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_image_path") + imageName;
-            profImageByte = Utils.imageToByteArray(this.profileImage.getImage());
-//            Utils.saveFile(imageFile, relativeSavePath);
-//            profImageByte = Utils.imageToByteArray(relativeSavePath);
-//            profImageByte = Utils.imageToByteArray(this.profileImage.getImage());
+            profImageByte = Utils.imageToByteArray(profileImage.getImage());
         }
         this.user = new User(
                 username,

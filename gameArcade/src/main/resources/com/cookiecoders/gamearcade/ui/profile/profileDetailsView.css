@@ -1,13 +1,17 @@
-/* storeView.css */
+/* profileDetailsView.css */
+
 .anchor-pane {
     -fx-background-color: #1D3B76;
 }
+
 .toolbar {
     -fx-background-color: #3C51C6;
 }
+
 .search-toolbar {
     -fx-background-color: #3C51C6;
 }
+
 .search-toolbar .button {
     -fx-background-color: #885FC9;
     -fx-text-fill: white;
@@ -16,13 +20,6 @@
     -fx-border-radius: 5px;
 }
 
-.search-toolbar .button:hover {
-    -fx-background-color: #6F4FB1;
-}
-
-.search-toolbar .button.selected {
-    -fx-background-color: #6F4FB1;
-}
 .toolbar .button {
     -fx-background-color: #885FC9;
     -fx-text-fill: white;
@@ -30,6 +27,7 @@
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 }
+
 .toolbar .button:hover {
     -fx-background-color: #6F4FB1;
 }
@@ -37,12 +35,6 @@
 .toolbar .button.selected {
     -fx-background-color: #6F4FB1;
 }
-
-.scroll-pane {
-    -fx-background: #1D3B76;
-    -fx-padding: 10;
-}
-
 
 .image-view {
     -fx-cursor: hand;
@@ -52,16 +44,4 @@
 .label {
     -fx-text-fill: white;
     -fx-font-size: 14px;
-}
-.scroll-bar:vertical .track {
-    -fx-background-color: #CCCCCC; /* Track color */
-}
-.scroll-bar:vertical .thumb {
-    -fx-background-color: #666666; /* Thumb color */
-    -fx-background-insets: 0;
-    -fx-background-radius: 5;
-}
-.scroll-bar .increment-button,
-.scroll-bar .decrement-button {
-    -fx-background-color: #999999; /* Button color */
 }

@@ -1,74 +1,130 @@
+/**
+ * This profileViewController class is the controller
+ * for profileView.fxml and handles the UI functionality
+ * for this page
+ *
+ * @author Cookie Coders
+ */
 package com.cookiecoders.gamearcade.ui.controllers;
 
 import com.cookiecoders.gamearcade.database.dao.GameDao;
 import com.cookiecoders.gamearcade.database.dao.GameDaoImpl;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
+import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
+import com.cookiecoders.gamearcade.database.models.User;
+//import com.cookiecoders.gamearcade.leaderboard.LeaderboardEntry;
+import com.cookiecoders.gamearcade.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import com.cookiecoders.gamearcade.database.models.User;
+import com.cookiecoders.gamearcade.users.UserSession;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import com.cookiecoders.gamearcade.config.ConfigManager;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+
+import java.io.File;
 
 import java.util.List;
 import java.util.Map;
 
 public class profileViewController {
+    private Integer userId;
+    private User user;
+    private GameDao gameDao;
+    private OwnedGamesDao ownedGames;
+    @FXML
+    public ImageView profileImage;
+    @FXML
+    public Label userName;
+    @FXML
+    private Label score;
     @FXML
     private TableView<LeaderboardEntry> leaderboardTable;
-
     @FXML
-    private TableColumn<LeaderboardEntry, String> usernameColumn;
-
+    private TableColumn<LeaderboardEntry, String> userNameColumn;
     @FXML
     private TableColumn<LeaderboardEntry, String> gameTitleColumn;
-
     @FXML
     private TableColumn<LeaderboardEntry, Integer> playTimeColumn;
 
-    private GameDao gameDao;
-
-    public profileViewController() {
-        this.gameDao = new GameDaoImpl();
-    }
 
     @FXML
-    public void initialize() {
+    private void initialize() {
+        // Load the current user's data from UserSession
+//        User currentUser = UserSession.getInstance().getCurrentUser();
+        ownedGames = new OwnedGamesDaoImpl();
+        this.gameDao = new GameDaoImpl();
+        this.user = UserSession.getInstance().getCurrentUser();
+        this.userId = this.user.getId();
+        userName.setText(user.getUsername());
+//        String imagePath = ConfigManager.getProperty("root_path") +
+//                ConfigManager.getProperty("prof_image_path") +
+//                user.getUsername() + ".jpg";
+//        URL imageUrl = getClass().getResource(imagePath);
+//        if (imageUrl != null) {
+//            Image image = new Image(imageUrl.toExternalForm(), true);
+//            profileImage.setImage(image);
+//        }
+        loadProfileImage();
+        score.setText(String.valueOf(ownedGames.getUserPlaytime(userId)));
+        /**
+         * Coming in from Kevin
+         */
+
         // Setup columns
-        usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
+        userNameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
         gameTitleColumn.setCellValueFactory(new PropertyValueFactory<>("gameTitle"));
         playTimeColumn.setCellValueFactory(new PropertyValueFactory<>("playTime"));
 
         // Load leaderboard data
         loadLeaderboardData();
     }
+    private void loadProfileImage(){
+        if(this.user.getImage() != null){
+            Image image = Utils.byteArrayToImage(user.getImage());
+            profileImage.setImage(image);
+        }
+    }
 
     private void loadLeaderboardData() {
         List<Map<String, Object>> leaderboardData = gameDao.getLeaderboardData();
         for (Map<String, Object> row : leaderboardData) {
-            String username = (String) row.get("Username");
+            String userName = (String) row.get("UserName");
             String gameTitle = (String) row.get("Title");
             Integer playTime = (Integer) row.get("PlayTime");
 
-            leaderboardTable.getItems().add(new LeaderboardEntry(username, gameTitle, playTime));
+            leaderboardTable.getItems().add(new LeaderboardEntry(userName, gameTitle, playTime));
         }
     }
-
     public static class LeaderboardEntry {
-        private String username;
+        private String userName;
         private String gameTitle;
         private Integer playTime;
 
-        public LeaderboardEntry(String username, String gameTitle, Integer playTime) {
-            this.username = username;
+        public LeaderboardEntry(String userName, String gameTitle, Integer playTime) {
+            this.userName = userName;
             this.gameTitle = gameTitle;
             this.playTime = playTime;
         }
 
-        public String getUsername() {
-            return username;
+        public String getUserName() {
+            return userName;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setUserName(String userName) {
+            this.userName = userName;
         }
 
         public String getGameTitle() {
@@ -89,7 +145,14 @@ public class profileViewController {
     }
 
     @FXML
+    private void navigateToProfileDeets(ActionEvent event){
+        Navigation.navigateToProfileDetailsView(event);
+    }
+
+    @FXML
     private void navigationButtonClicked(ActionEvent event){
         Navigation.toolbarNavigate(event);
     }
+
+
 }

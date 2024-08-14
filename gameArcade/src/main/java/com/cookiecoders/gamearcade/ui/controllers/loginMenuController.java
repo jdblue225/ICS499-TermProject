@@ -20,7 +20,6 @@ import com.cookiecoders.gamearcade.database.models.User;
 import com.cookiecoders.gamearcade.security.SecurityManager;
 import com.cookiecoders.gamearcade.util.Logger;
 import com.cookiecoders.gamearcade.users.*;
-import com.cookiecoders.gamearcade.util.Utils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,7 +35,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class loginMenuController {
-//    private SQLConnection conn = SQLConnection.getInstance();
     private Logger logger = Logger.getInstance();
     private ScheduledExecutorService scheduler;
 
@@ -93,19 +91,35 @@ public class loginMenuController {
     private void login() {
         String username = usernameField.getText();
         UserDao userDao = new UserDaoImpl();        //instatiate User data access object
-        User user = userDao.getUserByUsername(username); //populate user object from server
+        User user = null;
+        try {
+            user = userDao.getUserByUsername(username);  // Populate user object from server
+        } catch (Exception e) {
+            logger.log(Logger.LogLevel.ERROR, "Error fetching user: " + e.getMessage());
+            loginFailed(username);
+            return;
+        }
+        // Check if the user is found
+        if (user == null) {
+            logger.log(Logger.LogLevel.INFO, "Invalid Credentials: " + username);
+            loginFailed(username);
+            return;
+        }
         String enteredPasswordHashed = SecurityManager.hashString(passwordField.getText());
         String passFromServer= user.getPassword();
         if (SecurityManager.authenticate(enteredPasswordHashed,passFromServer)){
             UserSession currentSession = UserSession.getInstance();
             currentSession.setCurrentUser(user);
             logger.log(Logger.LogLevel.INFO, username.toString() + " login successful.");
-            Utils.downladUserData(user);
             loadProfilePage();
         } else {
-            errorMessage.setText("Invalid Credentials");
-            logger.log(Logger.LogLevel.WARNING, username.toString() + " login failed.");
+            loginFailed(username);
         }
+    }
+
+    private void loginFailed(String username){
+        errorMessage.setText("Invalid Credentials");
+        logger.log(Logger.LogLevel.WARNING, username.toString() + " login failed.");
     }
 
     /**

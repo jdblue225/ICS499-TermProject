@@ -157,7 +157,7 @@ public class GameDaoImpl implements GameDao {
     @Override
     public List<Map<String, Object>> getLeaderboardData() {
         String query = """
-                SELECT u.Username, g.Title, og.PlayTime
+                SELECT u.UserName, g.Title, og.PlayTime
                 FROM OwnedGames og
                 JOIN Users u ON og.UserID = u.UserID
                 JOIN Games g ON og.GameID = g.GameID
@@ -170,7 +170,7 @@ public class GameDaoImpl implements GameDao {
 
             while (rs.next()) {
                 Map<String, Object> row = new HashMap<>();
-                row.put("Username", rs.getString("Username"));
+                row.put("UserName", rs.getString("UserName"));
                 row.put("Title", rs.getString("Title"));
                 row.put("PlayTime", rs.getInt("PlayTime"));
                 leaderboardData.add(row);

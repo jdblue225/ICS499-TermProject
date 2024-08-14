@@ -47,9 +47,9 @@
              <Rating fx:id="starRating" rating="0.0" scaleX="0.65" scaleY="0.65" updateOnHover="False" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="365.0" layoutY="544.0" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToGameView" styleClass="button" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
-      <Button fx:id="submitButton" layoutX="366.0" layoutY="187.0" mnemonicParsing="false" onAction="#submitReview" text="Submit Review" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" styleClass="button"/>
-      <TextArea fx:id="reviewText" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0"/>
+      <Button layoutX="365.0" layoutY="544.0" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToGameView" styleClass="button selected" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+      <Button fx:id="submitButton" layoutX="366.0" layoutY="187.0" mnemonicParsing="false" onAction="#submitReview" text="Submit Review" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <TextArea fx:id="reviewText" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
       <Label layoutX="20.0" layoutY="335.0" text="Review:" AnchorPane.leftAnchor="20.0" />
    </children>
 </AnchorPane>

@@ -46,7 +46,7 @@ public class MinesweeperGame implements Game {
         canvas.setOnKeyPressed(this::handleKeyPressed);
     }
     @Override
-    public String getGameID(){
+    public String getName(){
         return "2";
     }
 

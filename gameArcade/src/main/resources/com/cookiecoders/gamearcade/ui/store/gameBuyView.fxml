@@ -47,7 +47,7 @@
              <Rating fx:id="starRating" disable="true" rating="0.0" scaleX="0.65" scaleY="0.65" updateOnHover="False" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button layoutX="365.0" layoutY="544.0" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToStoreView" styleClass="button" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
-      <Button fx:id="BuyButton" layoutX="366.0" layoutY="187.0" mnemonicParsing="false" onAction="#buyGameButtonClicked" text="Buy Game" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" styleClass="button" />
+      <Button layoutX="365.0" layoutY="544.0" minHeight="-Infinity" minWidth="75.0" mnemonicParsing="false" onAction="#navigateToStoreView" styleClass="button selected" text="Back" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" />
+      <Button fx:id="BuyButton" layoutX="366.0" layoutY="187.0" mnemonicParsing="false" onAction="#buyGameButtonClicked" text="Buy Game" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
    </children>
 </AnchorPane>

@@ -128,4 +128,25 @@ public class OwnedGamesDaoImpl implements OwnedGamesDao {
 
         return gameReview;
     }
+    @Override
+    public Integer getUserPlaytime(Integer userId) {
+        Integer playtime = 0;  // Initialize playtime to 0
+        String sql = "SELECT SUM(PlayTime) AS TotalPlayTime FROM OwnedGames WHERE UserID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    playtime = rs.getInt("TotalPlayTime");
+                    String temp = rs.getString("TotalPlayTime");
+                    if (rs.wasNull()) {
+                        playtime = 0;  // Handle case where SUM returns null
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return playtime;
+    }
 }
