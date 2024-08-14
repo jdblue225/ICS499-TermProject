@@ -8,7 +8,7 @@
     <children>
         <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <items>
-                <Button fx:id="toolbarStoreButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Store" />
+                <Button fx:id="toolbarStoreButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button-selected" text="Store" />
                 <Button fx:id="toolbarGameButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Game" />
                 <Button fx:id="toolbarForumButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Forum" />
                 <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Profile" />
@@ -19,7 +19,8 @@
         </ToolBar>
         <ToolBar layoutX="34.0" layoutY="66.0" styleClass="search-toolbar" AnchorPane.bottomAnchor="470.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="66.0">
             <items>
-                <Button minWidth="75.0" mnemonicParsing="false" styleClass="button" text="Search" />
+                <TextField fx:id="searchField" minWidth="200.0" promptText="Search store..."/>
+                <Button fx:id="searchButton" minWidth="75.0" mnemonicParsing="false" styleClass="button" text="Search" />
                 <HBox />
             </items>
         </ToolBar>
