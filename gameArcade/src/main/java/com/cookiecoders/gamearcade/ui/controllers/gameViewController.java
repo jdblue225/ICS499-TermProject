@@ -9,6 +9,7 @@ import com.cookiecoders.gamearcade.games.*;
 import com.cookiecoders.gamearcade.users.UserSession;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -174,9 +175,11 @@ public class gameViewController {
     @FXML
     private void handleMouseClick(MouseEvent event, Integer gameId) {
         if (event.getClickCount() == 2) {
+            // Double click launches game
             doubleClickFlag = true;
             launchGame(gameId);
         } else if (event.getClickCount() == 1) {
+            // Single click navigates to game review
             PauseTransition pause = new PauseTransition(Duration.millis(200));
             pause.setOnFinished(e -> {
                 if (!doubleClickFlag) {
@@ -187,13 +190,16 @@ public class gameViewController {
             pause.play();
         }
     }
-
     private void launchGame(Integer gameId) {
-        // Find game by gameId and launch it
+        // Find games.game by gameId and launch it
+        // This is a hardcoded Switch = requires a lot of work to get
+        // more games working
         Game game = getGameById(gameId);
         if (game != null) {
             Stage gameStage = new Stage();
-            gameStage.setOnCloseRequest(event -> gameManager.stopGame()); //listen to when game window close
+            //listen to when game window close - feeds Game interface i.e. functionality in the <Game Name>.java class
+            gameStage.setOnCloseRequest(event -> gameManager.stopGame());
+            //
             setupGameStage(gameStage, game);
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -203,63 +209,79 @@ public class gameViewController {
             alert.showAndWait();
         }
     }
-
+    // TODO this should be in GameManager
     private Game getGameById(Integer gameId) {
         // This method should return the game instance based on the gameId
         // For demonstration, we'll return a new PongGame or MinesweeperGame based on gameId
         // You should implement this to return the correct game instance from your database or list
+        // TODO Change this from a switch to retrieve and launch the game based on what's in the database
+//        com.cookiecoders.gamearcade.database.models.Game game = gameDao.getExecutableName(gameId);
+
         return switch (gameId) {
             case 1 -> new PongGame();
             case 2 -> new MinesweeperGame();
             case 3 -> new SnakeGame();
-            // Add other games here
+            case 4 -> new FroggerGame();
+            case 5 -> new WordsGame();
+            case 6 -> new TicTacToeGame();
+            case 7 -> new CardzGame();
+            case 8 -> new DiceGame();
+            case 9 -> new InvaderzGame();
+            case 10 -> new CookieGame();
             default -> null;
         };
     }
 
+    // TODO This should be in GameManager
     private void setupGameStage(Stage gameStage, Game game) {
-        gameManager.loadGame(game);
-        gameManager.startGame();
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
+        if (game instanceof Application) {
+            // If the game is a JavaFX Application (like InvaderzGame), start it as an Application
+            new Thread(() -> {
+                try {
+                    Application app = (Application) game;
+                    app.start(gameStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }else {
+            // TODO Remove this and make all games extension of application.
+            // Sets gameManager game and accesses game interface initialize() method
+            gameManager.loadGame(game);
+            // Accesses Game interface start() method
+            gameManager.startGame();
+            // variable sets start time
+            long startTime = System.currentTimeMillis();
+            // Loads UI.
+            // TODO Change this to handle games that require windows that arent 800 x 600
+            StackPane gameRoot = gameManager.getGamePane();
+            Scene gameScene = new Scene(gameRoot, 800, 600);
+            gameStage.setTitle(game.getClass().getSimpleName());
+            gameStage.setScene(gameScene);
+            gameStage.show();
 
-        StackPane gameRoot = gameManager.getGamePane();
-        Scene gameScene = new Scene(gameRoot, 800, 600);
+            gameStage.setOnCloseRequest(event -> {
+                long endTime = System.currentTimeMillis();
+                long duration = (endTime - startTime);
+                gameManager.recordTime(duration / 1000);
 
-        gameStage.setTitle(game.getClass().getSimpleName());
-        gameStage.setScene(gameScene);
-        gameStage.show();
+                System.out.println("duration: " + (endTime - startTime));
+            });
 
-        gameStage.setOnCloseRequest(event -> {
-            long endTime = System.currentTimeMillis();
-            long duration = (endTime - startTime);
-            gameManager.recordTime(duration/1000);
+            new AnimationTimer() {
+                @Override
+                public void handle(long now) {
+                    gameManager.updateGame();
+                    gameManager.renderGame();
 
-            System.out.println("duration: " + (endTime-startTime));
-        });
-
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                gameManager.updateGame();
-                gameManager.renderGame();
-
-            }
-        }.start();
+                }
+            }.start();
+        }
     }
 
     @FXML
     private void navigateToGameReview(MouseEvent event, Integer gameId) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/cookiecoders/gamearcade/ui/games/gameReviewView.fxml"));
-//            loader.setControllerFactory(param -> new gameReviewViewController(gameId));
-//            Parent root = loader.load();
-//            Stage stage = new Stage();
-//            stage.setScene(new Scene(root));
-//            stage.show();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//            Logger.getInstance().log(Logger.LogLevel.ERROR, "Failed to load game info page: " + e.getMessage());
-//        }
         Navigation.navigateToGameReviewView(event, gameId);
     }
 

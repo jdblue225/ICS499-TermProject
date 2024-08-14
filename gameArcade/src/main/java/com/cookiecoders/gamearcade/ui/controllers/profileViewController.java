@@ -17,6 +17,7 @@ import com.cookiecoders.gamearcade.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,10 +41,13 @@ import java.util.List;
 import java.util.Map;
 
 public class profileViewController {
+
     private Integer userId;
     private User user;
     private GameDao gameDao;
     private OwnedGamesDao ownedGames;
+    @FXML
+    public Button logoutButton;
     @FXML
     public ImageView profileImage;
     @FXML
@@ -69,14 +73,6 @@ public class profileViewController {
         this.user = UserSession.getInstance().getCurrentUser();
         this.userId = this.user.getId();
         userName.setText(user.getUsername());
-//        String imagePath = ConfigManager.getProperty("root_path") +
-//                ConfigManager.getProperty("prof_image_path") +
-//                user.getUsername() + ".jpg";
-//        URL imageUrl = getClass().getResource(imagePath);
-//        if (imageUrl != null) {
-//            Image image = new Image(imageUrl.toExternalForm(), true);
-//            profileImage.setImage(image);
-//        }
         loadProfileImage();
         score.setText(String.valueOf(ownedGames.getUserPlaytime(userId)));
         /**
@@ -143,6 +139,12 @@ public class profileViewController {
             this.playTime = playTime;
         }
     }
+    @FXML
+    private void logout(ActionEvent event){
+        UserSession.getInstance().clearSession();
+        Navigation.navigateToLoginView(event);
+    }
+
 
     @FXML
     private void navigateToProfileDeets(ActionEvent event){

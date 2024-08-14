@@ -73,7 +73,7 @@ public class InvaderzGame extends Application implements Game {
         mask.setOpacity(0);
         mask.setMouseTransparent(true);
 
-        MenuBox menuBox = new MenuBox(400, 100);
+        MenuBox menuBox = new MenuBox(600, 200);
         menuBox.setTranslateX(100);
         menuBox.setTranslateY(350);
 
