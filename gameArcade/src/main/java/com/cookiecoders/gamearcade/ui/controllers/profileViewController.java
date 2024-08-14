@@ -13,6 +13,7 @@ import com.cookiecoders.gamearcade.database.dao.OwnedGamesDao;
 import com.cookiecoders.gamearcade.database.dao.OwnedGamesDaoImpl;
 import com.cookiecoders.gamearcade.database.models.User;
 //import com.cookiecoders.gamearcade.leaderboard.LeaderboardEntry;
+import com.cookiecoders.gamearcade.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -27,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -90,15 +92,10 @@ public class profileViewController {
         loadLeaderboardData();
     }
     private void loadProfileImage(){
-        String imagePath = ConfigManager.getProperty("root_path") +
-                ConfigManager.getProperty("prof_image_path") +
-                user.getUsername() + ".jpg";
-        URL imageUrl = getClass().getResource(imagePath);
-        if (imageUrl != null) {
-            Image image = new Image(imageUrl.toExternalForm(), true);
+        if(this.user.getImage() != null){
+            Image image = Utils.byteArrayToImage(user.getImage());
             profileImage.setImage(image);
         }
-        URL resourcepath = getClass().getResource("");
     }
 
     private void loadLeaderboardData() {

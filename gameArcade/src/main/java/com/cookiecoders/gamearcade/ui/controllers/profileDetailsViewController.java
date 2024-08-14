@@ -77,12 +77,8 @@ public class profileDetailsViewController {
     }
 
     private void loadProfileImage(){
-        String imagePath = ConfigManager.getProperty("root_path") +
-                ConfigManager.getProperty("prof_image_path") +
-                user.getUsername() + ".jpg";
-        URL imageUrl = getClass().getResource(imagePath);
-        if (imageUrl != null) {
-            Image image = new Image(imageUrl.toExternalForm(), true);
+        if(this.user.getImage() != null){
+            Image image = Utils.byteArrayToImage(user.getImage());
             profileImage.setImage(image);
         }
     }
@@ -100,17 +96,14 @@ public class profileDetailsViewController {
             if (imageFile != null){
                 String imageExtension = Utils.getFileExtension(imageFile.toURI().toString());
                 imageName = username + "." + imageExtension;
-                String relativeSavePath = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_image_path") + imageName;
-                Utils.saveFile(imageFile, relativeSavePath);
-                profImageByte = Utils.imageToByteArray(relativeSavePath);
+                profImageByte = Utils.imageToByteArray(profileImage.getImage());
             }
             this.user.setUsername(username);
             this.user.setFirstname(firstName);
             this.user.setLastname(lastName);
             this.user.setEmail(email);
-            this.user.setImageName(username + ".jpg");  // Hardcoded filetype
+            this.user.setImageName(imageName);  // Hardcoded filetype
             this.user.setImage(profImageByte);
-
 
             userDao.updateUser(this.user);
 

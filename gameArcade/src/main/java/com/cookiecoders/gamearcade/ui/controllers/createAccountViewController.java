@@ -216,9 +216,7 @@ public class createAccountViewController {
         if (imageFile != null){
             String imageExtension = Utils.getFileExtension(imageFile.toURI().toString());
             imageName = username + "." + imageExtension;
-            String relativeSavePath = ConfigManager.getProperty("root_path") + ConfigManager.getProperty("prof_image_path") + imageName;
-            Utils.saveFile(imageFile, relativeSavePath);
-            profImageByte = Utils.imageToByteArray(relativeSavePath);
+            profImageByte = Utils.imageToByteArray(profileImage.getImage());
         }
         this.user = new User(
                 username,
