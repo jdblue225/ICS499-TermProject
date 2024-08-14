@@ -10,6 +10,7 @@ import com.cookiecoders.gamearcade.users.UserSession;
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Rectangle2D;
@@ -34,6 +35,7 @@ public class gameViewController {
     private OwnedGamesDao ownedGamesDao;
     private boolean doubleClickFlag = false;
     private GameManager gameManager;
+    public static Stage gameStage;
 
     @FXML
     private TilePane gamesTilePane;
@@ -194,19 +196,41 @@ public class gameViewController {
         // Find games.game by gameId and launch it
         // This is a hardcoded Switch = requires a lot of work to get
         // more games working
-        Game game = getGameById(gameId);
-        if (game != null) {
-            Stage gameStage = new Stage();
-            //listen to when game window close - feeds Game interface i.e. functionality in the <Game Name>.java class
-            gameStage.setOnCloseRequest(event -> gameManager.stopGame());
-            //
-            setupGameStage(gameStage, game);
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Game not found!");
-            alert.showAndWait();
+        if (gameId == 9){
+            Platform.runLater(() -> {
+                try {
+                    // Create a new instance of your game
+                    InvaderzGame invaderzGame = new InvaderzGame();
+
+                    // Since your application handles the stage, create a new stage or use the existing one
+                    Stage gameStage = new Stage();
+
+
+                    // Start the game, passing the stage that your application is managing
+                    invaderzGame.start(gameStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }else {
+            Game game = getGameById(gameId);
+            if (game != null) {
+                /**
+                 *   TODO This should be done in the game.
+                 *
+                 */
+                this.gameStage = new Stage();
+                //listen to when game window close - feeds Game interface i.e. functionality in the <Game Name>.java class
+                gameStage.setOnCloseRequest(event -> gameManager.stopGame());
+                //
+                setupGameStage(gameStage, game);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Game not found!");
+                alert.showAndWait();
+            }
         }
     }
     // TODO this should be in GameManager
@@ -217,6 +241,7 @@ public class gameViewController {
         // TODO Change this from a switch to retrieve and launch the game based on what's in the database
 //        com.cookiecoders.gamearcade.database.models.Game game = gameDao.getExecutableName(gameId);
 
+        // this  shouldn't be a switch
         return switch (gameId) {
             case 1 -> new PongGame();
             case 2 -> new MinesweeperGame();
@@ -226,7 +251,7 @@ public class gameViewController {
             case 6 -> new TicTacToeGame();
             case 7 -> new CardzGame();
             case 8 -> new DiceGame();
-            case 9 -> new InvaderzGame();
+//            case 9 -> new InvaderzGame();
             case 10 -> new CookieGame();
             default -> null;
         };
@@ -234,50 +259,37 @@ public class gameViewController {
 
     // TODO This should be in GameManager
     private void setupGameStage(Stage gameStage, Game game) {
-//        long startTime = System.currentTimeMillis();
-        if (game instanceof Application) {
-            // If the game is a JavaFX Application (like InvaderzGame), start it as an Application
-            new Thread(() -> {
-                try {
-                    Application app = (Application) game;
-                    app.start(gameStage);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }).start();
-        }else {
-            // TODO Remove this and make all games extension of application.
-            // Sets gameManager game and accesses game interface initialize() method
-            gameManager.loadGame(game);
-            // Accesses Game interface start() method
-            gameManager.startGame();
-            // variable sets start time
-            long startTime = System.currentTimeMillis();
-            // Loads UI.
-            // TODO Change this to handle games that require windows that arent 800 x 600
-            StackPane gameRoot = gameManager.getGamePane();
-            Scene gameScene = new Scene(gameRoot, 800, 600);
-            gameStage.setTitle(game.getClass().getSimpleName());
-            gameStage.setScene(gameScene);
-            gameStage.show();
+        long startTime = System.currentTimeMillis();
+        // TODO Remove this and make all games extension of application.
+        // Sets gameManager game and accesses game interface initialize() method
+        gameManager.loadGame(game);
+        // Accesses Game interface start() method
+        gameManager.startGame();
+        // variable sets start time
+        // Loads UI.
+        // TODO Change this to handle games that require windows that arent 800 x 600
+        StackPane gameRoot = gameManager.getGamePane();
+        Scene gameScene = new Scene(gameRoot, 800, 600);
+        gameStage.setTitle(game.getClass().getSimpleName());
+        gameStage.setScene(gameScene);
+        gameStage.show();
 
-            gameStage.setOnCloseRequest(event -> {
-                long endTime = System.currentTimeMillis();
-                long duration = (endTime - startTime);
-                gameManager.recordTime(duration / 1000);
+        gameStage.setOnCloseRequest(event -> {
+            long endTime = System.currentTimeMillis();
+            long duration = (endTime - startTime);
+            gameManager.recordTime(duration / 1000);
 
-                System.out.println("duration: " + (endTime - startTime));
-            });
+            System.out.println("duration: " + (endTime - startTime));
+        });
 
-            new AnimationTimer() {
-                @Override
-                public void handle(long now) {
-                    gameManager.updateGame();
-                    gameManager.renderGame();
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                gameManager.updateGame();
+                gameManager.renderGame();
 
-                }
-            }.start();
-        }
+            }
+        }.start();
     }
 
     @FXML

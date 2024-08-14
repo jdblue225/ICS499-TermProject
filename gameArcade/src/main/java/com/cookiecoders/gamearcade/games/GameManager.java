@@ -29,6 +29,11 @@ public class GameManager {
             currentGame.stop();
         }
         currentGame = game;
+        /**
+         * This is already called when the class is instantiated,
+         * so we are re-initializing the class.... Why?
+         * JJD
+         */
         currentGame.initialize();
     }
 
@@ -75,4 +80,5 @@ public class GameManager {
         int userId = userSession.getCurrentUser().getId();
         this.ownedGamesDao.recordGameDuration(userId,currentGame.getGameID(),time);
     }
+
 }

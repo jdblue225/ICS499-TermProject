@@ -42,17 +42,25 @@ public class Sprite {
         setImage(resizedImage);
     }
 
-    public void setImage(boolean gif, String filename) {
-        String fullPath = this.gameResourcePath + filename;
-        URL resourceUrl = getClass().getResource(fullPath);
 
-        if (resourceUrl == null) {
-            throw new IllegalArgumentException("Resource not found: " + fullPath);
-        }
-        ImageView i = new ImageView(new Image(resourceUrl.toExternalForm()));
-        Image toReturn = new Image(filename);
-        setImage(toReturn);
+public void setImage(boolean gif, String filename) {
+    String fullPath = this.gameResourcePath + filename;
+    URL resourceUrl = getClass().getResource(fullPath);
+    if (resourceUrl == null) {
+        throw new IllegalArgumentException("Resource not found: " + fullPath);
     }
+    Image image;
+    if (gif) {
+        // Handle the gif image loading
+        image = new Image(resourceUrl.toExternalForm());
+    } else {
+        // Handle other image formats
+        image = new Image(resourceUrl.toExternalForm(), true);
+    }
+    ImageView imageView = new ImageView(image);
+    imageView.setPreserveRatio(true);
+    setImage(image);
+}
 
     public Image getImage() {
         return image;
