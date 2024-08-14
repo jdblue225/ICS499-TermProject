@@ -39,8 +39,8 @@ public class InvaderzGame extends Application {
     public void stop(){
         GameManager gameManager = new GameManager();
         long endTime = System.currentTimeMillis();
-        long duration = (endTime - this.startTime);
-        gameManager.recordTime(duration);
+        long duration = (endTime - this.startTime) / 120 ;
+        gameManager.recordTime(duration, 9);
     }
 
 
@@ -94,6 +94,7 @@ public class InvaderzGame extends Application {
         MenuItem quitGame = new MenuItem("QUIT", 250);
         quitGame.setOnAction(() -> {
 //            System.exit(0); //close out of whole application
+            stop();
             this.stage.close();
         });
 

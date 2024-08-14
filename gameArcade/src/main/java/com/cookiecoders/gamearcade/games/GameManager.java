@@ -81,4 +81,10 @@ public class GameManager {
         this.ownedGamesDao.recordGameDuration(userId,currentGame.getGameID(),time);
     }
 
+    public void recordTime(long time, Integer gameId) {
+        UserSession userSession = UserSession.getInstance();
+        int userId = userSession.getCurrentUser().getId();
+        this.ownedGamesDao.recordGameDuration(userId,String.valueOf(gameId),time);
+    }
+
 }
