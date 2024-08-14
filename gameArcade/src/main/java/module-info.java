@@ -5,6 +5,7 @@ module com.cookiecoders.gamearcade {
     requires java.compiler;
     requires java.desktop;
     requires org.controlsfx.controls;
+    requires javafx.media;
 
 
     opens com.cookiecoders.gamearcade to javafx.fxml;

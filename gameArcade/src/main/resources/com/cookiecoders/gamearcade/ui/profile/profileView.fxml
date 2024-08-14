@@ -33,7 +33,7 @@
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </padding>
       </ToolBar>
-      <Label fx:id="userName" layoutX="166.0" layoutY="79.0" text="userName" />
+      <Label fx:id="userName" layoutX="166.0" layoutY="79.0" text="userName" styleClass="userNameLabel"/>
       <ImageView fx:id="profileImage" fitHeight="135.0" fitWidth="121.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../img/icon.jpg" />

@@ -111,8 +111,9 @@ public class profileDetailsViewController {
             User updatedUser = userDao.getUserByUsername(this.user.getUsername());
             UserSession.getInstance().setCurrentUser(updatedUser);
 
-            // Update UI with the refreshed user data
-            initialize();
+//            // Update UI with the refreshed user data
+//            initialize();
+            Navigation.navigateToProfileView(event);
         }
     }
 

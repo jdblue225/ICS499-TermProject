@@ -1,7 +1,10 @@
 package com.cookiecoders.gamearcade.games;
 
-public class WordsGame implements Game {
-    private String gameId = "5";
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class FroggerGame extends Application implements Game {
+    private String gameId = "4";
     @Override
     public void initialize(){
 
@@ -9,6 +12,9 @@ public class WordsGame implements Game {
     @Override
     public void start(){
 
+    }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
     }
     @Override
     public void update(){}
@@ -20,4 +26,5 @@ public class WordsGame implements Game {
     public String getGameID(){
         return this.gameId;
     }
+
 }

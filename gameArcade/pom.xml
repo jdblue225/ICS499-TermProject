@@ -51,7 +51,13 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>  </dependencies>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-media</artifactId>
+      <version>20.0.2</version> <!-- Use the appropriate version for your project -->
+    </dependency>
+  </dependencies>
 
   <build>
     <resources>
