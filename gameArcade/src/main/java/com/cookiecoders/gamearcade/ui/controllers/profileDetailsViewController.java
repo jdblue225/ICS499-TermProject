@@ -73,18 +73,19 @@ public class profileDetailsViewController {
         uploadButton.setOnAction(this::handleUploadButtonAction);
         saveButton.setOnAction(this::handleSaveButtonAction);
         cancelButton.setOnAction(this::handleCancelButtonAction);
-
-        String imagePath = ConfigManager.getProperty("root_path") +
-                ConfigManager.getProperty("prof_image_path") +
-                this.userName + ".jpg";
-        URL imageUrl = getClass().getResource(imagePath);
-        if (imageUrl != null) {
-            Image image = new Image(imageUrl.toExternalForm());
-            profileImage.setImage(image);
-        }
-
+        loadProfileImage();
     }
 
+    private void loadProfileImage(){
+        String imagePath = ConfigManager.getProperty("root_path") +
+                ConfigManager.getProperty("prof_image_path") +
+                user.getUsername() + ".jpg";
+        URL imageUrl = getClass().getResource(imagePath);
+        if (imageUrl != null) {
+            Image image = new Image(imageUrl.toExternalForm(), true);
+            profileImage.setImage(image);
+        }
+    }
 
     @FXML
     private void handleSaveButtonAction(ActionEvent event) {

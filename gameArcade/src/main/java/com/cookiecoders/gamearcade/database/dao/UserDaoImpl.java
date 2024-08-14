@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(3, user.getLastname());
             statement.setString(4, user.getEmail());
             statement.setString(5, user.getImageName());
-            statement.set;
+            statement.setBytes(6, user.getImage());
             statement.setInt(7, user.getId()); // Assuming you have an ID column
             int rowsUpdated = statement.executeUpdate();
             System.out.println("Rows updated: " + rowsUpdated); // Log the number of rows updated
@@ -135,7 +135,7 @@ public class UserDaoImpl implements UserDao {
             stmt.setString(5, user.getPassword());
             stmt.setString(6, user.getUsertype());
             stmt.setString(7, user.getImageName());
-            stmt.setString(8, user.getImage());
+            stmt.setBytes(8, user.getImage());
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {

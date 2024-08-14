@@ -27,6 +27,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.cookiecoders.gamearcade.config.ConfigManager;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 
@@ -64,16 +66,16 @@ public class profileViewController {
         this.gameDao = new GameDaoImpl();
         this.user = UserSession.getInstance().getCurrentUser();
         this.userId = this.user.getId();
-        String accountUsername = UserSession.getInstance().getCurrentUser().getUsername();
-        userName.setText(accountUsername);
-        String imagePath = ConfigManager.getProperty("root_path") +
-                ConfigManager.getProperty("prof_image_path") +
-                accountUsername + ".jpg";
-        URL imageUrl = getClass().getResource(imagePath);
-        if (imageUrl != null) {
-            Image image = new Image(imageUrl.toExternalForm());
-            profileImage.setImage(image);
-        }
+        userName.setText(user.getUsername());
+//        String imagePath = ConfigManager.getProperty("root_path") +
+//                ConfigManager.getProperty("prof_image_path") +
+//                user.getUsername() + ".jpg";
+//        URL imageUrl = getClass().getResource(imagePath);
+//        if (imageUrl != null) {
+//            Image image = new Image(imageUrl.toExternalForm(), true);
+//            profileImage.setImage(image);
+//        }
+        loadProfileImage();
         score.setText(String.valueOf(ownedGames.getUserPlaytime(userId)));
         /**
          * Coming in from Kevin
@@ -86,6 +88,17 @@ public class profileViewController {
 
         // Load leaderboard data
         loadLeaderboardData();
+    }
+    private void loadProfileImage(){
+        String imagePath = ConfigManager.getProperty("root_path") +
+                ConfigManager.getProperty("prof_image_path") +
+                user.getUsername() + ".jpg";
+        URL imageUrl = getClass().getResource(imagePath);
+        if (imageUrl != null) {
+            Image image = new Image(imageUrl.toExternalForm(), true);
+            profileImage.setImage(image);
+        }
+        URL resourcepath = getClass().getResource("");
     }
 
     private void loadLeaderboardData() {
