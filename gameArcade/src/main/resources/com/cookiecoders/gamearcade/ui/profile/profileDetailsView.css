@@ -1,41 +1,26 @@
 /* profileDetailsView.css */
 
-.anchor-pane {
+.right-anchor-pane {
     -fx-background-color: #1D3B76;
 }
-
-.toolbar {
+.right-anchor-pane .button{
     -fx-background-color: #3C51C6;
-}
-
-.search-toolbar {
-    -fx-background-color: #3C51C6;
-}
-
-.search-toolbar .button {
-    -fx-background-color: #885FC9;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 }
 
-.toolbar .button {
+.left-anchor-pane {
+    -fx-background-color: #3C51C6;
+}
+.left-anchor-pane .button{
     -fx-background-color: #885FC9;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 }
-
-.toolbar .button:hover {
-    -fx-background-color: #6F4FB1;
-}
-
-.toolbar .button.selected {
-    -fx-background-color: #6F4FB1;
-}
-
 .image-view {
     -fx-cursor: hand;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);
@@ -45,3 +30,10 @@
     -fx-text-fill: white;
     -fx-font-size: 14px;
 }
+
+.userNameLabel {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
