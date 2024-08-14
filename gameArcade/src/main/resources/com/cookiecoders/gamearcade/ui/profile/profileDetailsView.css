@@ -11,6 +11,10 @@
     -fx-border-radius: 5px;
 }
 
+.right-anchor-pane .button:hover{
+    -fx-background-color: #2E3D9A;
+}
+
 .left-anchor-pane {
     -fx-background-color: #3C51C6;
 }
@@ -20,6 +24,9 @@
     -fx-font-weight: bold;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
+}
+.left-anchor-pane .button:hover{
+    -fx-background-color: #6F4FB1;
 }
 .image-view {
     -fx-cursor: hand;
