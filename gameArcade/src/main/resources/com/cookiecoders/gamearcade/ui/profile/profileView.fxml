@@ -24,10 +24,11 @@
       </Label>
       <ToolBar prefHeight="55.0" prefWidth="460.0" styleClass="toolbar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <items>
+
             <Button fx:id="toolbarStoreButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Store" />
             <Button fx:id="toolbarGameButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Game" />
             <Button fx:id="toolbarForumButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button" text="Forum" />
-            <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button-selected" text="Profile" />
+           <Button fx:id="toolbarProfileButton" minWidth="75.0" mnemonicParsing="false" onAction="#navigationButtonClicked" styleClass="button-selected" text="Profile" />
         </items>
          <padding>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
