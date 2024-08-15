@@ -88,7 +88,6 @@ public class createAccountViewController {
     private void handleSubmitButtonAction(ActionEvent event) {
         // Validate form fields
         if (validateForm()) {
-            System.out.println("User Created!");
             // Proceed with form submission logic
             if (createUser()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -99,6 +98,8 @@ public class createAccountViewController {
                 navigateLoginView(event);
             }
         }
+        handleCheckButtonAction(event);
+        validateEmail();
     }
 
     @FXML
@@ -202,6 +203,14 @@ public class createAccountViewController {
             return false;
         }else{
             return true;
+        }
+    }
+
+    private void validateEmail(){
+        String email = emailField.getText();
+        this.userDao = new UserDaoImpl();
+        if (userDao.getUserByEmail(email) != null) {
+            errorMessageEmail.setText("Email in use.");
         }
     }
 
