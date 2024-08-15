@@ -97,6 +97,8 @@ public class profileDetailsViewController {
                 String imageExtension = Utils.getFileExtension(imageFile.toURI().toString());
                 imageName = username + "." + imageExtension;
                 profImageByte = Utils.imageToByteArray(profileImage.getImage());
+            }else{
+                profImageByte = this.user.getImage();
             }
             this.user.setUsername(username);
             this.user.setFirstname(firstName);
