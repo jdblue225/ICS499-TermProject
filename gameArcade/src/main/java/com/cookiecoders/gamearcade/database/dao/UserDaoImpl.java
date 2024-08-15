@@ -103,6 +103,35 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    @Override
+    public User getUserByEmail(String email) {
+        String hashedPass;
+        String query = "SELECT * FROM Users WHERE Email = ?;";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    User user = new User(
+                            resultSet.getInt("UserID"),
+                            resultSet.getString("UserName"),
+                            resultSet.getString("FirstName"),
+                            resultSet.getString("LastName"),
+                            resultSet.getString("Email"),
+                            resultSet.getString("Password"),
+                            resultSet.getString("UserType"),
+                            resultSet.getDate("CreateDate"),
+                            resultSet.getString("ImageName"),
+                            resultSet.getBytes("Image")
+                    );
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 //    @Override
 //    public List<User> getAllUsers() {
 //        String query = "SELECT * FROM users";
@@ -138,11 +167,14 @@ public class UserDaoImpl implements UserDao {
             stmt.setBytes(8, user.getImage());
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
-        } catch (SQLException e) {
+        } catch(SQLIntegrityConstraintViolationException e){
+            return false;
+        }catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
+
 
 
 //    @Override
