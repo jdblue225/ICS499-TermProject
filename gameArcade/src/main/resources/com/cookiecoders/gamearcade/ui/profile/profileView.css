@@ -25,3 +25,71 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
+
+
+
+
+
+
+
+
+
+
+/* TableView Styling */
+.table-view {
+    -fx-background-color: #445B9E; /* Softer background color for the TableView */
+    -fx-border-color: #5F72B8; /* Softer border color */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.table-row-cell {
+    -fx-background-color: #A8B4D6; /* Softer default row background color */
+    -fx-text-fill: #FFFFFF; /* Row text color */
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #5F72B8; /* Softer background color when a row is selected */
+    -fx-text-fill: #ECEFF4; /* Slightly off-white text color */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #7C8EC2; /* Softer background color when a row is hovered over */
+    -fx-text-fill: #FFFFFF; /* Text color when a row is hovered over */
+}
+
+.table-cell {
+    -fx-border-color: #5F72B8; /* Softer border color between cells */
+    -fx-padding: 8px; /* Padding within each cell */
+}
+
+/* Customize Scrollbar in TableView */
+.table-view .scroll-bar:vertical .thumb,
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #5F72B8; /* Softer thumb color for scrollbar */
+    -fx-background-radius: 5px;
+}
+
+.table-view .scroll-bar:vertical .track,
+.table-view .scroll-bar:horizontal .track {
+    -fx-background-color: #445B9E; /* Softer track color for scrollbar */
+}
+
+.table-view .scroll-bar:vertical .increment-button,
+.table-view . scroll-bar:vertical .decrement-button,
+.table-view .scroll-bar:horizontal .increment-button,
+.table-view .scroll-bar:horizontal .decrement-button {
+    -fx-background-color: #5F72B8; /* Softer button color for scrollbar */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* More specific TableColumn header styling */
+.table-view .column-header-background {
+    -fx-background-color: #B39CD9; /* Darker header background color */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill:  #37477D; /* Light purple text color */
+    -fx-font-weight: bold;
+}

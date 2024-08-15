@@ -50,3 +50,21 @@
 .scroll-bar .decrement-button {
     -fx-background-color: #999999; /* Button color */
 }
+#searchField {
+    -fx-background-color: #2C4D90; /* Background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-prompt-text-fill: #B0C4DE; /* Prompt text color */
+    -fx-border-color: #3C51C6; /* Border color */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-background-radius: 5px; /* Background radius */
+    -fx-padding: 5px; /* Padding inside the TextField */
+}
+
+#searchField:focused {
+    -fx-background-color: #b69ccf; /* Complementary shade of purple for contrast */
+    -fx-border-color: #7C8EC2; /* Adjusted border color */
+}
+
+#searchField:hover {
+    -fx-background-color: #554FA6; /* Background color when hovered */
+}
