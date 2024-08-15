@@ -23,30 +23,92 @@
 .button-selected {
     -fx-background-color: #b69ccf;
 }
-.scroll-pane {
-    -fx-background: #1D3B76;
-    -fx-padding: 10;
+
+.list-cell {
+    -fx-background-color: #2C4D90; /* A slightly darker shade for the list items */
+    -fx-text-fill: white; /* White text for readability */
+    -fx-padding: 10px; /* Add padding for better spacing */
+    -fx-border-color: #3C51C6; /* Border color to match the toolbar */
+    -fx-border-width: 0 0 1px 0; /* Add a bottom border to separate items */
 }
 
-
-.image-view {
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);
+.list-cell:filled:selected, .list-cell:filled:selected:hover{
+    -fx-background-color: #6F4FB1; /* A different background color when an item is selected */
+    -fx-text-fill: white; /* Ensure the text is still readable */
+}
+.list-cell:filled:hover{
+    -fx-background-color:  #b69ccf; /* A different background color when an item is selected */
+    -fx-text-fill: white; /* Ensure the text is still readable */
 }
 
-.label {
+.list-view {
+    -fx-background-color: transparent; /* Make the ListView itself transparent so only the items are colored */
+}
+.combobox .arrow {
+    -fx-background-color: #885FC9; /* Match this to your color scheme */
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.combobox .arrow-button {
+    -fx-background-color: #3C51C6; /* Match the toolbar color */
+    -fx-background-radius: 5px;
+    -fx-border-color: transparent;
+}
+
+.combobox .arrow-button:hover {
+    -fx-background-color: #6F4FB1; /* Hover effect for the arrow button */
+}
+
+/* TextArea and TextField styling */
+.textarea, .textfield {
+    -fx-background-color: #2C4D90; /* Background color matching the ListView items */
+    -fx-text-fill: white; /* White text for readability */
+    -fx-border-color: #3C51C6; /* Border color matching the toolbar */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-prompt-text-fill: #b0c4de; /* Lighter color for the prompt text */
+}
+
+/* Focused state for TextArea and TextField */
+.textarea:focused, .textfield:focused {
+    -fx-background-color: #3C51C6; /* Change background slightly when focused */
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-border-color: #6F4FB1; /* Change border color when focused */
 }
-.scroll-bar:vertical .track {
-    -fx-background-color: #CCCCCC; /* Track color */
+
+/* Hover state for TextArea and TextField */
+.textarea:hover, .textfield:hover {
+    -fx-background-color: #3C51C6; /* Slightly darker on hover */
 }
-.scroll-bar:vertical .thumb {
-    -fx-background-color: #666666; /* Thumb color */
-    -fx-background-insets: 0;
-    -fx-background-radius: 5;
+
+/* Inner content of TextArea */
+.textarea .content {
+    -fx-background-color: #2C4D90; /* Ensures the inner content background matches */
 }
-.scroll-bar .increment-button,
-.scroll-bar .decrement-button {
-    -fx-background-color: #999999; /* Button color */
+
+/* Scrollbar styling */
+.scroll-bar {
+    -fx-background-color: #2C4D90; /* Background color of the scrollbar */
+    -fx-padding: 5px; /* Padding to give some space around the thumb */
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #3C51C6; /* Color of the thumb that matches the toolbar */
+    -fx-background-radius: 5px; /* Rounded corners for the thumb */
+}
+
+.scroll-bar:vertical .track,
+.scroll-bar:horizontal .track {
+    -fx-background-color: #1D3B76; /* Background color of the track */
+}
+
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button,
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: #3C51C6; /* Color of the increment/decrement buttons */
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
 }

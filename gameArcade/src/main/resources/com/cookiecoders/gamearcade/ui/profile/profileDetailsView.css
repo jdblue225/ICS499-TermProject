@@ -44,3 +44,11 @@
     -fx-text-fill: white;
 }
 
+.text-field {
+    -fx-background-color: #2E4A8A;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-border-color: #5A75E2;
+    -fx-border-radius: 5px;
+}
+
